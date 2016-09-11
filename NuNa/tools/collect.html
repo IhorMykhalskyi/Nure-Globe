@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="collect.js"></script>
+        <script src="dots.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="button-group">
+
+                <button id="scale_inc">+</button>
+                <button id="scale_dec">-</button>
+
+                <button id="shift_l"> left</button>
+                <button id="shift_r">right</button>
+
+                <button id="shift_u">up</button>
+                <button id="shift_d">down</button>
+
+                Key:<input type="text" id="key" style="width:100px" />
+                X:<input type="text" id="ruler_x" style="width:50px" />
+                Y:<input type="text" id="ruler_y" style="width:50px" />
+                <span id="coords"></span>
+                <span id="selected_key" style="color:darkred"></span>
+
+            </div>
+            <div>
+                <canvas id="canvas1" width="900" height="635" style="border:solid thin"></canvas>
+            </div>
+            <textarea id="result" rows="10" cols="30"></textarea>
+            <button id="save">Save</button>
+        </div>
+</body>
+</html>
