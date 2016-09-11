@@ -20,6 +20,11 @@ $(function () {
     img = new Image();
     img.src = IMG_SRC;
 
+    ///////////////////////////////////////////
+    $("#ruler_x").val("450");
+    $("#ruler_y").val("300");
+    ///////////////////////////////////////////
+
 
     img.onload = function () {
         draw();
@@ -76,13 +81,20 @@ $(function () {
         }
     }
 
+    var K = Math.sqrt(2);
+
     $("#scale_inc").on("click", function () {
-        scale *= Math.sqrt(2);
+        scale *= K;
+        shift_x = shift_x * K - canvas.width / 2 * (K - 1);
+        shift_y = shift_y * K - canvas.height / 2 * (K - 1);
         draw();
     })
 
     $("#scale_dec").on("click", function () {
-        scale /= Math.sqrt(2);
+        var k = 1 / K;
+        scale *= k;
+        shift_x = shift_x * k - canvas.width / 2 * (k - 1);
+        shift_y = shift_y * k - canvas.height / 2 * (k - 1);
         draw();
     })
 

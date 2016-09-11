@@ -47,27 +47,29 @@
             <div data-role="header" data-collapsed="true">
                 <div data-role="controlgroup">
                     <a href="#home" class="ui-btn ui-icon-home ui-btn-icon-left" data-transition="flip" >Home</a>&nbsp;&nbsp;
-                    <button id="scale_inc" class="ui-btn ui-icon-plus ui-btn-icon-right">&nbsp;</button>
-                    <button id="scale_dec" class="ui-btn ui-icon-minus ui-btn-icon-left">&nbsp;</button>
+                    Scale:
+                    <button id="scale_inc" class="ui-btn ui-icon-plus ui-btn-icon-notext">&nbsp;</button>
+                    <button id="scale_dec" class="ui-btn ui-icon-minus ui-btn-icon-notext">&nbsp;</button>
                     &nbsp;&nbsp;
-                    <button id="step_back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left">&nbsp;</button>
-                    <button id="step_forward" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">&nbsp;</button>
+                    Move:
+                    <button id="step_back" class="ui-btn ui-icon-arrow-l ui-btn-icon-notext">&nbsp;</button>
+                    <button id="step_forward" class="ui-btn ui-icon-arrow-r ui-btn-icon-notext">&nbsp;</button>
                 </div>
             </div>
             
-            <div data-role="main" class="ui-content">
-                <span id="shift_l" class="ui-btn ui-btn-inline ui-icon-carat-l ui-btn-icon-left"
-                      style="position:fixed; left: 0px; top: 200px"></span>
-                <span id="shift_r" class="ui-btn ui-btn-inline ui-icon-carat-r ui-btn-icon-right"
-                      style="position:fixed; right: 0px; top: 200px"></span>
+            <div data-role="main" >
+                <button id="shift_l" class="ui-btn ui-btn-inline ui-icon-carat-l ui-btn-icon-notext"
+                      style="position:fixed; left: 5px; height: 100px"></button>
+                <button id="shift_r" class="ui-btn ui-btn-inline ui-icon-carat-r ui-btn-icon-notext"
+                      style="position:fixed; right: 0px; height: 100px"></button>
 
-                <span id="shift_u" class="ui-btn ui-btn-inline ui-icon-carat-u ui-btn-icon-left"
-                      style="position:fixed; left: 200px; top: 60px"></span>
-                <span id="shift_d" class="ui-btn ui-btn-inline ui-icon-carat-d ui-btn-icon-left"
-                      style="position:fixed; left: 200px; bottom:20px"></span>
+                <button id="shift_u" class="ui-btn ui-btn-inline ui-icon-carat-u ui-btn-icon-notext"
+                      style="position:fixed; width: 100px; top: 60px"></button>
+                <button id="shift_d" class="ui-btn ui-btn-inline ui-icon-carat-d ui-btn-icon-notext"
+                      style="position:fixed; width: 100px; bottom: 0px"></button>
 
                 <div>
-                    <canvas id="canvas1" style="border:solid thin"></canvas>
+                    <canvas id="canvas1" style="border:solid thin; color: gray; margin:5px"></canvas>
                 </div>
 
             </div>

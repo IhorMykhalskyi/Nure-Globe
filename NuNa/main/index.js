@@ -1,13 +1,23 @@
 var ctx, canvas, img = {};
 var current_point;
 var path;
-var shift_x = 0, shift_y = 0, scale = 2; // transformation
+var shift_x = 0, shift_y = 0, scale = 1; // transformation
 
 $(function ()
 {
-    $("#canvas1").attr("width", screen.width)
-                 .attr("height", screen.height - 100);
     canvas = $("#canvas1")[0];
+
+    $("#canvas1").attr("width", screen.width - 10)
+                 .attr("height", screen.height - 60);
+
+    var lr = (screen.height - 100) / 2 | 0 + "px";
+    $("#shift_l").css("top", lr);
+    $("#shift_r").css("top", lr);
+
+    var ud = (screen.width - 100) / 2 | 0 + "px";
+    $("#shift_u").css("left", ud);
+    $("#shift_d").css("left", ud);
+
     ctx = canvas.getContext("2d");
     img["1"] = new Image();
     img["1"].src = 'floors/1.svg';
@@ -26,36 +36,37 @@ $(function ()
 
     $("#scale_inc").on("click", function () {
         scale *= K;
-        shift_x += canvas.width * (1 - K) / 2;
-        shift_y += canvas.height * (1 - K) / 2;
+        shift_x = shift_x * K - canvas.width / 2 * (K - 1);
+        shift_y = shift_y * K - canvas.height / 2 * (K - 1);
         draw();
     })
 
     $("#scale_dec").on("click", function () {
-        scale /= K;
-        shift_x -= canvas.width * (1 - K) / 2;
-        shift_y -= canvas.height * (1 - K) / 2;
-        draw();
-    })
-
-    $("#shift_l").on("click", function () {
-        shift_x -= 50;
+        var k = 1 / K;
+        scale *= k;
+        shift_x = shift_x * k - canvas.width / 2 * (k - 1);
+        shift_y = shift_y * k - canvas.height / 2 * (k - 1);
         draw();
     })
 
     $("#shift_r").on("click", function () {
+        shift_x -= 50;
+        draw();
+    })
+
+    $("#shift_l").on("click", function () {
         shift_x += 50;
         if (shift_x > 0)
             shift_x = 0;
         draw();
     })
 
-    $("#shift_u").on("click", function () {
+    $("#shift_d").on("click", function () {
         shift_y -= 50;
         draw();
     })
 
-    $("#shift_d").on("click", function () {
+    $("#shift_u").on("click", function () {
         shift_y += 50;
         if (shift_y > 0)
             shift_y = 0;
@@ -75,7 +86,7 @@ function find_and_show_path() {
     {
         path = dijkstra(fromKey, toKey);
         path = path.reverse();
-        //auto_scale();
+        auto_scale();
         set_current_point(path[0]);
     }
 }
@@ -143,30 +154,10 @@ function draw() {
 }
 
 function auto_scale() {
-    if (!path) {
-        scale = canvas.width / img[1].width;
-    } else {
-        var p1 = { x: path[0].x, y: path[0].y };
-        var p2 = { x: path[0].x, y: path[0].y };
-
-        for (var i = 0; i < path.length; i++) {
-            var p = path[i];
-            if (p1.x > p.x) p1.x = p.x;
-            if (p1.y > p.y) p1.y = p.y;
-            if (p2.x < p.x) p2.x = p.x;
-            if (p2.y < p.y) p2.y = p.y;
-        }
-        p1.x -= 50;
-        p2.x += 50;
-        p1.y -= 50;
-
-        scale = canvas.width / (p2.x - p1.x);
-
-        //shift_x = -p1.x * scale;
-        //shift_y = -p1.y * scale;
-
-    }
-
+    var p = path[0];
+    scale = 1;
+    shift_x = -p.x * scale + screen.width/2;
+    shift_y = -p.y * scale + screen.height/2;
 }
 
 
