@@ -1,15 +1,17 @@
 var ctx, canvas, img = {};
 var current_point;
 var path;
-var shift_x = 0, shift_y = 0, scale = 1; // transformation
+var shift_x = 0, shift_y = 0, scale = 1; // transform params
 
 $(function ()
 {
+    // canvas size
     canvas = $("#canvas1")[0];
-
     $("#canvas1").attr("width", screen.width - 10)
                  .attr("height", screen.height - 60);
+    ctx = canvas.getContext("2d");
 
+    // layout scroll buttons
     var lr = (screen.height - 100) / 2 | 0 + "px";
     $("#shift_l").css("top", lr);
     $("#shift_r").css("top", lr);
@@ -18,22 +20,30 @@ $(function ()
     $("#shift_u").css("left", ud);
     $("#shift_d").css("left", ud);
 
-    ctx = canvas.getContext("2d");
-    img["1"] = new Image();
-    img["1"].src = 'floors/1.svg';
+    // background images
+    for (var i = 1; i < 3; ++i)
+    {
+        img[i] = new Image();
+        img[i].src = 'floors/'+ i +'.svg';
+    }
 
-    img["1"].onload = function ()
+    // init graph
+    img[2].onload = function ()
     {
         init_points(dots, lines);
     };
 
     $("#goButton").on("click", find_and_show_path);
 
+    // step buttons events
     $("#step_back").on("click", step_back);
     $("#step_forward").on("click", step_forward);
 
-    var K = Math.sqrt(2);
+    $(canvas).on("tap",step_forward);
 
+
+    // scale & shift buttons events
+    var K = Math.sqrt(2);
     $("#scale_inc").on("click", function () {
         scale *= K;
         shift_x = shift_x * K - canvas.width / 2 * (K - 1);
@@ -81,6 +91,9 @@ function find_and_show_path() {
     var fromKey = $("#from").val();
     var toKey = $("#to").val();
 
+    $("#from").css("color", points[fromKey] ? "black" : "red");
+    $("#to").css("color", points[toKey] ? "black" : "red");
+
     //check input data 
     if (points[fromKey] && points[toKey])
     {
@@ -88,6 +101,9 @@ function find_and_show_path() {
         path = path.reverse();
         auto_scale();
         set_current_point(path[0]);
+    } else {
+        path = null;
+        location.href = '#home';
     }
 }
 
@@ -109,9 +125,6 @@ function step_back() {
 function set_current_point(p) {
     current_point = p;
     draw();
-    //$('html, body').animate({
-    //    scrollTop: current_point.y - screen.height / 2, scrollLeft: current_point.x - screen.width / 2
-    //}, 500);
 }
 
 function draw() {
@@ -136,10 +149,10 @@ function draw() {
         ctx.moveTo(x0, y0);
         for (var i = 1; i < path.length; i++) {
             var p = path[i];
-            var x = p.x;
-            var y = p.y;
-            ctx.lineTo(x, y);
-            x0 = x; y0 = y;
+            if (p.z == current_point.z) {
+                ctx.lineTo(p.x, p.y);
+                x0 = p.x; y0 = p.y;
+            }
         }
         ctx.stroke();
 

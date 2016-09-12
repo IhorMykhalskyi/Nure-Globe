@@ -13,7 +13,7 @@ var points;  // dictionary of Points
 function init_points(ps, lines) {
     points = {};
     for (var key in ps) {
-        points[key] = new Point(key, ps[key][0], ps[key][1], "1");
+        points[key] = new Point(key, ps[key][0], ps[key][1], ps[key][2]);
     }
 
     for(var i = 0; i < lines.length; i++) 
@@ -25,7 +25,8 @@ function init_points(ps, lines) {
             if (points[k1] && points[k2]) {
                 var dx = ps[k1][0] - ps[k2][0];
                 var dy = ps[k1][1] - ps[k2][1];
-                var dist =  Math.sqrt(dx * dx + dy * dy);
+                var dz = ps[k1][2] - ps[k2][2];
+                var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
                 points[k1].E[k2] = points[k2].E[k1] = dist;
             }
             else {
@@ -110,9 +111,10 @@ function tune(path)
     var res = [path[0]];
     for (var i = 1; i < path.length - 1; i++) {
         var a = path[i - 1], b = path[i], c = path[i + 1];
-        var can_remove = a.x == b.x && b.x == c.x && a.y == b.y && b.y == c.y ||
-            a.x == b.x && b.x == c.x && a.z == b.z && b.z == c.z ||
-            a.z == b.z && b.z == c.z && a.y == b.y && b.y == c.y;
+        var can_remove =
+            a.x == b.x && b.x == c.x &&   a.y == b.y && b.y == c.y ||
+            a.x == b.x && b.x == c.x &&   a.z == b.z && b.z == c.z ||
+            a.z == b.z && b.z == c.z &&   a.y == b.y && b.y == c.y;
         if (!can_remove)
             res.push(b);
     }
