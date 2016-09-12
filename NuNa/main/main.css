@@ -1,0 +1,33 @@
+﻿body {
+}
+
+canvas {
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    border:solid thin; 
+    color: gray; 
+    margin:5px
+}
+
+#shift_l, #shift_r {
+    position:absolute; 
+    height: 100px
+}
+#shift_l {
+    left: 0px; 
+}
+#shift_r {
+    right: 0px; 
+}
+#shift_u, #shift_d {
+    position:absolute; 
+    width: 100px
+}
+
+#shift_u {
+    top: 0px; 
+}
+#shift_d {
+    bottom: 0px;
+}
