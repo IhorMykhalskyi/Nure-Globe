@@ -7,8 +7,8 @@ $(function ()
 {
     // canvas size
     canvas = $("#canvas1")[0];
-    $("#canvas1").attr("width", screen.width)
-                 .attr("height", screen.height);
+    $("#canvas1").attr("width", screen.availWidth)
+                 .attr("height", screen.availHeight);
     ctx = canvas.getContext("2d");
 
     // background images
@@ -26,55 +26,44 @@ $(function ()
     };
 
     // scaling
+    var SCALE_STEP = Math.pow(2, 1/30);
+    var SCROL_STEP = 10;
 
-    var K = Math.sqrt(2);
     $("#scale_inc").on("click", function () {
-        scale *= K;
-        shift_x = shift_x * K - canvas.width / 2 * (K - 1);
-        shift_y = shift_y * K - canvas.height / 2 * (K - 1);
-        draw();
+        shift_scale_anime(0, 0, SCALE_STEP)
     })
 
     $("#scale_dec").on("click", function () {
-        var k = 1 / K;
-        scale *= k;
-        shift_x = shift_x * k - canvas.width / 2 * (k - 1);
-        shift_y = shift_y * k - canvas.height / 2 * (k - 1);
-        draw();
+        shift_scale_anime(0, 0, 1/SCALE_STEP)
     })
 
     // scrolling
-    var SCROL_STEP = (screen.width / 2) | 0;
+
 
     $(canvas).on('swipeup', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        shift_y -= SCROL_STEP;
-        draw();
-
+        shift_scale_anime(0, -SCROL_STEP);
     });
 
     $(canvas).on('swipedown', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        shift_y += SCROL_STEP;
-        draw();
+        shift_scale_anime(0, SCROL_STEP);
 
     });
 
     $(canvas).on('swipeleft', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        shift_x -= SCROL_STEP;
-        draw();
+        shift_scale_anime(-SCROL_STEP, 0);
 
     });
 
     $(document).on('swiperight', 'canvas', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        shift_x += SCROL_STEP;
-        draw();
+        shift_scale_anime(SCROL_STEP, 0);
 
     });
 
@@ -92,9 +81,28 @@ $(function ()
 
     $("#goButton").on("click", find_and_show_path);
 
-
-
 });
+
+function shift_scale_anime(dx, dy, k) {
+    var STEP_COUNT = 15;
+    var t = 0;
+    var timer = setInterval(function() {
+        shift_x += dx;
+        shift_y += dy;
+        if (k)
+        {
+            scale *= k;
+            shift_x = shift_x * k - canvas.width / 2 * (k - 1);
+            shift_y = shift_y * k - canvas.height / 2 * (k - 1);
+        }
+        draw();
+        t++;
+        if (t >= STEP_COUNT) {
+            clearInterval(timer);
+        }
+    }, 20);
+}
+
 
 
 
@@ -181,7 +189,7 @@ function draw()
     // floor
     ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
     ctx.font = "72px arial";
-    ctx.fillText(current_point.z + " этаж", 50, canvas.height - 50);
+    ctx.fillText(current_point.z + " этаж", 50, canvas.height - 150);
 
 }
 
