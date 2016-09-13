@@ -39,7 +39,7 @@ $(function ()
     $("#step_back").on("click", step_back);
     $("#step_forward").on("click", step_forward);
 
-    $(canvas).on("tap",step_forward);
+    //$(canvas).on("tap",step_forward);
 
 
     // scale & shift buttons events
@@ -82,6 +82,47 @@ $(function ()
             shift_y = 0;
         draw();
     })
+
+////////////////////////////////////////////////////////////
+
+    $(canvas).on('swipeup', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        shift_y -= 50;
+        draw();
+
+    });
+
+    $(canvas).on('swipedown', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        shift_y += 50;
+        draw();
+
+    });
+
+    $(canvas).on('swipeleft', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        shift_x -= 50;
+        draw();
+
+    });
+
+    $(canvas).on('tap', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        step_forward();
+
+    });
+
+    $(document).on('swiperight', 'canvas', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        shift_x += 50;
+        draw();
+        
+    });
 
 });
 

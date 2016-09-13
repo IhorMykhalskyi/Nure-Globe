@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="main.css">
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="swipeupdown.js"></script>
 
         <script src="dots.js"></script>        
         <script src="dijkstra.js"></script>
@@ -19,31 +20,38 @@
 
     <body>
         <div data-role="page" id="map" >
-
-            <!--<div data-role="header" data-collapsed="true">
-                <div data-role="controlgroup">
-                    <a href="#home" class="ui-btn ui-icon-home ui-btn-icon-left" data-transition="flip" >Home</a>&nbsp;&nbsp;
-                    Scale:
-                    <button id="scale_inc" class="ui-btn ui-icon-plus ui-btn-icon-notext">&nbsp;</button>
-                    <button id="scale_dec" class="ui-btn ui-icon-minus ui-btn-icon-notext">&nbsp;</button>
-                    &nbsp;&nbsp;
-                    Move:
-                    <button id="step_back" class="ui-btn ui-icon-arrow-l ui-btn-icon-notext">&nbsp;</button>
-                    <button id="step_forward" class="ui-btn ui-icon-arrow-r ui-btn-icon-notext">&nbsp;</button>
-                </div>
-            </div>-->
-            
             <div data-role="main" >
                 <canvas id="canvas1"></canvas>
-
-                <button id="shift_l" class="ui-btn ui-btn-inline ui-icon-carat-l ui-btn-icon-notext"></button>
-                <button id="shift_r" class="ui-btn ui-btn-inline ui-icon-carat-r ui-btn-icon-notext"></button>
-
-                <button id="shift_u" class="ui-btn ui-btn-inline ui-icon-carat-u ui-btn-icon-notext"></button>
-                <button id="shift_d" class="ui-btn ui-btn-inline ui-icon-carat-d ui-btn-icon-notext"></button>
+                <button id="scale_inc" class="ui-btn ui-icon-plus ui-btn-icon-notext"></button>
+                <button id="scale_dec" class="ui-btn ui-icon-minus ui-btn-icon-notext"></button>
             </div>
 
         </div>
+
+        <!-- ----------------------page Dialog--------------------- -->
+
+        <div data-role="page" data-dialog="true" id="dialog" data-delay="1000">
+            <div data-role="header">
+                <h1>Nure Globe</h1>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <div style="width:200px">
+                    <input type="text" name="from" id="from" value="ENTER" placeholder="From">
+                    <input type="text" name="to" id="to" value="251" placeholder="To">
+                    <!--<a href="#map" class="ui-btn" id="goButton">Go</a>-->
+
+                    <a id="goButton" href="#map">Go</a>
+                </div>
+            </div>
+
+            <div data-role="footer">
+      
+            </div>
+        </div>
+
+
+
 
         <!-- ----------------------page About--------------------- -->
         <div data-role="page" id="about">

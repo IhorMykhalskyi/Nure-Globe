@@ -1,4 +1,4 @@
-var ctx, canvas, img = {};
+﻿var ctx, canvas, img = {};
 var current_point;
 var path;
 var shift_x = 0, shift_y = 0, scale = 1; // transform params
@@ -11,15 +11,6 @@ $(function ()
                  .attr("height", screen.height);
     ctx = canvas.getContext("2d");
 
-    // layout scroll buttons
-    var lr = (canvas.height) / 2 | 0 + "px";
-    $("#shift_l").css("top", lr);
-    $("#shift_r").css("top", lr);
-
-    var ud = (canvas.width) / 2 | 0 + "px";
-    $("#shift_u").css("left", ud);
-    $("#shift_d").css("left", ud);
-
     // background images
     for (var i = 1; i < 3; ++i)
     {
@@ -27,24 +18,15 @@ $(function ()
         img[i].src = 'floors/'+ i +'.svg';
     }
 
-    // init graph
+    // init data
     img[2].onload = function ()
     {
         init_points(dots, lines);
         set_current_point(points["ENTER"]);
     };
 
+    // scaling
 
-    $("#goButton").on("click", find_and_show_path);
-
-    // step buttons events
-    $("#step_back").on("click", step_back);
-    $("#step_forward").on("click", step_forward);
-
-    $(canvas).on("tap",step_forward);
-
-
-    // scale & shift buttons events
     var K = Math.sqrt(2);
     $("#scale_inc").on("click", function () {
         scale *= K;
@@ -61,33 +43,60 @@ $(function ()
         draw();
     })
 
-    $("#shift_r").on("click", function () {
-        shift_x -= 50;
-        draw();
-    })
+    // scrolling
+    var SCROL_STEP = (screen.width / 2) | 0;
 
-    $("#shift_l").on("click", function () {
-        shift_x += 50;
-        if (shift_x > 0)
-            shift_x = 0;
+    $(canvas).on('swipeup', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        shift_y -= SCROL_STEP;
         draw();
-    })
 
-    $("#shift_d").on("click", function () {
-        shift_y -= 50;
-        draw();
-    })
+    });
 
-    $("#shift_u").on("click", function () {
-        shift_y += 50;
-        if (shift_y > 0)
-            shift_y = 0;
+    $(canvas).on('swipedown', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        shift_y += SCROL_STEP;
         draw();
-    })
+
+    });
+
+    $(canvas).on('swipeleft', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        shift_x -= SCROL_STEP;
+        draw();
+
+    });
+
+    $(document).on('swiperight', 'canvas', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        shift_x += SCROL_STEP;
+        draw();
+
+    });
+
+    $(canvas).on('tap', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        step_forward();
+
+    });
+
+    $(canvas).on('taphold', function (event) {
+        location.replace('#dialog');
+    });
+
+
+    $("#goButton").on("click", find_and_show_path);
+
+
 
 });
 
-//////////////////////////////////////////////////////////////////////
+
 
 function find_and_show_path() {
     var fromKey = $("#from").val();
@@ -105,7 +114,7 @@ function find_and_show_path() {
         set_current_point(path[0]);
     } else {
         path = null;
-        location.href = '#home';
+        location.replace('#dialog');
     }
 }
 
@@ -129,8 +138,11 @@ function set_current_point(p) {
     draw();
 }
 
-function draw() {
+function draw()
+{
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // transform
     ctx.save();
     ctx.translate(shift_x, shift_y);
     ctx.scale(scale, scale);
@@ -151,10 +163,10 @@ function draw() {
         ctx.moveTo(x0, y0);
         for (var i = 1; i < path.length; i++) {
             var p = path[i];
-            if (p.z == current_point.z) {
+            //if (p.z == current_point.z) {
                 ctx.lineTo(p.x, p.y);
                 x0 = p.x; y0 = p.y;
-            }
+            //}
         }
         ctx.stroke();
 
@@ -164,8 +176,13 @@ function draw() {
         ctx.arc(current_point.x, current_point.y, 5, 0, Math.PI * 2);
         ctx.fill();
     }
-
     ctx.restore();
+
+    // floor
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.font = "72px arial";
+    ctx.fillText(current_point.z + " этаж", 50, canvas.height - 50);
+
 }
 
 function auto_scale() {

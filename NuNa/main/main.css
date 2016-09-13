@@ -5,29 +5,20 @@ canvas {
     position:absolute;
     left: 0px;
     top: 0px;
-    border:solid thin; 
-    color: gray; 
-    margin:5px
+
 }
 
-#shift_l, #shift_r {
+#scale_inc, #scale_dec {
     position:absolute; 
-    height: 100px
-}
-#shift_l {
-    left: 0px; 
-}
-#shift_r {
-    right: 0px; 
-}
-#shift_u, #shift_d {
-    position:absolute; 
-    width: 100px
+    height: 36px;
+    width: 36px;
+    right: 0px;
+    margin: 0px;
 }
 
-#shift_u {
-    top: 0px; 
+#scale_inc {
+    top: 0px;
 }
-#shift_d {
-    bottom: 0px;
+#scale_dec {
+    top: 36px;
 }
