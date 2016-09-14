@@ -1,7 +1,14 @@
-﻿var ctx, canvas, img = {};
+var IMG_HEIGHT, IMG_WIDTH;
+var SCALE_STEP = Math.pow(2, 1 / 30);
+var SCROL_STEP = 10;
+
+var ctx, canvas, img = {};
 var current_point;
 var path;
 var shift_x = 0, shift_y = 0, scale = 1; // transform params
+var man = {x:0, y:0};
+
+// inintial settings -----------
 
 $(function ()
 {
@@ -23,18 +30,18 @@ $(function ()
     {
         init_points(dots, lines);
         set_current_point(points["ENTER"]);
+        IMG_HEIGHT = img[2].height;
+        IMG_WIDTH = img[2].width;
     };
 
     // scaling
-    var SCALE_STEP = Math.pow(2, 1/30);
-    var SCROL_STEP = 10;
 
     $("#scale_inc").on("click", function () {
-        shift_scale_anime(0, 0, SCALE_STEP)
+        scale_anime(SCALE_STEP)
     })
 
     $("#scale_dec").on("click", function () {
-        shift_scale_anime(0, 0, 1/SCALE_STEP)
+        scale_anime(1/SCALE_STEP)
     })
 
     // scrolling
@@ -43,69 +50,51 @@ $(function ()
     $(canvas).on('swipeup', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        shift_scale_anime(0, -SCROL_STEP);
+        if ((-shift_y + canvas.height) / scale < IMG_HEIGHT) {
+            shift_anime(0, -SCROL_STEP);
+        }
     });
 
     $(canvas).on('swipedown', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        shift_scale_anime(0, SCROL_STEP);
-
+        if (shift_y / scale < 0) {
+            shift_anime(0, SCROL_STEP);
+        }
     });
 
     $(canvas).on('swipeleft', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        shift_scale_anime(-SCROL_STEP, 0);
-
+        if ((-shift_x + canvas.width) / scale < IMG_WIDTH) {
+            shift_anime(-SCROL_STEP, 0);
+        }
     });
 
     $(document).on('swiperight', 'canvas', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        shift_scale_anime(SCROL_STEP, 0);
-
+        if (shift_x / scale < 0) {
+            shift_anime(SCROL_STEP, 0);
+        }
     });
 
     $(canvas).on('tap', function (event) {
         event.stopPropagation();
         event.preventDefault();
         step_forward();
-
     });
 
-    $(canvas).on('taphold', function (event) {
-        location.replace('#dialog');
-    });
+    //$(canvas).on('taphold', function (event) {
+    //    location.replace('#dialog');
+    //});
 
 
     $("#goButton").on("click", find_and_show_path);
 
 });
 
-function shift_scale_anime(dx, dy, k) {
-    var STEP_COUNT = 15;
-    var t = 0;
-    var timer = setInterval(function() {
-        shift_x += dx;
-        shift_y += dy;
-        if (k)
-        {
-            scale *= k;
-            shift_x = shift_x * k - canvas.width / 2 * (k - 1);
-            shift_y = shift_y * k - canvas.height / 2 * (k - 1);
-        }
-        draw();
-        t++;
-        if (t >= STEP_COUNT) {
-            clearInterval(timer);
-        }
-    }, 20);
-}
-
-
-
-
+//
 function find_and_show_path() {
     var fromKey = $("#from").val();
     var toKey = $("#to").val();
@@ -126,12 +115,19 @@ function find_and_show_path() {
     }
 }
 
-
 function step_forward() {
     if (path == undefined)
         return;
-    var i = (path.indexOf(current_point) + 1) % path.length;
-    set_current_point(path[i]);
+    var i1 = path.indexOf(current_point);
+    var i2 = (i1 + 1) % path.length;
+    set_current_point(path[i1]);
+
+    if (path[i1].z == path[i2].z) 
+    {
+        step_anime(path[i1], path[i2]);     
+    } else {
+        ladder_anime(path[i1], path[i2])
+    }
 };
 
 function step_back() {
@@ -143,8 +139,12 @@ function step_back() {
 
 function set_current_point(p) {
     current_point = p;
+    man.x = p.x;
+    man.y = p.y;
     draw();
 }
+
+// drawing & animation -------------
 
 function draw()
 {
@@ -181,15 +181,15 @@ function draw()
         // man
         ctx.fillStyle = "#0000FF";
         ctx.beginPath();
-        ctx.arc(current_point.x, current_point.y, 5, 0, Math.PI * 2);
+        ctx.arc(man.x, man.y, 5, 0, Math.PI * 2);
         ctx.fill();
     }
     ctx.restore();
 
     // floor
-    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
     ctx.font = "72px arial";
-    ctx.fillText(current_point.z + " этаж", 50, canvas.height - 150);
+    ctx.fillText(current_point.z + " этаж", 50, canvas.height - 50);
 
 }
 
@@ -200,5 +200,80 @@ function auto_scale() {
     shift_y = -p.y * scale + screen.height/2;
 }
 
+function shift_anime(dx, dy) {
+    var STEP_COUNT = 15;
+    var t = 0;
+    var timer = setInterval(function ()
+    {
+        //  
+        shift_x += dx;
+        shift_y += dy;
+        //
+        draw();
+        t++;
+        if (t >= STEP_COUNT) {
+            clearInterval(timer);
+        }
+    }, 20);
+}
+
+function scale_anime(k) {
+    var STEP_COUNT = 15;
+    var t = 0;
+    var timer = setInterval(function () {
+        //
+        scale *= k;
+        shift_x = shift_x * k - canvas.width / 2 * (k - 1);
+        shift_y = shift_y * k - canvas.height / 2 * (k - 1);
+        //
+        draw();
+        t++;
+        if (t >= STEP_COUNT) {
+            clearInterval(timer);
+        }
+    }, 20);
+}
+
+function step_anime(p1, p2) {
+    var STEP_COUNT = 15;
+    var dx = (p2.x - p1.x) / STEP_COUNT;
+    var dy = (p2.y - p1.y) / STEP_COUNT;
+    var t = 0;
+    var timer = setInterval(function () {
+        //
+        man.x += dx;
+        man.y += dy;
+        //
+        draw();
+        t++;
+        if (t >= STEP_COUNT) {
+            clearInterval(timer);
+            set_current_point(p2);
+        }
+    }, 20);
+    
+}
+
+
+function ladder_anime(p1, p2) {
+    var STEP_COUNT = 20;
+    var dx = 2;
+    var t = 0;
+    var timer = setInterval(function () {
+        //
+        if (t < STEP_COUNT / 2)
+            man.x += dx;
+        else
+            man.x -= dx;
+        //
+        draw();
+        t++;
+        if (t >= STEP_COUNT) {
+            clearInterval(timer);
+            set_current_point(p2);
+        }
+    }, 20);
+    
+}
 
 

@@ -22,3 +22,18 @@ canvas {
 #scale_dec {
     top: 36px;
 }
+
+#bars, #info {
+    position:absolute; 
+    height: 36px;
+    width: 36px;
+    left: 0px;
+    margin: 0px;
+}
+
+#bars {
+    top: 0px;
+}
+#info {
+    top: 36px;
+}
