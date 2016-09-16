@@ -256,15 +256,23 @@ function step_anime(p1, p2) {
 
 
 function ladder_anime(p1, p2) {
+    var ladderNo = p1.key[2], dx, dy;
+    switch (ladderNo) {
+        case "1": dx = 0; dy = 2; break;
+        case "2": dx = 2; dy = 0; break;
+        case "3": dx = -2; dy = 0; break;
+    }
     var STEP_COUNT = 20;
-    var dx = 2;
     var t = 0;
     var timer = setInterval(function () {
         //
-        if (t < STEP_COUNT / 2)
+        if (t < STEP_COUNT / 2) {
             man.x += dx;
-        else
+            man.y += dy;
+        } else {
             man.x -= dx;
+            man.y -= dy;
+        }
         //
         draw();
         t++;
