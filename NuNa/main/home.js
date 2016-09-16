@@ -1,4 +1,4 @@
-var IMG_HEIGHT, IMG_WIDTH;
+﻿var IMG_HEIGHT, IMG_WIDTH;
 var SCALE_STEP = Math.pow(2, 1 / 30);
 var SCROL_STEP = 10;
 
