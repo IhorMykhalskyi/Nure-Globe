@@ -1,4 +1,4 @@
-﻿var IMG_HEIGHT, IMG_WIDTH;
+﻿var MAP_HEIGHT, MAP_WIDTH;
 var SCALE_STEP = Math.pow(2, 1 / 30);
 var SCROL_STEP = 10;
 
@@ -6,7 +6,7 @@ var ctx, canvas, img = {};
 var current_point;
 var path;
 var shift_x = 0, shift_y = 0, scale = 1; // transform params
-var man = {x:0, y:0};
+var man = { x: 0, y: 0, i: 0, img: {}};
 
 // inintial settings -----------
 
@@ -19,10 +19,15 @@ $(function ()
     ctx = canvas.getContext("2d");
 
     // background images
-    for (var i = 1; i < 3; ++i)
-    {
+    for (var i = 1; i < 3; ++i) {
         img[i] = new Image();
-        img[i].src = 'floors/'+ i +'.svg';
+        img[i].src = 'floors/' + i + '.svg';
+    }
+
+    // mans pictures
+    for (var i = 0; i < 2; ++i) {
+        man.img[i] = new Image();
+        man.img[i].src = 'pic/man' + (i + 1) + '.png';
     }
 
     // init data
@@ -30,8 +35,8 @@ $(function ()
     {
         init_points(dots, lines);
         set_current_point(points["ENTER"]);
-        IMG_HEIGHT = img[2].height;
-        IMG_WIDTH = img[2].width;
+        MAP_HEIGHT = img[2].height;
+        MAP_WIDTH = img[2].width;
     };
 
     // scaling
@@ -50,7 +55,7 @@ $(function ()
     $(canvas).on('swipeup', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        if ((-shift_y + canvas.height) / scale < IMG_HEIGHT) {
+        if ((-shift_y + canvas.height) / scale < MAP_HEIGHT) {
             shift_anime(0, -SCROL_STEP);
         }
     });
@@ -66,7 +71,7 @@ $(function ()
     $(canvas).on('swipeleft', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        if ((-shift_x + canvas.width) / scale < IMG_WIDTH) {
+        if ((-shift_x + canvas.width) / scale < MAP_WIDTH) {
             shift_anime(-SCROL_STEP, 0);
         }
     });
@@ -171,18 +176,20 @@ function draw()
         ctx.moveTo(x0, y0);
         for (var i = 1; i < path.length; i++) {
             var p = path[i];
-            //if (p.z == current_point.z) {
-                ctx.lineTo(p.x, p.y);
-                x0 = p.x; y0 = p.y;
-            //}
+            ctx.lineTo(p.x, p.y);
+            x0 = p.x; y0 = p.y;
         }
         ctx.stroke();
 
+        // circle
+        //ctx.fillStyle = "#0000FF";
+        //ctx.beginPath();
+        //ctx.arc(man.x, man.y, 5, 0, Math.PI * 2);
+        //ctx.fill();
+
         // man
-        ctx.fillStyle = "#0000FF";
-        ctx.beginPath();
-        ctx.arc(man.x, man.y, 5, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.drawImage(man.img[man.i], man.x, man.y, 8, 20);
+        man.i = (man.i + 1) % 2;
     }
     ctx.restore();
 
@@ -235,7 +242,7 @@ function scale_anime(k) {
 }
 
 function step_anime(p1, p2) {
-    var STEP_COUNT = 15;
+    var STEP_COUNT = 10;
     var dx = (p2.x - p1.x) / STEP_COUNT;
     var dy = (p2.y - p1.y) / STEP_COUNT;
     var t = 0;
@@ -249,8 +256,10 @@ function step_anime(p1, p2) {
         if (t >= STEP_COUNT) {
             clearInterval(timer);
             set_current_point(p2);
+            man.i = 0;
+            draw();
         }
-    }, 20);
+    }, 50);
     
 }
 
