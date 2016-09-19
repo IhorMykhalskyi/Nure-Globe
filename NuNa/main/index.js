@@ -200,11 +200,31 @@ function draw()
 
 }
 
-function auto_scale() {
+function auto_scale()
+{
     var p = path[0];
     scale = 1;
-    shift_x = -p.x * scale + screen.width/2;
-    shift_y = -p.y * scale + screen.height/2;
+    shift_x = -p.x * scale + screen.width / 2;
+    shift_y = -p.y * scale + screen.height / 2;
+}
+
+function auto_shift()
+{
+    // X
+    if (man.x < -shift_x / scale) {
+        shift_x = (-man.x + 10) * scale;
+    }
+    if (man.x > (-shift_x + canvas.width) / scale) {
+        shift_x = canvas.width - (man.x + man.img[0].width + 10) * scale;
+    }
+    // Y
+    if (man.y < -shift_y / scale) {
+        shift_y = (-man.y + 10) * scale;
+    }
+    if (man.y > (-shift_y + canvas.height) / scale) {
+        shift_y = canvas.height - (man.y + man.img[0].height + 10) * scale;
+    }
+
 }
 
 function shift_anime(dx, dy) {
@@ -251,6 +271,8 @@ function step_anime(p1, p2) {
         man.x += dx;
         man.y += dy;
         //
+        auto_shift();
+
         draw();
         t++;
         if (t >= STEP_COUNT) {
