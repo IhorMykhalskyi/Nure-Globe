@@ -1,0 +1,17 @@
+[
+  {
+    "outputFileName": "main/bundle.js",
+    "inputFiles": [
+      "main/swipeupdown.js",
+      "main/dijkstra.js",
+      "main/dots.js",
+      "main/index.js"
+    ]
+  },
+  {
+    "outputFileName": "main/main.min.css",
+    "inputFiles": [
+      "main/main.css"
+    ]
+  }
+]
