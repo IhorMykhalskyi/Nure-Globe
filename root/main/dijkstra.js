@@ -10,32 +10,43 @@
 
 var points;  // dictionary of Points
 
-function init_points(ps, lines) {
+function init_points(dots, lines)
+{
+    // points
     points = {};
-    for (var polykey in ps) {
+    for (var polykey in dots) {
         var keys = polykey.split(",");
         for (var i = 0; i < keys.length; ++i)
         {
             var key = keys[i];
-            points[key] = new Point(key, ps[polykey][0], ps[polykey][1], ps[polykey][2]);
+            points[key] = new Point(key, dots[polykey][0], dots[polykey][1], dots[polykey][2]);
         }
     }
-    // TODO  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    // edges
     for(var i = 0; i < lines.length; i++) 
     {
-        var keys = lines[i].split(' ');
+        var line = lines[i].replace(/,/g, " ");
+
+        var keys = line.split(' ');
         for(var j = 1; j < keys.length; j++)
         {
             var k1 = keys[j - 1], k2 = keys[j];
             if (points[k1] && points[k2]) {
-                var dx = ps[k1][0] - ps[k2][0];
-                var dy = ps[k1][1] - ps[k2][1];
-                var dz = ps[k1][2] - ps[k2][2];
+                var dx = points[k1].x - points[k2].x;
+                var dy = points[k1].y - points[k2].y;
+                var dz = points[k1].z - points[k2].z;
+                //var dx = dots[k1][0] - dots[k2][0];
+                //var dy = dots[k1][1] - dots[k2][1];
+                //var dz = dots[k1][2] - dots[k2][2];
                 var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
                 points[k1].E[k2] = points[k2].E[k1] = dist;
             }
             else {
-                console.log('Wrong keys: ' + k1 + ", " + k2);
+                if (!points[k1])
+                    console.log('Wrong key: ' + k1);
+                if (!points[k2])
+                    console.log('Wrong key: ' + k2);
             }
         }
     }

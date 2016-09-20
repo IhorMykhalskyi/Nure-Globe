@@ -5,7 +5,7 @@ var SCROL_STEP = 10;
 var ctx, canvas, img = {};
 var current_point;
 var path;
-var shift_x = 0, shift_y = 0, scale = 1; // transform params
+var shift_x = 0, shift_y = 0, scale = 2; // transform params
 var man = { x: 0, y: 0, i: 0, img: {}};
 
 // inintial settings -----------
@@ -34,7 +34,7 @@ $(function ()
     img[2].onload = function ()
     {
         init_points(dots, lines);
-        set_current_point(points["ENTER"]);
+        set_current_point(points["ВХОД"]);
         MAP_HEIGHT = img[2].height;
         MAP_WIDTH = img[2].width;
     };
