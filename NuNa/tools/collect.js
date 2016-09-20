@@ -5,24 +5,23 @@
 // 4) вручную скопировать словарь из текстового поля в файл dots.js  ("var dots = словарь")
 // 5) создать список сегментов (аудитория, перекресток)
 
-var IMG_SRC = "floors/draft1.svg";
+var IMG_SRC = "floors/_1.svg";
 var Z = 1;
 
 var ctx, canvas;
 var img;
-var shift_x = 0, shift_y = 0, scale = 1.0; // transformation
+var shift_x = 0, shift_y = 0, scale = 2.0; // transformation
 var dragmode = 0; // 0 - normal, 1 - dgagging, 2 - dragged
 
 $(function () {
-    canvas = document.getElementById("canvas1");
-    var btnSave = document.getElementById("save");
+    canvas = $("#canvas1")[0];
     ctx = canvas.getContext("2d");
     img = new Image();
     img.src = IMG_SRC;
 
     ///////////////////////////////////////////
-    $("#ruler_x").val("450");
-    $("#ruler_y").val("300");
+    $("#ruler_x").val("200");
+    $("#ruler_y").val("");
     ///////////////////////////////////////////
 
 
@@ -36,9 +35,9 @@ $(function () {
         var key = $("#key").val().trim();
         if (key != "") // no key
         {
-            // add a point
-            var x = ((e.x - shift_x - canvas.offsetLeft + scrollX) / scale) | 0;
-            var y = ((e.y - shift_y - canvas.offsetTop + scrollY) / scale) | 0;
+            var offset = $("canvas").offset();
+            var x = ((e.x - shift_x - offset.left + scrollX) / scale) | 0;
+            var y = ((e.y - shift_y - offset.top + scrollY) / scale) | 0;
 
             // ajust point
             var rx = +$("#ruler_x").val();
@@ -46,6 +45,7 @@ $(function () {
             x = rx || x;
             y = ry || y;
 
+            // add a point
             dots[key] = [x, y, Z];           
 
             // redraw
@@ -57,10 +57,12 @@ $(function () {
     }
 
 
-    canvas.onmousemove = function (e) {
-        var x = ((e.x - shift_x - canvas.offsetLeft + scrollX) / scale) | 0;
-        var y = ((e.y - shift_y - canvas.offsetTop + scrollY) / scale) | 0;
-           
+    canvas.onmousemove = function (e)
+    {
+        var offset = $("canvas").offset();
+        var x = ((e.x - shift_x - offset.left + scrollX) / scale) | 0;
+        var y = ((e.y - shift_y - offset.top + scrollY) / scale) | 0;
+
         $("#coords").text("x:" + x + " y:" + y);
 
         // show selected key
@@ -72,14 +74,16 @@ $(function () {
         $("#selected_key").text(keys);        
     }
 
-
-    btnSave.onclick = function () {
+    $("#save").on("click", function () {
         var s = $("#result").val();
         if (s) {
             dots = JSON.parse(s);
             draw();
         }
-    }
+    });
+
+    $("#draw_lines").on("click", draw_lines);
+
 
     var K = Math.sqrt(2);
 
@@ -158,7 +162,7 @@ function draw() {
         ctx.strokeRect(dot[0] - 1, dot[1] - 1, DOT_SIZE, DOT_SIZE);
     }
     // rulers
-    ctx.strokeStyle = "blue"
+    ctx.strokeStyle = "blue";
     var rx = +$("#ruler_x").val();
     var ry = +$("#ruler_y").val();
     ctx.lineWidth = 0.5;
@@ -175,3 +179,35 @@ function draw() {
 }
 
 
+function draw_lines() 
+{
+    ctx.save();
+    ctx.translate(shift_x, shift_y);
+    ctx.scale(scale, scale);
+
+    ctx.strokeStyle = "blue";
+    ctx.beginPath();
+
+    for(var i = 0; i < lines.length; i++) 
+    {
+        var keys = lines[i].split(' ');
+        for(var j = 1; j < keys.length; j++)
+        {
+            var k1 = keys[j - 1], k2 = keys[j];
+            if (dots[k1] && dots[k2]) {
+                ctx.moveTo(dots[k1][0], dots[k1][1]);
+                ctx.lineTo(dots[k2][0], dots[k2][1]);
+            }
+            else {
+                if (!dots[k1])
+                    console.log('Wrong key: ' + k1);
+                if (!dots[k2])
+                    console.log('Wrong key: ' + k2);
+            }
+        }
+    }
+    ctx.stroke();
+
+    ctx.restore();
+
+}

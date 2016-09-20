@@ -12,10 +12,15 @@ var points;  // dictionary of Points
 
 function init_points(ps, lines) {
     points = {};
-    for (var key in ps) {
-        points[key] = new Point(key, ps[key][0], ps[key][1], ps[key][2]);
+    for (var polykey in ps) {
+        var keys = polykey.split(",");
+        for (var i = 0; i < keys.length; ++i)
+        {
+            var key = keys[i];
+            points[key] = new Point(key, ps[polykey][0], ps[polykey][1], ps[polykey][2]);
+        }
     }
-
+    // TODO  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     for(var i = 0; i < lines.length; i++) 
     {
         var keys = lines[i].split(' ');

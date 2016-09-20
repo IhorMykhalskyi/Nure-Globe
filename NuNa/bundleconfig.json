@@ -4,7 +4,7 @@
     "inputFiles": [
       "main/swipeupdown.js",
       "main/dijkstra.js",
-      "main/dots.js",
+      "main/all_dots.js",
       "main/index.js"
     ]
   },

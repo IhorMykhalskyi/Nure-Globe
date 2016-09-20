@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="collect.js"></script>
         <script src="dots.js"></script>
+        <script src="collect.js"></script>
     </head>
     <body>
         <div class="container">
@@ -27,11 +27,19 @@
                 <span id="selected_key" style="color:darkred"></span>
 
             </div>
-            <div>
-                <canvas id="canvas1" width="900" height="600" style="border:solid thin"></canvas>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <canvas id="canvas1" width="800" height="600" style="border:solid thin"></canvas>
+                </div>
+                <div class="col-md-3">
+                    <textarea id="result" rows="30" cols="22"></textarea>
+                    <br/>
+                    <button id="save">Save</button>
+                    <button id="draw_lines">Lines</button>
+                </div>
             </div>
-            <textarea id="result" rows="10" cols="30"></textarea>
-            <button id="save">Save</button>
+
         </div>
 </body>
 </html>
