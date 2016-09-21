@@ -11,23 +11,23 @@ $(function ()
 
     // load background images
     for (var i = 1; i < 3; ++i) {
-        img[i] = new Image();
-        img[i].src = 'floors/' + i + '.svg';
+        imgs[i] = new Image();
+        imgs[i].src = 'floors/' + i + '.svg';
     }
 
     // load mans pictures
     for (var i = 0; i < 2; ++i) {
-        man.img[i] = new Image();
-        man.img[i].src = 'pic/man' + (i + 1) + '.png';
+        man.imgs[i] = new Image();
+        man.imgs[i].src = 'pic/man' + (i + 1) + '.png';
     }
 
     // init data
-    img[img.length - 1].onload = function ()
+    imgs[imgs_count].onload = function ()
     {
         init_data(dots, lines);
         set_current_point(points["ВХОД"]);
-        MAP_HEIGHT = img[0].height;
-        MAP_WIDTH = img[0].width;
+        MAP_HEIGHT = imgs[1].height;
+        MAP_WIDTH = imgs[1].width;
     };
 
     //---------------- settings event handlers --------------------------
@@ -183,17 +183,19 @@ function set_current_point(p) {
 
 function draw()
 {
+    // background
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle="#cccccc";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // transform
     ctx.save();
     ctx.translate(shift_x, shift_y);
     ctx.scale(scale, scale);
 
-    // background
+
     var bg = current_point.z;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img[bg], 0, 0);
+    ctx.drawImage(imgs[bg], 0, 0);
 
     // track
     if (track) {
@@ -212,7 +214,7 @@ function draw()
         ctx.stroke();
 
         // man
-        ctx.drawImage(man.img[man.i], man.x, man.y, 8, 20);
+        ctx.drawImage(man.imgs[man.i], man.x, man.y, 8, 20);
         man.i = (man.i + 1) % 2;
     }
     ctx.restore();
@@ -239,14 +241,14 @@ function auto_shift()
         shift_x = (-man.x + 10) * scale;
     }
     if (man.x > (-shift_x + canvas.width) / scale) {
-        shift_x = canvas.width - (man.x + man.img[0].width + 10) * scale;
+        shift_x = canvas.width - (man.x + man.imgs[0].width + 10) * scale;
     }
     // Y
     if (man.y < -shift_y / scale) {
         shift_y = (-man.y + 10) * scale;
     }
     if (man.y > (-shift_y + canvas.height) / scale) {
-        shift_y = canvas.height - (man.y + man.img[0].height + 10) * scale;
+        shift_y = canvas.height - (man.y + man.imgs[0].height + 10) * scale;
     }
 
 }

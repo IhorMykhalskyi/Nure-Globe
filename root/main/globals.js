@@ -1,4 +1,4 @@
-﻿// Point of the track.
+// Point of the track.
 // x, y, z - coords
 // E - dictionary of belonging edges (key:distance pairs)
 
@@ -20,7 +20,8 @@ var MAP_WIDTH;
 var SCALE_PER_STEP = Math.pow(2, 1 / 30);
 var OFFSET_PER_STEP = 10; 
 
-var ctx, canvas, img = {};
+var ctx, canvas; 
+var imgs = {}, imgs_count = 2;
 
 var current_point;
 
@@ -28,7 +29,7 @@ var track;  // current track
 
 var shift_x = 0, shift_y = 0, scale = 1; // transformation params
 
-var man = { x: 0, y: 0, i: 0, img: {} }; // one who runs. Has two images.
+var man = { x: 0, y: 0, i: 0, imgs: {} }; // one who runs. Has two images.
 
 // -----------------------------------------------------------
 
