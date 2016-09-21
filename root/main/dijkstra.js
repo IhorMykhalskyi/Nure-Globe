@@ -1,61 +1,5 @@
-﻿function Point(key, x, y, z) {
-    this.key = key;
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.E = {}; 
-}
-
-// -----------------------------------------------------------
-
-var points;  // dictionary of Points
-
-function init_points(dots, lines)
-{
-    // points
-    points = {};
-    for (var polykey in dots) {
-        var keys = polykey.split(",");
-        for (var i = 0; i < keys.length; ++i)
-        {
-            var key = keys[i];
-            points[key] = new Point(key, dots[polykey][0], dots[polykey][1], dots[polykey][2]);
-        }
-    }
-    
-    // edges
-    for(var i = 0; i < lines.length; i++) 
-    {
-        var line = lines[i].replace(/,/g, " ");
-
-        var keys = line.split(' ');
-        for(var j = 1; j < keys.length; j++)
-        {
-            var k1 = keys[j - 1], k2 = keys[j];
-            if (points[k1] && points[k2]) {
-                var dx = points[k1].x - points[k2].x;
-                var dy = points[k1].y - points[k2].y;
-                var dz = points[k1].z - points[k2].z;
-                //var dx = dots[k1][0] - dots[k2][0];
-                //var dy = dots[k1][1] - dots[k2][1];
-                //var dz = dots[k1][2] - dots[k2][2];
-                var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-                points[k1].E[k2] = points[k2].E[k1] = dist;
-            }
-            else {
-                if (!points[k1])
-                    console.log('Wrong key: ' + k1);
-                if (!points[k2])
-                    console.log('Wrong key: ' + k2);
-            }
-        }
-    }
-}
-
-
-
-
-// find shortest path
+﻿
+// find shortest track
 //
 function dijkstra(key_start, key_finish) {
     // reset points
@@ -77,14 +21,14 @@ function dijkstra(key_start, key_finish) {
         // ставим постоянную отметку
         p.const = true;        
     }
-    // path
+    // track
     p = points[key_finish]
-    var path = [p];
+    var track = [p];
     while (p.from) {
         p = p.from;
-        path.push(p);
+        track.push(p);
     }
-    return tune(path);
+    return tune(track);
 }
 
 // A step of Dijkstra's alg.
@@ -119,14 +63,14 @@ function dijkstra_step(point)
 
 // Remove on streight line vertexes
 //
-function tune(path) 
+function tune(track) 
 {
-    if (path.length < 4)
-        return path;
+    if (track.length < 4)
+        return track;
 
-    var res = [path[0]];
-    for (var i = 1; i < path.length - 1; i++) {
-        var a = path[i - 1], b = path[i], c = path[i + 1];
+    var res = [track[0]];
+    for (var i = 1; i < track.length - 1; i++) {
+        var a = track[i - 1], b = track[i], c = track[i + 1];
         var can_remove =
             a.x == b.x && b.x == c.x &&   a.y == b.y && b.y == c.y ||
             a.x == b.x && b.x == c.x &&   a.z == b.z && b.z == c.z ||
@@ -134,6 +78,6 @@ function tune(path)
         if (!can_remove)
             res.push(b);
     }
-    res.push(path[path.length-1]);
+    res.push(track[track.length-1]);
     return res;
 }

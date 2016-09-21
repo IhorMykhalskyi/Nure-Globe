@@ -66,134 +66,6 @@
     });
 
 })();
-function Point(key, x, y, z) {
-    this.key = key;
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.E = {}; 
-}
-
-// -----------------------------------------------------------
-
-var points;  // dictionary of Points
-
-function init_points(ps, lines) {
-    points = {};
-    for (var polykey in ps) {
-        var keys = polykey.split(",");
-        for (var i = 0; i < keys.length; ++i)
-        {
-            var key = keys[i];
-            points[key] = new Point(key, ps[polykey][0], ps[polykey][1], ps[polykey][2]);
-        }
-    }
-
-    for(var i = 0; i < lines.length; i++) 
-    {
-        var keys = lines[i].split(' ');
-        for(var j = 1; j < keys.length; j++)
-        {
-            var k1 = keys[j - 1], k2 = keys[j];
-            if (points[k1] && points[k2]) {
-                var dx = ps[k1][0] - ps[k2][0];
-                var dy = ps[k1][1] - ps[k2][1];
-                var dz = ps[k1][2] - ps[k2][2];
-                var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-                points[k1].E[k2] = points[k2].E[k1] = dist;
-            }
-            else {
-                console.log('Wrong keys: ' + k1 + ", " + k2);
-            }
-        }
-    }
-}
-
-
-
-
-// find shortest path
-//
-function dijkstra(key_start, key_finish) {
-    // reset points
-    for (var key in points) {
-        points[key].mark = Number.MAX_VALUE;
-        points[key].const = false;
-        points[key].from = null;
-    }
-    points[key_start].mark = 0;
-    points[key_start].const = true;
-
-    var p = points[key_start];
-    while (p.key != key_finish)
-    {
-        p = dijkstra_step(p);
-        if (!p) {
-            console.log("граф не связен");
-        }
-        // ставим постоянную отметку
-        p.const = true;        
-    }
-    // path
-    p = points[key_finish]
-    var path = [p];
-    while (p.from) {
-        p = p.from;
-        path.push(p);
-    }
-    return tune(path);
-}
-
-// A step of Dijkstra's alg.
-//
-function dijkstra_step(point)
-{
-    for (var k in point.E) {
-        var p = points[k];
-        if (p.const)
-            continue;
-        d = point.E[k];
-        if (point.mark + d < p.mark) {
-            p.mark = point.mark + d;
-            p.from = point;
-        }
-    }
-
-    // marks nearest point as const
-    var min = Number.MAX_VALUE;
-    for (var k in points)
-    {
-        var p = points[k];
-        if (p.const)
-            continue;
-        if (p.mark < min) {
-            var nearest = p;
-            min = p.mark;
-        }
-    }
-    return nearest;
-}
-
-// Remove on streight line vertexes
-//
-function tune(path) 
-{
-    if (path.length < 4)
-        return path;
-
-    var res = [path[0]];
-    for (var i = 1; i < path.length - 1; i++) {
-        var a = path[i - 1], b = path[i], c = path[i + 1];
-        var can_remove =
-            a.x == b.x && b.x == c.x &&   a.y == b.y && b.y == c.y ||
-            a.x == b.x && b.x == c.x &&   a.z == b.z && b.z == c.z ||
-            a.z == b.z && b.z == c.z &&   a.y == b.y && b.y == c.y;
-        if (!can_remove)
-            res.push(b);
-    }
-    res.push(path[path.length-1]);
-    return res;
-}
 var dots = {
 "116": [414, 294, 1],
 "117": [391, 294, 1],
@@ -242,71 +114,183 @@ var dots = {
 "135в": [311, 269, 1]
 }
 
+
 var lines = [
 "144 142 145 141а 146 141,147 148 140а 140,149 139 138,150 X11",
-"151 X11 137 136,165 136а X12 120 119,X14 118 117 116 116а 113,114",
+"151 X11 137 136,165 136а X12 X13 120 119,X14 118 117 116 116а 113,114",
 "L11 X12 ВХОД", 
 "129,130,130а 128 128б,131 128а 127 126,L14 125а,М11 131а 125б 132а 124,132б 133 123 134 122,135 135в X13",
 ];
-var MAP_HEIGHT, MAP_WIDTH;
-var SCALE_STEP = Math.pow(2, 1 / 30);
-var SCROL_STEP = 10;
+
+// find shortest track
+//
+function dijkstra(key_start, key_finish) {
+    // reset points
+    for (var key in points) {
+        points[key].mark = Number.MAX_VALUE;
+        points[key].const = false;
+        points[key].from = null;
+    }
+    points[key_start].mark = 0;
+    points[key_start].const = true;
+
+    var p = points[key_start];
+    while (p.key != key_finish)
+    {
+        p = dijkstra_step(p);
+        if (!p) {
+            console.log("граф не связен");
+        }
+        // ставим постоянную отметку
+        p.const = true;        
+    }
+    // track
+    p = points[key_finish]
+    var track = [p];
+    while (p.from) {
+        p = p.from;
+        track.push(p);
+    }
+    return tune(track);
+}
+
+// A step of Dijkstra's alg.
+//
+function dijkstra_step(point)
+{
+    for (var k in point.E) {
+        var p = points[k];
+        if (p.const)
+            continue;
+        d = point.E[k];
+        if (point.mark + d < p.mark) {
+            p.mark = point.mark + d;
+            p.from = point;
+        }
+    }
+
+    // marks nearest point as const
+    var min = Number.MAX_VALUE;
+    for (var k in points)
+    {
+        var p = points[k];
+        if (p.const)
+            continue;
+        if (p.mark < min) {
+            var nearest = p;
+            min = p.mark;
+        }
+    }
+    return nearest;
+}
+
+// Remove on streight line vertexes
+//
+function tune(track) 
+{
+    if (track.length < 4)
+        return track;
+
+    var res = [track[0]];
+    for (var i = 1; i < track.length - 1; i++) {
+        var a = track[i - 1], b = track[i], c = track[i + 1];
+        var can_remove =
+            a.x == b.x && b.x == c.x &&   a.y == b.y && b.y == c.y ||
+            a.x == b.x && b.x == c.x &&   a.z == b.z && b.z == c.z ||
+            a.z == b.z && b.z == c.z &&   a.y == b.y && b.y == c.y;
+        if (!can_remove)
+            res.push(b);
+    }
+    res.push(track[track.length-1]);
+    return res;
+}
+// Point of the track.
+// x, y, z - coords
+// E - dictionary of belonging edges (key:distance pairs)
+
+function Point(key, x, y, z) {
+    this.key = key;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.E = {}; 
+}
+
+// -----------------------------------------------------------
+
+var points;  // dictionary of Points
+
+var MAP_HEIGHT;
+var MAP_WIDTH;
+
+var SCALE_PER_STEP = Math.pow(2, 1 / 30);
+var OFFSET_PER_STEP = 10; 
 
 var ctx, canvas, img = {};
+
 var current_point;
-var path;
-var shift_x = 0, shift_y = 0, scale = 1; // transform params
-var man = { x: 0, y: 0, i: 0, img: {}};
+
+var track;  // current track
+
+var shift_x = 0, shift_y = 0, scale = 1; // transformation params
+
+var man = { x: 0, y: 0, i: 0, img: {} }; // one who runs. Has two images.
+
+// -----------------------------------------------------------
+
+
 
 // inintial settings -----------
 
 $(function ()
 {
-    // canvas size
+    // set canvas size accorging to screen size
     canvas = $("#canvas1")[0];
     $("#canvas1").attr("width", screen.availWidth)
                  .attr("height", screen.availHeight);
+
     ctx = canvas.getContext("2d");
 
-    // background images
+    // load background images
     for (var i = 1; i < 3; ++i) {
         img[i] = new Image();
         img[i].src = 'floors/' + i + '.svg';
     }
 
-    // mans pictures
+    // load mans pictures
     for (var i = 0; i < 2; ++i) {
         man.img[i] = new Image();
         man.img[i].src = 'pic/man' + (i + 1) + '.png';
     }
 
     // init data
-    img[2].onload = function ()
+    img[img.length - 1].onload = function ()
     {
-        init_points(dots, lines);
-        set_current_point(points["ENTER"]);
-        MAP_HEIGHT = img[2].height;
-        MAP_WIDTH = img[2].width;
+        init_data(dots, lines);
+        set_current_point(points["ВХОД"]);
+        MAP_HEIGHT = img[0].height;
+        MAP_WIDTH = img[0].width;
     };
+
+    //---------------- settings event handlers --------------------------
 
     // scaling
 
     $("#scale_inc").on("click", function () {
-        scale_anime(SCALE_STEP)
+        scale_anime(SCALE_PER_STEP)
     })
 
     $("#scale_dec").on("click", function () {
-        scale_anime(1/SCALE_STEP)
+        scale_anime(1/SCALE_PER_STEP)
     })
 
     // scrolling
-
 
     $(canvas).on('swipeup', function (event) {
         event.stopPropagation();
         event.preventDefault();
         if ((-shift_y + canvas.height) / scale < MAP_HEIGHT) {
-            shift_anime(0, -SCROL_STEP);
+            shift_anime(0, -OFFSET_PER_STEP);
         }
     });
 
@@ -314,7 +298,7 @@ $(function ()
         event.stopPropagation();
         event.preventDefault();
         if (shift_y / scale < 0) {
-            shift_anime(0, SCROL_STEP);
+            shift_anime(0, OFFSET_PER_STEP);
         }
     });
 
@@ -322,7 +306,7 @@ $(function ()
         event.stopPropagation();
         event.preventDefault();
         if ((-shift_x + canvas.width) / scale < MAP_WIDTH) {
-            shift_anime(-SCROL_STEP, 0);
+            shift_anime(-OFFSET_PER_STEP, 0);
         }
     });
 
@@ -330,7 +314,7 @@ $(function ()
         event.stopPropagation();
         event.preventDefault();
         if (shift_x / scale < 0) {
-            shift_anime(SCROL_STEP, 0);
+            shift_anime(OFFSET_PER_STEP, 0);
         }
     });
 
@@ -344,13 +328,50 @@ $(function ()
     //    location.replace('#dialog');
     //});
 
-
-    $("#goButton").on("click", find_and_show_path);
+    $("#goButton").on("click", find_and_show_track);
 
 });
 
+
 //
-function find_and_show_path() {
+function init_data(dots, lines)
+{
+    // points
+    points = {};
+    for (var polykey in dots) {
+        var keys = polykey.split(",");
+        for (var i = 0; i < keys.length; ++i) {
+            var key = keys[i];
+            points[key] = new Point(key, dots[polykey][0], dots[polykey][1], dots[polykey][2]);
+        }
+    }
+
+    // edges
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].replace(/,/g, " ");
+
+        var keys = line.split(' ');
+        for (var j = 1; j < keys.length; j++) {
+            var k1 = keys[j - 1], k2 = keys[j];
+            if (points[k1] && points[k2]) {
+                var dx = points[k1].x - points[k2].x;
+                var dy = points[k1].y - points[k2].y;
+                var dz = points[k1].z - points[k2].z;
+                var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                points[k1].E[k2] = points[k2].E[k1] = dist;
+            }
+            else {
+                if (!points[k1])
+                    console.log('Wrong key: ' + k1);
+                if (!points[k2])
+                    console.log('Wrong key: ' + k2);
+            }
+        }
+    }
+}
+
+//
+function find_and_show_track() {
     var fromKey = $("#from").val();
     var toKey = $("#to").val();
 
@@ -360,36 +381,37 @@ function find_and_show_path() {
     //check input data 
     if (points[fromKey] && points[toKey])
     {
-        path = dijkstra(fromKey, toKey);
-        path = path.reverse();
+        track = dijkstra(fromKey, toKey);
+        track = track.reverse();
         auto_scale();
-        set_current_point(path[0]);
+        set_current_point(track[0]);
     } else {
-        path = null;
+        track = null;
         location.replace('#dialog');
     }
 }
 
+//
 function step_forward() {
-    if (path == undefined)
+    if (track == undefined)
         return;
-    var i1 = path.indexOf(current_point);
-    var i2 = (i1 + 1) % path.length;
-    set_current_point(path[i1]);
+    var i1 = track.indexOf(current_point);
+    var i2 = (i1 + 1) % track.length;
+    set_current_point(track[i1]);
 
-    if (path[i1].z == path[i2].z) 
+    if (track[i1].z == track[i2].z) 
     {
-        step_anime(path[i1], path[i2]);     
+        step_anime(track[i1], track[i2]);     
     } else {
-        ladder_anime(path[i1], path[i2])
+        ladder_anime(track[i1], track[i2])
     }
 };
 
 function step_back() {
-    if (path == undefined)
+    if (track == undefined)
         return;
-    var i = (path.indexOf(current_point) - 1 + path.length) % path.length;
-    set_current_point(path[i]);
+    var i = (track.indexOf(current_point) - 1 + track.length) % track.length;
+    set_current_point(track[i]);
 }
 
 function set_current_point(p) {
@@ -415,27 +437,21 @@ function draw()
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img[bg], 0, 0);
 
-    // path
-    if (path) {
+    // track
+    if (track) {
         ctx.strokeStyle = "#FF0000";
         ctx.lineWidth = 2;
         ctx.beginPath();
-        var p = path[0];
+        var p = track[0];
         var x0 = p.x;
         var y0 = p.y;
         ctx.moveTo(x0, y0);
-        for (var i = 1; i < path.length; i++) {
-            var p = path[i];
+        for (var i = 1; i < track.length; i++) {
+            var p = track[i];
             ctx.lineTo(p.x, p.y);
             x0 = p.x; y0 = p.y;
         }
         ctx.stroke();
-
-        // circle
-        //ctx.fillStyle = "#0000FF";
-        //ctx.beginPath();
-        //ctx.arc(man.x, man.y, 5, 0, Math.PI * 2);
-        //ctx.fill();
 
         // man
         ctx.drawImage(man.img[man.i], man.x, man.y, 8, 20);
@@ -452,8 +468,8 @@ function draw()
 
 function auto_scale()
 {
-    var p = path[0];
-    scale = 1;
+    var p = track[0];
+    scale = 2;
     shift_x = -p.x * scale + screen.width / 2;
     shift_y = -p.y * scale + screen.height / 2;
 }
