@@ -7,41 +7,40 @@ canvas {
     top: 0px;
 }
 
-#scale_inc, #scale_dec {
+#scale_inc, #scale_dec, #bars, #info {
     position:absolute; 
     height: 36px;
     width: 36px;
+    background:rgba(255,255,255,0); 
+    border: 2px solid gray;
+    margin: 0px;    
+}
+
+#scale_inc, #scale_dec {
     right: 0px;
-    margin: 0px;
-    background:rgba(255,255,255,0.25);    
 }
 
 #scale_inc {
     top: 0px;
 }
 #scale_dec {
-    top: 36px;
+    top: 38px;
 }
 
 #bars, #info {
-    position:absolute; 
-    height: 36px;
-    width: 36px;
     left: 0px;
-    margin: 0px;
-    background:rgba(255,255,255,0.25);    
 }
 
 #bars {
     top: 0px;
 }
 #info {
-    top: 36px;
+    top: 38px;
 }
 
 
 .ui-icon-man:after {
     background-image: url("pic/man0.png");
     /* Make an icon fit */
-    background-size: 8px 20px;
+    background-size: 4px 10px;
 }
