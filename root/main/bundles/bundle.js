@@ -223,7 +223,10 @@ var points;  // dictionary of Points
 var MAP_HEIGHT;
 var MAP_WIDTH;
 
-var ctx, canvas; 
+var MAN_HEIGHT = 10;
+var MAN_WIDTH = 4;
+
+var ctx, canvas;
 var imgs = {}, imgs_count = 2;
 
 var current_point;
@@ -423,12 +426,11 @@ $(function ()
         event.stopPropagation();
         event.preventDefault();
 
-        if (shift_anime_timer)
-        {
-            stop_shift_anime();
-        }
-        else
-        {
+        stop_shift_anime();
+
+        var dx = (event.clientX - shift_x - MAN_WIDTH/2) / scale - man.x;
+        var dy = (event.clientY - shift_y - MAN_HEIGHT/2) / scale - man.y;
+        if (dx * dx + dy * dy < 400) {
             step_forward();
         }
     });
@@ -571,7 +573,7 @@ function draw()
         ctx.stroke();
 
         // man
-        ctx.drawImage(man.imgs[man.i], man.x, man.y, 8, 20);
+        ctx.drawImage(man.imgs[man.i], man.x, man.y, MAN_WIDTH, MAN_HEIGHT);
         man.i = (man.i + 1) % 2;
     }
     ctx.restore();
@@ -593,19 +595,20 @@ function auto_scale()
 
 function auto_shift()
 {
+    var MARGIN = 40;
     // X
     if (man.x < -shift_x / scale) {
-        shift_x = (-man.x + 10) * scale;
+        shift_x = (-man.x + MARGIN) * scale;
     }
     if (man.x > (-shift_x + canvas.width) / scale) {
-        shift_x = canvas.width - (man.x + man.imgs[0].width + 10) * scale;
+        shift_x = canvas.width - (man.x + man.imgs[0].width + MARGIN) * scale;
     }
     // Y
     if (man.y < -shift_y / scale) {
-        shift_y = (-man.y + 10) * scale;
+        shift_y = (-man.y + MARGIN) * scale;
     }
     if (man.y > (-shift_y + canvas.height) / scale) {
-        shift_y = canvas.height - (man.y + man.imgs[0].height + 10) * scale;
+        shift_y = canvas.height - (man.y + man.imgs[0].height + MARGIN) * scale;
     }
 
 }

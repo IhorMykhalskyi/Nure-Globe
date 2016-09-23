@@ -17,7 +17,10 @@ var points;  // dictionary of Points
 var MAP_HEIGHT;
 var MAP_WIDTH;
 
-var ctx, canvas; 
+var MAN_HEIGHT = 10;
+var MAN_WIDTH = 4;
+
+var ctx, canvas;
 var imgs = {}, imgs_count = 2;
 
 var current_point;

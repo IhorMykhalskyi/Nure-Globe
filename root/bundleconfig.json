@@ -14,7 +14,7 @@
   {
     "outputFileName": "main/bundles/main.min.css",
     "inputFiles": [
-      "main/css/main.css"
+      "main/main.css"
     ]
   }
 ]

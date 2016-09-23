@@ -42,5 +42,5 @@ canvas {
 .ui-icon-man:after {
     background-image: url("pic/man0.png");
     /* Make an icon fit */
-    background-size: 4px 10px;
+    background-size: 8px 20px;
 }
