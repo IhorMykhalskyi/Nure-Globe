@@ -1,4 +1,6 @@
-﻿// inintial settings -----------
+﻿var shift_anime_timer = null;
+
+// inintial settings -----------
 
 $(function ()
 {
@@ -79,14 +81,25 @@ $(function ()
     $(canvas).on('tap', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        step_forward();
+        if (shift_anime_timer) {
+            clearInterval(shift_anime_timer);
+            shift_anime_timer = null;
+        } else {
+            step_forward();
+        }
     });
 
-    //$(canvas).on('taphold', function (event) {
-    //    location.replace('#dialog');
-    //});
+    $(canvas).on('taphold', function (event) {
+       // location.replace('#dialog');
+    });
 
-    $("#goButton").on("click", find_and_show_track);
+    $("#goButton").on("click", function (event) {
+        if (shift_anime_timer) {
+            clearInterval(shift_anime_timer);
+            shift_anime_timer = null;
+        };
+        find_and_show_track();
+    });
 
 });
 
@@ -254,20 +267,22 @@ function auto_shift()
 }
 
 function shift_anime(dx, dy) {
-    var STEP_COUNT = 15;
+    var STEP_COUNT = 50;
     var t = 0;
-    var timer = setInterval(function ()
-    {
-        //  
-        shift_x += dx;
-        shift_y += dy;
-        //
-        draw();
-        t++;
-        if (t >= STEP_COUNT) {
-            clearInterval(timer);
-        }
-    }, 20);
+    if (!shift_anime_timer) {
+        shift_anime_timer = setInterval(function () {
+            //  
+            shift_x += dx;
+            shift_y += dy;
+            //
+            draw();
+            t++;
+            if (t >= STEP_COUNT) {
+                clearInterval(shift_anime_timer);
+                shift_anime_timer = null;
+            }
+        }, 20);
+    }
 }
 
 function scale_anime(k) {
