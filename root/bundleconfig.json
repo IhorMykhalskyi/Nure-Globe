@@ -7,6 +7,7 @@
       "main/data/lines.js",
       "main/dijkstra.js",
       "main/globals.js",
+      "main/anime.js",
       "main/index.js"
     ]
   },

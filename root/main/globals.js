@@ -17,9 +17,6 @@ var points;  // dictionary of Points
 var MAP_HEIGHT;
 var MAP_WIDTH;
 
-var SCALE_PER_STEP = Math.pow(2, 1 / 30);
-var OFFSET_PER_STEP = 10; 
-
 var ctx, canvas; 
 var imgs = {}, imgs_count = 2;
 
