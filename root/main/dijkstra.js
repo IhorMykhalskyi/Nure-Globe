@@ -65,7 +65,7 @@ function dijkstra_step(point)
 //
 function tune(track) 
 {
-    if (track.length < 4)
+    if (track.length < 3)
         return track;
 
     var res = [track[0]];
