@@ -216,22 +216,29 @@ function draw()
         ctx.lineWidth = 2;
         ctx.beginPath();
         
-        var start = 0;
-        while (!is_on_current_floor(track[start]))
-            start++;
-        var p = track[start];
-        var x0 = p.x;
-        var y0 = p.y;
-        ctx.moveTo(x0, y0);
+        var start = track[0];
+        ctx.moveTo(start.x, start.y);
 
-        for (var i = start + 1; i < track.length; i++) {
+        for (var i = 1; i < track.length; i++) {
             var p = track[i];
             if (is_on_current_floor(p)) {
+                ctx.globalAlpha = 1;
+                ctx.setLineDash([]);
                 ctx.lineTo(p.x, p.y);
-                x0 = p.x; y0 = p.y;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+            }
+            else {
+                ctx.globalAlpha = 0.5;
+                ctx.setLineDash([4, 3]);
+                ctx.lineTo(p.x, p.y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.globalAlpha = 1;
             }
         }
-        ctx.stroke();
 
         // man
         ctx.drawImage(man.imgs[man.i], man.x, man.y, MAN_WIDTH, MAN_HEIGHT);
