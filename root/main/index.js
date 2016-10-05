@@ -221,23 +221,16 @@ function draw()
 
         for (var i = 1; i < track.length; i++) {
             var p = track[i];
-            if (is_on_current_floor(p)) {
-                ctx.globalAlpha = 1;
-                ctx.setLineDash([]);
-                ctx.lineTo(p.x, p.y);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-            }
-            else {
+            ctx.save();
+            if ( p.z != current_point.z) {
                 ctx.globalAlpha = 0.5;
                 ctx.setLineDash([4, 3]);
-                ctx.lineTo(p.x, p.y);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-                ctx.globalAlpha = 1;
             }
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.restore();
+            ctx.moveTo(p.x, p.y);
         }
 
         // man
@@ -251,39 +244,6 @@ function draw()
     ctx.font = "72px arial";
     ctx.fillText(current_point.z + " этаж", 50, canvas.height - 50);
 
-}
-
-function is_on_current_floor(point)
-{
-    sub_tracks = split_by_floors();
-    for (var i = 0; i < sub_tracks.length; i++)
-    {
-        if (sub_tracks[i].includes(current_point) && sub_tracks[i].includes(point))
-            return true;
-    }
-    return false;
-}
-
-function split_by_floors()
-{
-    var res = new Array();
-    var ip = 0;
-    p = track[ip];
-    var i = 0;
-
-    while (p)
-    {
-        res[i] = new Array();
-        res[i].push(p);
-        p = track[++ip];
-        while (p && (p.key[0] != 'L' || track[ip-1].key[0] != 'L'))
-        {
-            res[i].push(p);
-            p = track[++ip];
-        }
-        i++
-    }
-    return res;
 }
 
 function auto_scale()
