@@ -8,6 +8,7 @@
 var IMG_SRC = "floors/_1.svg";
 var Z = 1;
 
+
 var ctx, canvas;
 var img;
 var shift_x = 0, shift_y = 0, scale = 2.0; // transformation
@@ -49,7 +50,7 @@ $(function () {
             dots[key] = [x, y, Z];           
 
             // redraw
-            key = "";
+            //$("#key").val("");  // uncomment to clear the textbox
             $("#key")[0].focus();
             draw();
             show_dots()
@@ -143,7 +144,7 @@ function near(a, b, d) {
 function show_dots() {
     var s = JSON.stringify(dots);
     s = s.replace(/\],/g, "\],\n");
-    document.getElementById("result").innerHTML = s;
+    $("#result").val(s);
 }
 
 var DOT_SIZE = 2;
