@@ -73,9 +73,9 @@ function step_anime(p1, p2) {
 function ladder_anime(p1, p2) {
     var ladderNo = p1.key[4], dx, dy;
     switch (ladderNo) {
-        case "R": dx = 0; dy = 2; break;
-        case "U": dx = 2; dy = 0; break;
-        case "D": dx = -2; dy = 0; break;
+        case "R": dx = 2; dy = 0; break;
+        case "U": dx = 0; dy = -2; break;
+        case "D": dx = 0; dy = 2; break;
         case "L": dx = -2; dy = 0; break;
     }
     var STEP_COUNT = 20;
