@@ -1,6 +1,8 @@
 ﻿var dots =
 {
+
 }
 
 var lines = [
+
 ];

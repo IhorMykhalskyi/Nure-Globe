@@ -39,16 +39,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000002"
-     inkscape:cx="53.974618"
-     inkscape:cy="533.96224"
+     inkscape:zoom="0.50000005"
+     inkscape:cx="496.19325"
+     inkscape:cy="574.28724"
      inkscape:current-layer="layer4"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1005"
-     inkscape:window-x="1591"
-     inkscape:window-y="-9"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="false"
      units="in"
@@ -74,8 +74,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="base"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <path
        style="fill:none;fill-rule:evenodd;stroke:#8a00ef;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 534.78033,285.50004 -169.75,-0.5 -0.53033,108.5 30.5,0 0,-7 87,0 0,40.5 -185.5,0 0,-40.5 6.5,0 0,-89.5 -16.5,0 0,14 -89,0 0,-14 -16,0 0,90 6.5,0 0,41 -181.0000003,0 0,-41.5 5.5000003,0 0,-141.5 25.5,0 0,9 54,0 0,-109.5 -54,0 0,7.5 -32.5000003,0 1,-149.0000018 46.0000003,0 0,8.9999998 71.5,0 0,-8.4999998 44.5,0 0,44.9999998 -44,0 0,-6 -80.5,0 0,22.5 9,0 0,37.500002 -13.5,0 0,7 109,0 0,142 50,0 0,-24.5 63,0 0,-137.000002 61,0 0,157.500002 293.5,0 0,37.5 -71.37501,0"
@@ -167,7 +166,8 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="marks"
-     style="display:inline;opacity:1">
+     style="display:inline;opacity:1"
+     sodipodi:insensitive="true">
     <rect
        style="fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:0.22993407;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4234"
@@ -856,8 +856,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="walls1"
-     style="display:inline;opacity:1"
-     sodipodi:insensitive="true">
+     style="display:inline;opacity:1">
     <path
        style="fill:none;fill-rule:evenodd;stroke:#404040;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 31.7358,127.10608 96.86281,0.0682 -0.26972,60.32543 20.85883,0"
@@ -1206,7 +1205,8 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="nums1"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:90px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
