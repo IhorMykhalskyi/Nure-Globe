@@ -5,8 +5,9 @@
 // 4) вручную скопировать словарь из текстового поля в файл dots.js  ("var dots = словарь")
 // 5) создать список сегментов (аудитория, перекресток)
 
-var IMG_SRC = "floors/2.svg";
-var Z = 2;
+var IMG_SRC = "floors/3.svg";
+var Z = 3;
+
 
 var ctx, canvas;
 var img;
@@ -49,7 +50,7 @@ $(function () {
             dots[key] = [x, y, Z];           
 
             // redraw
-            key = "";
+            //$("#key").val("");  // uncomment to clear the textbox
             $("#key")[0].focus();
             draw();
             show_dots()
@@ -143,7 +144,7 @@ function near(a, b, d) {
 function show_dots() {
     var s = JSON.stringify(dots);
     s = s.replace(/\],/g, "\],\n");
-    document.getElementById("result").innerHTML = s;
+    $("#result").val(s);
 }
 
 var DOT_SIZE = 2;
