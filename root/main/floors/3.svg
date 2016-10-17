@@ -39,16 +39,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="443.91597"
-     inkscape:cy="503.66237"
-     inkscape:current-layer="layer4"
+     inkscape:zoom="2.8284272"
+     inkscape:cx="621.96351"
+     inkscape:cy="437.71517"
+     inkscape:current-layer="layer3"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1005"
-     inkscape:window-x="1591"
-     inkscape:window-y="-9"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="false"
      units="in"
@@ -102,7 +102,8 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="marks"
-     style="display:inline;opacity:1">
+     style="display:inline;opacity:1"
+     sodipodi:insensitive="true">
     <rect
        style="fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:0.22993407;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4234"
@@ -543,8 +544,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="nums1"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:90px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -648,7 +648,7 @@
          y="333.22177"
          x="699.026"
          id="tspan3824"
-         sodipodi:role="line">М3</tspan></text>
+         sodipodi:role="line">М</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#c00000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -659,7 +659,7 @@
          sodipodi:role="line"
          id="tspan3838"
          x="509.33145"
-         y="363.23596">21</tspan><tspan
+         y="363.23596">19</tspan><tspan
          sodipodi:role="line"
          id="tspan3840"
          x="509.33145"
@@ -674,7 +674,7 @@
          sodipodi:role="line"
          id="tspan3844"
          x="531.80591"
-         y="363.23596">23</tspan><tspan
+         y="363.23596">20</tspan><tspan
          sodipodi:role="line"
          id="tspan3846"
          x="531.80591"
@@ -689,7 +689,7 @@
          sodipodi:role="line"
          id="tspan3850"
          x="546.0094"
-         y="363.23596">25</tspan><tspan
+         y="363.23596">22</tspan><tspan
          sodipodi:role="line"
          id="tspan3852"
          x="546.0094"
@@ -704,7 +704,7 @@
          sodipodi:role="line"
          id="tspan3856"
          x="560.21283"
-         y="363.23596">27</tspan></text>
+         y="363.23596">24</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#c00000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -715,7 +715,7 @@
          sodipodi:role="line"
          id="tspan3860"
          x="574.41632"
-         y="363.23596">29</tspan><tspan
+         y="363.23596">26</tspan><tspan
          sodipodi:role="line"
          id="tspan3862"
          x="574.41632"
@@ -730,7 +730,7 @@
          sodipodi:role="line"
          id="tspan3866"
          x="640.6897"
-         y="363.23596">М3</tspan></text>
+         y="363.23596">28</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3868"
@@ -741,7 +741,7 @@
          y="363.23596"
          x="713.87518"
          id="tspan3870"
-         sodipodi:role="line">М3</tspan></text>
+         sodipodi:role="line">31</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3872"
@@ -752,7 +752,7 @@
          y="363.23596"
          x="616.29449"
          id="tspan3874"
-         sodipodi:role="line">М3</tspan></text>
+         sodipodi:role="line">26а</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3876"
@@ -763,6 +763,6 @@
          y="363.23596"
          x="665.08484"
          id="tspan3878"
-         sodipodi:role="line">М3</tspan></text>
+         sodipodi:role="line">30</tspan></text>
   </g>
 </svg>
