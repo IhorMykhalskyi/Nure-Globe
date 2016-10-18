@@ -31,6 +31,7 @@ var shift_x = 0, shift_y = 0, scale = 1; // transformation params
 
 var man = { x: 0, y: 0, i: 0, imgs: {} }; // one who runs. Has two images.
 
+var max_floor = 4;
 // -----------------------------------------------------------
 
 
