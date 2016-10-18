@@ -5,8 +5,8 @@
 // 4) вручную скопировать словарь из текстового поля в файл dots.js  ("var dots = словарь")
 // 5) создать список сегментов (аудитория, перекресток)
 
-var IMG_SRC = "floors/3.svg";
-var Z = 3;
+var IMG_SRC = "floors/4.svg";
+var Z = 4;
 
 
 var ctx, canvas;

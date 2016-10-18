@@ -10,7 +10,7 @@ $(function ()
     ctx = canvas.getContext("2d");
 
     // load background images
-    for (var i = 1; i < max_floor; ++i) {
+    for (var i = 1; i <= max_floor; ++i) {
         imgs[i] = new Image();
         imgs[i].src = 'floors/' + i + '.svg';
     }
