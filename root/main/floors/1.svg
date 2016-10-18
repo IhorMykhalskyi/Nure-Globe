@@ -44,15 +44,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.5725413"
-     inkscape:cx="715.85929"
+     inkscape:cx="611.25154"
      inkscape:cy="504.71863"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer3"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
+     inkscape:window-x="1591"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      showguides="false"
      units="in"
@@ -143,7 +143,8 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="marks"
-     style="display:inline;opacity:0.98999999">
+     style="display:inline;opacity:0.98999999"
+     sodipodi:insensitive="true">
     <rect
        style="fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:0.22993407;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4234"
@@ -598,7 +599,7 @@
          x="830.82941"
          y="241.53285">X113</tspan></text>
     <path
-       style="display:inline;opacity:0.98999999;fill:none;fill-rule:evenodd;stroke:#cc9795;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4,1;stroke-dashoffset:0;stroke-opacity:1"
+       style="display:inline;opacity:0.98999999;fill:none;fill-rule:evenodd;stroke:#cc9795;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0;stroke-opacity:1"
        d="m 801.2917,131.60319 0,23.93715"
        id="path8505-6-7-0-5"
        inkscape:connector-curvature="0" />
@@ -912,8 +913,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="nums1"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:90px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -2042,7 +2042,7 @@
          sodipodi:role="line"
          id="tspan4329-9-6-1-80-8-27-39-32"
          x="797.86011"
-         y="262.19656">113</tspan><tspan
+         y="262.19656">113и</tspan><tspan
          sodipodi:role="line"
          x="797.86011"
          y="268.44656"

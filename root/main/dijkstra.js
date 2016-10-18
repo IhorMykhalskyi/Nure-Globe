@@ -69,14 +69,17 @@ function tune(track)
         return track;
 
     var res = [track[0]];
+    var last = track[0];
     for (var i = 1; i < track.length - 1; i++) {
-        var a = track[i - 1], b = track[i], c = track[i + 1];
+        var b = track[i], c = track[i + 1];
         var can_remove =
-            a.x == b.x && b.x == c.x &&   a.y == b.y && b.y == c.y ||
-            a.x == b.x && b.x == c.x &&   a.z == b.z && b.z == c.z ||
-            a.z == b.z && b.z == c.z &&   a.y == b.y && b.y == c.y;
-        if (!can_remove)
+            last.x == b.x && b.x == c.x && last.y == b.y && b.y == c.y ||
+            last.x == b.x && b.x == c.x && last.z == b.z && b.z == c.z ||
+            last.z == b.z && b.z == c.z && last.y == b.y && b.y == c.y;
+        if (!can_remove) {
             res.push(b);
+            last = b;
+        }
     }
     res.push(track[track.length-1]);
     return res;
