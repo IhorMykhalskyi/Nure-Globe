@@ -43,9 +43,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.5725413"
-     inkscape:cx="715.85929"
-     inkscape:cy="504.71863"
+     inkscape:zoom="2.2239092"
+     inkscape:cx="192.36616"
+     inkscape:cy="570.60358"
      inkscape:current-layer="layer4"
      inkscape:document-units="px"
      showgrid="false"
@@ -59,7 +59,11 @@
      showborder="false"
      inkscape:snap-to-guides="true"
      inkscape:snap-grids="false"
-     inkscape:snap-page="false" />
+     inkscape:snap-page="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3712" />
+  </sodipodi:namedview>
   <metadata
      id="metadata4695">
     <rdf:RDF>
@@ -68,7 +72,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
