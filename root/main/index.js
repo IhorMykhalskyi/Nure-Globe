@@ -1,36 +1,43 @@
 ﻿// inintial settings -----------
 
-$(function ()
-{
+
+
+$(function () {
     // set canvas size accorging to screen size
-    canvas = $("#canvas1")[0];
     $("#canvas1").attr("width", screen.availWidth)
                  .attr("height", screen.availHeight);
 
+    canvas = $("#canvas1")[0];
     ctx = canvas.getContext("2d");
 
     // load background images
+    imgs = {};
     for (var i = 1; i < 3; ++i) {
         imgs[i] = new Image();
         imgs[i].src = 'floors/' + i + '.svg';
     }
 
-    // load mans pictures
+    // load man pictures
+    man = { x: 0, y: 0, i: 0, imgs: {} };
     for (var i = 0; i < 2; ++i) {
         man.imgs[i] = new Image();
         man.imgs[i].src = 'pic/man' + (i + 1) + '.png';
     }
 
     // init data
-    imgs[imgs_count].onload = function ()
-    {
+    imgs[imgs_count].onload = function () {
         init_data(dots, lines);
         set_current_point(points["ВХОД"]);
         MAP_HEIGHT = imgs[1].height;
         MAP_WIDTH = imgs[1].width;
+
+        // show dialog at start
+        $("#bars").click();
     };
 
     //---------------- settings event handlers --------------------------
+
+    //$(window).on("orientationchange", doc_ready);
 
     // scaling
 
@@ -39,7 +46,7 @@ $(function ()
     })
 
     $("#scale_dec").on("click", function () {
-        scale_anime(1/SCALE_PER_STEP)
+        scale_anime(1 / SCALE_PER_STEP)
     })
 
     // scrolling
@@ -68,7 +75,7 @@ $(function ()
         }
     });
 
-    $(document).on('swiperight', 'canvas', function (event) {
+    $(canvas).on('swiperight', 'canvas', function (event) {
         event.stopPropagation();
         event.preventDefault();
         if (shift_x / scale < 0) {
@@ -82,8 +89,8 @@ $(function ()
 
         stop_shift_anime();
 
-        var dx = (event.clientX - shift_x - MAN_WIDTH/2) / scale - man.x;
-        var dy = (event.clientY - shift_y - MAN_HEIGHT/2) / scale - man.y;
+        var dx = (event.clientX - shift_x - MAN_WIDTH / 2) / scale - man.x;
+        var dy = (event.clientY - shift_y - MAN_HEIGHT / 2) / scale - man.y;
         if (dx * dx + dy * dy < 400) {
             step_forward();
         }
@@ -92,7 +99,7 @@ $(function ()
     $(canvas).on('taphold', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        //stop_shift_anime();
+
         scale_anime(SCALE_PER_STEP);
     });
 
@@ -100,6 +107,38 @@ $(function ()
         stop_shift_anime();
         find_and_show_track();
     });
+
+
+    $(function () {
+        $("#from").keyup(autocomplete);
+        $("#to").keyup(autocomplete);
+    })
+
+    //var abc = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+
+    function autocomplete(event) {
+        var char = String.fromCharCode(event.keyCode);
+
+        $el = $(this);
+
+        var text = this.value.slice(0, this.selectionStart);
+        if (text === "") {
+            $el.val("");
+            return;
+        }
+        var label = labels.find(function (k) { return k.startsWith(text) });
+        if (!label) {
+            $el.css("color", "red");
+            return;
+
+        } else {
+            $el.val(label);
+            $el[0].selectionStart = $el[0].selectionEnd = text.length;
+            $el.css("color", "black");
+        }
+
+    }
+
 
 });
 
@@ -139,6 +178,12 @@ function init_data(dots, lines)
             }
         }
     }
+
+    // labels
+    labels = [];
+    for (var key in points)
+        labels.push(key);
+    labels.sort();
 }
 
 //

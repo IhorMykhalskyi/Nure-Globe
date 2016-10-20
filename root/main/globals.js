@@ -13,6 +13,7 @@ function Point(key, x, y, z) {
 // -----------------------------------------------------------
 
 var points;  // dictionary of Points
+var labels;  // sorted array of door labels
 
 var MAP_HEIGHT;
 var MAP_WIDTH;

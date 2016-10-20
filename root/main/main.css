@@ -39,8 +39,14 @@ canvas {
 }
 
 
-.ui-icon-man:after {
+.ui-icon-man_w:after {
     background-image: url("pic/man0.png");
+    /* Make an icon fit */
+    background-size: 8px 20px;
+}
+
+.ui-icon-man_b:after {
+    background-image: url("pic/man2.png");
     /* Make an icon fit */
     background-size: 8px 20px;
 }
