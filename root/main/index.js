@@ -3,9 +3,13 @@
 
 
 $(function () {
+
     // set canvas size accorging to screen size
     $("#canvas1").attr("width", screen.availWidth)
                  .attr("height", screen.availHeight);
+
+    $("#top-panel").css("width", screen.availWidth - 72);
+               
 
     canvas = $("#canvas1")[0];
     ctx = canvas.getContext("2d");
@@ -100,8 +104,24 @@ $(function () {
         event.stopPropagation();
         event.preventDefault();
 
-        scale_anime(SCALE_PER_STEP);
+        stop_shift_anime();
+        //if ($("#scale_inc").css("visibility") == "visible")
+        //    $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "hidden");
+        //else 
+        //    $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "visible");
+        //scale_anime(SCALE_PER_STEP);
     });
+
+    $('#top-panel').on('swipedown', function (event) {
+        $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "visible");
+    });
+
+    $('#top-panel').on('swipeup', function (event) {
+        $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "hidden");
+    });
+
+
+
 
     $("#goButton").on("click", function (event) {
         stop_shift_anime();

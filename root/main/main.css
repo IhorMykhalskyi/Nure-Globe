@@ -1,20 +1,36 @@
 ﻿body {
 }
 
-canvas {
+#top-panel {
+    position:absolute;
+    left: 36px;
+    top: 0px;
+    z-index:2;
+    height: 72px;
+    opacity: 0;
+
+    background-color:aqua;
+
+}
+
+#canvas1 {
     position:absolute;
     left: 0px;
     top: 0px;
+    z-index:0;
 }
 
 #scale_inc, #scale_dec, #bars, #info {
     position:absolute; 
+    z-index:1;
     height: 36px;
     width: 36px;
-    background:rgba(255,255,255,0); 
+    background:rgba(255,255,255,0.5); 
     border: 2px solid gray;
     margin: 0px;    
+    visibility:hidden;
 }
+
 
 #scale_inc, #scale_dec {
     right: 0px;
