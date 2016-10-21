@@ -75,7 +75,7 @@ $(function () {
         }
     });
 
-    $(canvas).on('swiperight', 'canvas', function (event) {
+    $(canvas).on('swiperight', function (event) {
         event.stopPropagation();
         event.preventDefault();
         if (shift_x / scale < 0) {
@@ -108,17 +108,13 @@ $(function () {
         find_and_show_track();
     });
 
-
     $(function () {
-        $("#from").keyup(autocomplete);
-        $("#to").keyup(autocomplete);
+        $("#from").on("input", autocomplete);
+        $("#to").on("input", autocomplete);
     })
 
-    //var abc = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-
+    
     function autocomplete(event) {
-        var char = String.fromCharCode(event.keyCode);
-
         $el = $(this);
 
         var text = this.value.slice(0, this.selectionStart);
@@ -127,14 +123,12 @@ $(function () {
             return;
         }
         var label = labels.find(function (k) { return k.startsWith(text) });
-        if (!label) {
-            $el.css("color", "red");
-            return;
-
-        } else {
+        if (label) {
             $el.val(label);
             $el[0].selectionStart = $el[0].selectionEnd = text.length;
-            $el.css("color", "black");
+        } else {
+            $el.val($el.val().slice(0, $el[0].selectionStart-1));
+            $el.animate({ opacity: 0 }, 200, function () { $el.animate({ opacity: 1 }, 200); });
         }
 
     }
@@ -190,9 +184,6 @@ function init_data(dots, lines)
 function find_and_show_track() {
     var fromKey = $("#from").val();
     var toKey = $("#to").val();
-
-    $("#from").css("color", points[fromKey] ? "black" : "red");
-    $("#to").css("color", points[toKey] ? "black" : "red");
 
     //check input data 
     if (points[fromKey] && points[toKey])
