@@ -1,6 +1,10 @@
 ﻿body {
 }
 
+#dialog {
+   width: 80%;
+}
+
 canvas {
     position:absolute;
     left: 0px;
@@ -38,6 +42,12 @@ canvas {
     top: 38px;
 }
 
+
+.ui-icon-nureglobe:after {
+    background-image: url("pic/nureglobe.png");
+    /* Make an icon fit */
+    background-size: 20px 20px;
+}
 
 .ui-icon-man_w:after {
     background-image: url("pic/man0.png");
