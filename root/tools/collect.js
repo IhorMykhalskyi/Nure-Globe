@@ -89,18 +89,11 @@ $(function () {
     var K = Math.sqrt(2);
 
     $("#scale_inc").on("click", function () {
-        scale *= K;
-        shift_x = shift_x * K - canvas.width / 2 * (K - 1);
-        shift_y = shift_y * K - canvas.height / 2 * (K - 1);
-        draw();
+        scale_with(K);
     })
 
     $("#scale_dec").on("click", function () {
-        var k = 1 / K;
-        scale *= k;
-        shift_x = shift_x * k - canvas.width / 2 * (k - 1);
-        shift_y = shift_y * k - canvas.height / 2 * (k - 1);
-        draw();
+        scale_with(1 / K);
     })
 
     $("#shift_l").on("click", function () {
@@ -133,6 +126,60 @@ $(function () {
         draw();
     });
 
+    //keyboard events
+
+    //shiht right
+    $("html").keydown(
+    function (eventObject) {
+        if (event.keyCode == 39) {
+            shift_x -= 50;
+            draw();
+        }
+    });
+
+    //shiht left
+    $("html").keydown(
+    function (eventObject) {
+        if (event.keyCode == 37) {
+            shift_x += 50;
+            draw();
+        }
+    });
+
+    //shiht up
+    $("html").keydown(
+    function (eventObject) {
+        if (event.keyCode == 38) {
+            shift_y += 50;
+            draw();
+        }
+    });
+
+    //
+    //shiht down
+    $("html").keydown(
+    function (eventObject) {
+        if (event.keyCode == 40) {
+            shift_y -= 50;
+            draw();
+        }
+    });
+
+    //scale inc
+    $("html").keydown(
+    function (eventObject) {
+        if (event.keyCode == 107) {
+            scale_with(K);
+        }
+    });
+
+    //scale dec
+    $("html").keydown(
+    function (eventObject) {
+        if (event.keyCode == 109) {
+            scale_with(1 / K);
+        }
+    });
 });
 
 function near(a, b, d) {
@@ -210,5 +257,12 @@ function draw_lines()
     ctx.stroke();
 
     ctx.restore();
+}
 
+function scale_with(k)
+{
+    scale *= k;
+    shift_x = shift_x * k - canvas.width / 2 * (k - 1);
+    shift_y = shift_y * k - canvas.height / 2 * (k - 1);
+    draw();
 }
