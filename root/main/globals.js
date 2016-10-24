@@ -13,9 +13,10 @@ function Point(key, x, y, z) {
 // -----------------------------------------------------------
 
 var points;  // dictionary of Points
+var labels;  // sorted array of door labels
 
-var MAP_HEIGHT;
-var MAP_WIDTH;
+var MAP_HEIGHT; // define from the first floor image
+var MAP_WIDTH;  // define from the first floor image
 
 var MAN_HEIGHT = 10;
 var MAN_WIDTH = 4;

@@ -40,15 +40,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.0000002"
-     inkscape:cx="726.91506"
-     inkscape:cy="493.96225"
-     inkscape:current-layer="layer2"
+     inkscape:cx="157.97461"
+     inkscape:cy="473.96225"
+     inkscape:current-layer="layer4"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
+     inkscape:window-x="1591"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      showguides="false"
      units="in"
@@ -144,6 +144,14 @@
        x="807.13141"
        y="190.52086"
        ry="0" />
+    <rect
+       style="display:inline;opacity:1;fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4234-51-48-4"
+       width="22.868523"
+       height="126.27945"
+       x="273.93661"
+       y="-766.22156"
+       transform="matrix(8.0459063e-5,1,-0.99999994,3.5700065e-4,0,0)" />
     <path
        style="display:inline;opacity:1;fill:none;fill-rule:evenodd;stroke:#8a00ef;stroke-width:2.86205482;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 808.4402,227.98473 c 0,0 0,-0.93401 0.12822,-34.53911 l 119.25839,0 0,34.07211 c 0,0 0,-68.14421 0,-34.07211"
@@ -159,8 +167,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="marks"
-     style="display:inline;opacity:1"
-     sodipodi:insensitive="true">
+     style="display:inline;opacity:1">
     <rect
        style="fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:0.22993407;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4234"
@@ -1199,8 +1206,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="nums1"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:90px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

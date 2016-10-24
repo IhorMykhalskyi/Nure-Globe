@@ -1,36 +1,43 @@
 ﻿// inintial settings -----------
 
-$(function ()
-{
+$(function () {
     // set canvas size accorging to screen size
-    canvas = $("#canvas1")[0];
-    $("#canvas1").attr("width", screen.availWidth)
-                 .attr("height", screen.availHeight);
+    //$("#canvas1").attr("width", screen.availWidth)
+    //             .attr("height", screen.availHeight);
+    $("#canvas1").attr("width", $(window).width())
+                 .attr("height", $(window).height());
 
+    canvas = $("#canvas1")[0];
     ctx = canvas.getContext("2d");
 
     // load background images
-    for (var i = 1; i <= max_floor; ++i) {
+    imgs = {};
+    for (var i = 1; i < 3; ++i) {
         imgs[i] = new Image();
         imgs[i].src = 'floors/' + i + '.svg';
     }
 
-    // load mans pictures
+    // load man pictures
+    man = { x: 0, y: 0, i: 0, imgs: {} };
     for (var i = 0; i < 2; ++i) {
         man.imgs[i] = new Image();
         man.imgs[i].src = 'pic/man' + (i + 1) + '.png';
     }
 
     // init data
-    imgs[imgs_count].onload = function ()
-    {
+    imgs[imgs_count].onload = function () {
         init_data(dots, lines);
         set_current_point(points["ВХОД"]);
         MAP_HEIGHT = imgs[1].height;
         MAP_WIDTH = imgs[1].width;
+
+        // show dialog at start
+        $("#bars").click();
     };
 
     //---------------- settings event handlers --------------------------
+
+    //$(window).on("orientationchange", doc_ready);
 
     // scaling
 
@@ -39,7 +46,7 @@ $(function ()
     })
 
     $("#scale_dec").on("click", function () {
-        scale_anime(1/SCALE_PER_STEP)
+        scale_anime(1 / SCALE_PER_STEP)
     })
 
     // scrolling
@@ -68,7 +75,7 @@ $(function ()
         }
     });
 
-    $(document).on('swiperight', 'canvas', function (event) {
+    $(canvas).on('swiperight', function (event) {
         event.stopPropagation();
         event.preventDefault();
         if (shift_x / scale < 0) {
@@ -82,8 +89,8 @@ $(function ()
 
         stop_shift_anime();
 
-        var dx = (event.clientX - shift_x - MAN_WIDTH/2) / scale - man.x;
-        var dy = (event.clientY - shift_y - MAN_HEIGHT/2) / scale - man.y;
+        var dx = (event.clientX - shift_x - MAN_WIDTH / 2) / scale - man.x;
+        var dy = (event.clientY - shift_y - MAN_HEIGHT / 2) / scale - man.y;
         if (dx * dx + dy * dy < 400) {
             step_forward();
         }
@@ -92,7 +99,7 @@ $(function ()
     $(canvas).on('taphold', function (event) {
         event.stopPropagation();
         event.preventDefault();
-        //stop_shift_anime();
+
         scale_anime(SCALE_PER_STEP);
     });
 
@@ -100,6 +107,32 @@ $(function ()
         stop_shift_anime();
         find_and_show_track();
     });
+
+    $(function () {
+        $("#from").on("input", autocomplete);
+        $("#to").on("input", autocomplete);
+    })
+
+    
+    function autocomplete(event) {
+        $el = $(this);
+
+        var text = this.value.slice(0, this.selectionStart);
+        if (text === "") {
+            $el.val("");
+            return;
+        }
+        var label = labels.find(function (k) { return k.startsWith(text) });
+        if (label) {
+            $el.val(label);
+            $el[0].selectionStart = $el[0].selectionEnd = text.length;
+        } else {
+            $el.val($el.val().slice(0, $el[0].selectionStart-1));
+            $el.animate({ opacity: 0 }, 200, function () { $el.animate({ opacity: 1 }, 200); });
+        }
+
+    }
+
 
 });
 
@@ -139,15 +172,18 @@ function init_data(dots, lines)
             }
         }
     }
+
+    // labels
+    labels = [];
+    for (var key in points)
+        labels.push(key);
+    labels.sort();
 }
 
 //
 function find_and_show_track() {
     var fromKey = $("#from").val();
     var toKey = $("#to").val();
-
-    $("#from").css("color", points[fromKey] ? "black" : "red");
-    $("#to").css("color", points[toKey] ? "black" : "red");
 
     //check input data 
     if (points[fromKey] && points[toKey])
@@ -215,23 +251,16 @@ function draw()
         ctx.strokeStyle = "#FF0000";
         ctx.lineWidth = 2;
         ctx.beginPath();
-        
-        var start = track[0];
-        ctx.moveTo(start.x, start.y);
-
+        var p = track[0];
+        var x0 = p.x;
+        var y0 = p.y;
+        ctx.moveTo(x0, y0);
         for (var i = 1; i < track.length; i++) {
             var p = track[i];
-            ctx.save();
-            if ( p.z != current_point.z) {
-                ctx.globalAlpha = 0.5;
-                ctx.setLineDash([4, 3]);
-            }
             ctx.lineTo(p.x, p.y);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.restore();
-            ctx.moveTo(p.x, p.y);
+            x0 = p.x; y0 = p.y;
         }
+        ctx.stroke();
 
         // man
         ctx.drawImage(man.imgs[man.i], man.x, man.y, MAN_WIDTH, MAN_HEIGHT);
