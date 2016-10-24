@@ -3,20 +3,15 @@
 $(function () {
 
     // set canvas size accorging to screen size
-    //$("#canvas1").attr("width", screen.availWidth)
-    //             .attr("height", screen.availHeight);
     $("#canvas1").attr("width", $(window).width())
-                 .attr("height", $(window).height());
-
-    $("#top-panel").css("width", screen.availWidth - 72);
-               
+                 .attr("height", $(window).height());               
 
     canvas = $("#canvas1")[0];
     ctx = canvas.getContext("2d");
 
-    // load background images
+    // load background images (index starts from 1)
     imgs = {};
-    for (var i = 1; i < 3; ++i) {
+    for (var i = 1; i <= imgs_count; ++i) {
         imgs[i] = new Image();
         imgs[i].src = 'floors/' + i + '.svg';
     }
@@ -37,6 +32,7 @@ $(function () {
 
         // show dialog at start
         $("#bars").click();
+
     };
 
     //---------------- settings event handlers --------------------------
@@ -105,56 +101,46 @@ $(function () {
         event.preventDefault();
 
         stop_shift_anime();
-        //if ($("#scale_inc").css("visibility") == "visible")
-        //    $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "hidden");
-        //else 
-        //    $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "visible");
-        //scale_anime(SCALE_PER_STEP);
-    });
-
-    $('#top-panel').on('swipedown', function (event) {
-        $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "visible");
-    });
-
-    $('#top-panel').on('swipeup', function (event) {
-        $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "hidden");
     });
 
 
-
+    // --------- Dialog's control handler
 
     $("#goButton").on("click", function (event) {
         stop_shift_anime();
         find_and_show_track();
     });
 
-    $(function () {
-        $("#from").on("input", autocomplete);
-        $("#to").on("input", autocomplete);
-    })
+    $("#from").on("input", autocomplete);
+
+    $("#to").on("input", autocomplete);
 
     
-    function autocomplete(event) {
-        $el = $(this);
-
-        var text = this.value.slice(0, this.selectionStart);
-        if (text === "") {
-            $el.val("");
-            return;
-        }
-        var label = labels.find(function (k) { return k.startsWith(text) });
-        if (label) {
-            $el.val(label);
-            $el[0].selectionStart = $el[0].selectionEnd = text.length;
-        } else {
-            $el.val($el.val().slice(0, $el[0].selectionStart-1));
-            $el.animate({ opacity: 0 }, 200, function () { $el.animate({ opacity: 1 }, 200); });
-        }
-
-    }
-
 
 });
+
+// =============================================================================================
+
+function autocomplete(event) {
+    $el = $(this);
+
+    var text = this.value.slice(0, this.selectionStart);
+    if (text === "") {
+        $el.val("");
+        return;
+    }
+    var label = labels.find(function (k) { return k.startsWith(text) });
+    if (label) {
+        $el.val(label);
+        $el[0].selectionStart = $el[0].selectionEnd = text.length;
+    } else {
+        $el.val($el.val().slice(0, $el[0].selectionStart - 1));
+        $el.animate({ opacity: 0 }, 200, function () { $el.animate({ opacity: 1 }, 200); });
+    }
+
+}
+
+
 
 
 //

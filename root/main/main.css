@@ -1,6 +1,7 @@
 ﻿body {
 }
 
+
 canvas {
     position:absolute;
     left: 0px;
@@ -16,7 +17,6 @@ canvas {
     background:rgba(255,255,255,0.5); 
     border: 2px solid gray;
     margin: 0px;    
-    visibility:hidden;
 }
 
 

@@ -525,14 +525,14 @@ function Point(key, x, y, z) {
 var points;  // dictionary of Points
 var labels;  // sorted array of door labels
 
-var MAP_HEIGHT;
-var MAP_WIDTH;
+var MAP_HEIGHT; // define from the first floor image
+var MAP_WIDTH;  // define from the first floor image
 
 var MAN_HEIGHT = 10;
 var MAN_WIDTH = 4;
 
 var ctx, canvas;
-var imgs = {}, imgs_count = 2;
+var imgs, imgs_count = 4;
 
 var current_point;
 
@@ -546,7 +546,7 @@ var man = { x: 0, y: 0, i: 0, imgs: {} }; // one who runs. Has two images.
 
 
 
-var SCALE_PER_STEP = Math.pow(2, 1 / 30);
+var SCALE_PER_STEP = Math.pow(2, 1/30);
 var OFFSET_PER_STEP = 10;
 var shift_anime_timer = null;
 
@@ -568,10 +568,8 @@ function shift_anime(dx, dy) {
             //
             draw();
             t++;
-            if (t >= STEP_COUNT) {
-                clearInterval(shift_anime_timer);
-                shift_anime_timer = null;
-            }
+            if (t >= STEP_COUNT) 
+                stop_shift_anime()            
         }, 20);
     }
 }
@@ -651,23 +649,18 @@ function ladder_anime(p1, p2) {
 
 // inintial settings -----------
 
-
-
 $(function () {
 
     // set canvas size accorging to screen size
-    $("#canvas1").attr("width", screen.availWidth)
-                 .attr("height", screen.availHeight);
-
-    $("#top-panel").css("width", screen.availWidth - 72);
-               
+    $("#canvas1").attr("width", $(window).width())
+                 .attr("height", $(window).height());               
 
     canvas = $("#canvas1")[0];
     ctx = canvas.getContext("2d");
 
-    // load background images
+    // load background images (index starts from 1)
     imgs = {};
-    for (var i = 1; i < 3; ++i) {
+    for (var i = 1; i <= imgs_count; ++i) {
         imgs[i] = new Image();
         imgs[i].src = 'floors/' + i + '.svg';
     }
@@ -688,6 +681,7 @@ $(function () {
 
         // show dialog at start
         $("#bars").click();
+
     };
 
     //---------------- settings event handlers --------------------------
@@ -756,56 +750,46 @@ $(function () {
         event.preventDefault();
 
         stop_shift_anime();
-        //if ($("#scale_inc").css("visibility") == "visible")
-        //    $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "hidden");
-        //else 
-        //    $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "visible");
-        //scale_anime(SCALE_PER_STEP);
-    });
-
-    $('#top-panel').on('swipedown', function (event) {
-        $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "visible");
-    });
-
-    $('#top-panel').on('swipeup', function (event) {
-        $("#scale_inc, #scale_dec, #bars, #info").css("visibility", "hidden");
     });
 
 
-
+    // --------- Dialog's control handler
 
     $("#goButton").on("click", function (event) {
         stop_shift_anime();
         find_and_show_track();
     });
 
-    $(function () {
-        $("#from").on("input", autocomplete);
-        $("#to").on("input", autocomplete);
-    })
+    $("#from").on("input", autocomplete);
+
+    $("#to").on("input", autocomplete);
 
     
-    function autocomplete(event) {
-        $el = $(this);
-
-        var text = this.value.slice(0, this.selectionStart);
-        if (text === "") {
-            $el.val("");
-            return;
-        }
-        var label = labels.find(function (k) { return k.startsWith(text) });
-        if (label) {
-            $el.val(label);
-            $el[0].selectionStart = $el[0].selectionEnd = text.length;
-        } else {
-            $el.val($el.val().slice(0, $el[0].selectionStart-1));
-            $el.animate({ opacity: 0 }, 200, function () { $el.animate({ opacity: 1 }, 200); });
-        }
-
-    }
-
 
 });
+
+// =============================================================================================
+
+function autocomplete(event) {
+    $el = $(this);
+
+    var text = this.value.slice(0, this.selectionStart);
+    if (text === "") {
+        $el.val("");
+        return;
+    }
+    var label = labels.find(function (k) { return k.startsWith(text) });
+    if (label) {
+        $el.val(label);
+        $el[0].selectionStart = $el[0].selectionEnd = text.length;
+    } else {
+        $el.val($el.val().slice(0, $el[0].selectionStart - 1));
+        $el.animate({ opacity: 0 }, 200, function () { $el.animate({ opacity: 1 }, 200); });
+    }
+
+}
+
+
 
 
 //

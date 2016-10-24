@@ -1,4 +1,4 @@
-﻿var SCALE_PER_STEP = Math.pow(2, 1 / 30);
+﻿var SCALE_PER_STEP = Math.pow(2, 1/30);
 var OFFSET_PER_STEP = 10;
 var shift_anime_timer = null;
 
@@ -20,10 +20,8 @@ function shift_anime(dx, dy) {
             //
             draw();
             t++;
-            if (t >= STEP_COUNT) {
-                clearInterval(shift_anime_timer);
-                shift_anime_timer = null;
-            }
+            if (t >= STEP_COUNT) 
+                stop_shift_anime()            
         }, 20);
     }
 }
