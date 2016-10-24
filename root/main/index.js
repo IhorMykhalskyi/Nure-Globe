@@ -1,12 +1,12 @@
 ﻿// inintial settings -----------
 
-
-
 $(function () {
 
     // set canvas size accorging to screen size
-    $("#canvas1").attr("width", screen.availWidth)
-                 .attr("height", screen.availHeight);
+    //$("#canvas1").attr("width", screen.availWidth)
+    //             .attr("height", screen.availHeight);
+    $("#canvas1").attr("width", $(window).width())
+                 .attr("height", $(window).height());
 
     $("#top-panel").css("width", screen.availWidth - 72);
                

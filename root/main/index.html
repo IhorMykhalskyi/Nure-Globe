@@ -31,23 +31,24 @@
                 <div id="top-panel"> </div>
                 <canvas id="canvas1"></canvas>
 
-                <a href="#dialog" data-transition="fade" id="bars" class="ui-btn ui-icon-man_b ui-btn-icon-notext" data-rel="popup" data-position-to="window" ></a>
+                <a href="#dialog" data-transition="fade" id="bars" class="ui-btn ui-icon-man_b ui-btn-icon-notext" data-rel="popup" data-position-to="#dialog" ></a>
                 <a href="#about" data-transition="slide" id="info" class="ui-btn ui-icon-info ui-btn-icon-notext"></a>
 
                 <button id="scale_inc" class="ui-btn ui-icon-plus ui-btn-icon-notext"></button>
                 <button id="scale_dec" class="ui-btn ui-icon-minus ui-btn-icon-notext"></button>
 
                 <!-- ----------------- Dialog panel ----------------------- -->
-                <div data-role="popup" id="dialog">
-                    <div data-role="header">
+
+                <div id="dialog" data-role="popup" >
+                    <!--<div data-role="header">
                         <h1><img src="pic/nureglobe.png" style="height: 32px" /></h1>
-                    </div>
+                    </div>-->
                     <div data-role="main" class="ui-content">
                             <input type="text" name="from" id="from" value="ВХОД" placeholder="From">
                             <input type="text" name="to" id="to" value="" placeholder="To">
-                            <a href="#map" id="goButton" class="ui-btn ui-btn-icon-left ui-icon-man_w">Go</a>                      
+                            <a href="#map" id="goButton" class="ui-btn ui-corner-all ui-btn-icon-left ui-nodisc-icon ui-icon-nureglobe">Go</a>                      
                     </div>
-                    <div data-role="footer"></div>
+                    <!--<div data-role="footer"></div>-->
                 </div>
                 <!-- ---------------------------------------------------- -->            
             </div>
@@ -57,17 +58,17 @@
 
         <div data-role="page" id="about">
 
-            <div data-role="header">
-                <h1>NURE Globe</h1>
-                <a href="#map" data-transition="slide" data-rel="back"
-                   class="ui-btn ui-icon-back ui-btn-icon-left">Back</a><br />
+            <div data-role="header" >
+                <div style="text-align:center; padding: 6px ">NURE&nbsp; <img src="pic/nureglobe.png" style="height: 32px" /> &nbsp;GLOBE</div>
             </div>
+
             <div data-role="main" class="ui-content">
                 There is an SVG and PNG image of each icon. By default the SVG icons, that look great on both SD and HD screens, are used. On platforms that don't support SVG the framework falls back to PNG icons. The icon name is self-describing. For example, the following will display a button with a home icon:
             </div>
 
             <div data-role="footer">
-                <h1>Footer Text</h1>
+                <a href="index.html" data-transition="slide" data-direction="reverse"
+                   class="ui-btn ui-icon-back ui-btn-icon-left">Back</a><br />
             </div>
 
         </div>
