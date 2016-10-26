@@ -3,9 +3,9 @@
 $(function () {
     // set canvas size accorging to screen size
     //$("#canvas1").attr("width", screen.availWidth)
-    //             .attr("height", screen.availHeight);
-    $("#canvas1").attr("width", $(window).width())
-                 .attr("height", $(window).height());
+    //           .attr("height", screen.availHeight);
+
+    set_canvas_size();
 
     canvas = $("#canvas1")[0];
     ctx = canvas.getContext("2d");
@@ -37,7 +37,10 @@ $(function () {
 
     //---------------- settings event handlers --------------------------
 
-    //$(window).on("orientationchange", doc_ready);
+    $(window).on("resize", function () {
+        set_canvas_size();
+        draw();
+    });
 
     // scaling
 
@@ -271,7 +274,8 @@ function draw()
     // floor
     ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
     ctx.font = "72px arial";
-    ctx.fillText(current_point.z + " этаж", 50, canvas.height - 50);
+    ctx.textAlign = "center";
+    ctx.fillText(current_point.z + " этаж", canvas.width / 2, canvas.height - 50);
 
 }
 
@@ -301,6 +305,20 @@ function auto_shift()
         shift_y = canvas.height - (man.y + man.imgs[0].height + MARGIN) * scale;
     }
 
+}
+
+function set_canvas_size()
+{
+    var elem = document.createElement("div");
+    $(elem).attr("id", "removeMe").css({ "width": "100%", "height": "100%", "position": "absolute", "top": "0", "left": "0" });
+    $("body")[0].append(elem);
+
+    var width = $("body #removeMe").width();
+    var height = $("body #removeMe").height();
+    $("body #removeMe").remove();
+
+    $("#canvas1").attr("width", width)
+                 .attr("height", height);
 }
 
 
