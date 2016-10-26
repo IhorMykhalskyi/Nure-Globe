@@ -43,10 +43,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1119546"
-     inkscape:cx="616.88474"
-     inkscape:cy="533.02718"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="2.2239092"
+     inkscape:cx="849.00914"
+     inkscape:cy="519.07498"
+     inkscape:current-layer="layer2"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1366"
@@ -76,8 +76,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="base"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <path
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
        d="m 6.5,3 -1,149 32.5,0 0,-7.5 54,0 0,109.5 -54,0 0,-9 -25.5,0 0,141.5 -5.5,0 0,41.5 181,0 0,-41 -6.5,0 0,-90 16,0 0,14 89,0 0,-14 16.5,0 0,89.5 -6.5,0 0,40.5 185.5,0 0,-40.5 -87,0 0,7 -30.5,0 0,-108.5 251.5,0 0,-37.5 -293.5,0 0,-157.5 -61,0 0,137 -63,0 0,24.5 -50,0 0,-142 -109,0 0,-7 13.5,0 0,-37.5 -9,0 0,-22.5 80.5,0 0,6 44,0 0,-45 -44.5,0 0,8.5 -71.5,0 0,-9 -46,0 z m 49.566406,294.82031 70.978514,0 0,92.07617 -70.978514,0 0,-92.07617 z"
@@ -143,8 +142,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="marks"
-     style="display:inline;opacity:0.98999999"
-     sodipodi:insensitive="true">
+     style="display:inline;opacity:0.98999999">
     <rect
        style="fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:0.22993407;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4234"
@@ -912,8 +910,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="nums1"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:90px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
