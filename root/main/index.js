@@ -35,6 +35,7 @@ $(function () {
 
     };
 
+    $('#sel_target').css('height', $(window).height());
     //---------------- settings event handlers --------------------------
 
     // scaling
@@ -121,13 +122,34 @@ $(function () {
         find_and_show_track();
     });
 
-    $("#from").on("input", autocomplete);
+    $("#from").on("tap", makeListOfKeys);
+    $("#to").on("tap", makeListOfKeys);
 
+
+    $("#from").on("input", autocomplete);
     $("#to").on("input", autocomplete);
 
     
 
 });
+
+function makeListOfKeys(event) {
+    var el = event.target;
+    // fill list of keys
+    $('#sel_target').html("");
+    for (var key in points)
+    {                
+        var $li = $("<li class='li-key'>"+key+"</li>");
+        $li.on("click", function (ev) {
+            $(el).val($(this).text());
+            $('#sel_target').html("");
+            el.focus();
+        });
+        $('#sel_target').append($li);
+    }
+
+    $('#sel_target').css('visibility', 'visible');
+}
 
 // =============================================================================================
 

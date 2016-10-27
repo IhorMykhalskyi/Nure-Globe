@@ -1,15 +1,21 @@
 ﻿body {
 }
 #sel_target {
-    position:relative;
-    left: 36px;
+    position:absolute;
+    left: 200px;
     top: 0px;
     z-index:2;
-    height:300px; 
+    /*height:300px;*/ 
     overflow:hidden; 
     overflow-y:scroll;
 }
 
+.li-key {
+    width:100px;
+    height:20px;
+    background-color:white;
+
+}
 
 canvas {
     position:absolute;
