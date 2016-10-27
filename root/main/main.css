@@ -1,5 +1,14 @@
 ﻿body {
 }
+#sel_target {
+    position:relative;
+    left: 36px;
+    top: 0px;
+    z-index:2;
+    height:300px; 
+    overflow:hidden; 
+    overflow-y:scroll;
+}
 
 
 canvas {

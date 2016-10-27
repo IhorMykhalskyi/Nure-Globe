@@ -40,11 +40,15 @@ $(function () {
     // scaling
 
     $("#scale_inc").on("click", function () {
-        scale_anime(SCALE_PER_STEP)
+        scale_anime(SCALE_PER_STEP);
     })
 
     $("#scale_dec").on("click", function () {
-        scale_anime(1 / SCALE_PER_STEP)
+        scale_anime(1 / SCALE_PER_STEP);
+    })
+
+    $("#bars").on("click", function () {
+        $("#from").val(current_point.key);
     })
 
     // scrolling
