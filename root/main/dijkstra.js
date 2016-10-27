@@ -81,3 +81,21 @@ function tune(track)
     res.push(track[track.length-1]);
     return res;
 }
+
+// Find the nearest point on the z floor exactly.
+//
+function findNearestPoint(x, y, z) {
+    var minDist = Number.MAX_VALUE;
+    var nearest = null;
+    for (var key in points) {
+        var p = points[key];
+        var dx = p.x - x, dy = p.y - y;
+        if (p.z !== z) continue;
+        var dist = dx * dx + dy * dy;
+        if (dist < minDist) {
+            minDist = dist;
+            nearest = p;
+        }
+    }
+    return nearest;
+}

@@ -37,8 +37,6 @@ $(function () {
 
     //---------------- settings event handlers --------------------------
 
-    //$(window).on("orientationchange", doc_ready);
-
     // scaling
 
     $("#scale_inc").on("click", function () {
@@ -52,53 +50,61 @@ $(function () {
     // scrolling
 
     $(canvas).on('swipeup', function (event) {
-        event.stopPropagation();
-        event.preventDefault();
+        //event.stopPropagation();
+        //event.preventDefault();
         if ((-shift_y + canvas.height) / scale < MAP_HEIGHT) {
             shift_anime(0, -OFFSET_PER_STEP);
         }
     });
 
     $(canvas).on('swipedown', function (event) {
-        event.stopPropagation();
-        event.preventDefault();
+        //event.stopPropagation();
+        //event.preventDefault();
         if (shift_y / scale < 0) {
             shift_anime(0, OFFSET_PER_STEP);
         }
     });
 
     $(canvas).on('swipeleft', function (event) {
-        event.stopPropagation();
-        event.preventDefault();
+        //event.stopPropagation();
+        //event.preventDefault();
         if ((-shift_x + canvas.width) / scale < MAP_WIDTH) {
             shift_anime(-OFFSET_PER_STEP, 0);
         }
     });
 
     $(canvas).on('swiperight', function (event) {
-        event.stopPropagation();
-        event.preventDefault();
+        //event.stopPropagation();
+        //event.preventDefault();
         if (shift_x / scale < 0) {
             shift_anime(OFFSET_PER_STEP, 0);
         }
     });
 
     $(canvas).on('tap', function (event) {
-        event.stopPropagation();
-        event.preventDefault();
-
+        //event.stopPropagation();
+        //event.preventDefault();
         stop_shift_anime();
 
         var dx = (event.clientX - shift_x - MAN_WIDTH / 2) / scale - man.x;
         var dy = (event.clientY - shift_y - MAN_HEIGHT / 2) / scale - man.y;
-        if (dx * dx + dy * dy < 400) {
+        if (dx * dx + dy * dy < 400)
+        {
             step_forward();
         }
+        else
+        {
+            var x = (event.clientX - shift_x) / scale;
+            var y = (event.clientY - shift_y) / scale;
+            var nearestPoint = findNearestPoint(x, y, current_point.z);
+            set_current_point(nearestPoint);
+        }
+            
     });
 
     $(canvas).on('taphold', function (event) {
-        event.stopPropagation();
-        event.preventDefault();
+        //event.stopPropagation();
+        //event.preventDefault();
 
         stop_shift_anime();
     });
@@ -107,7 +113,7 @@ $(function () {
     // --------- Dialog's control handler
 
     $("#goButton").on("click", function (event) {
-        stop_shift_anime();
+        //stop_shift_anime();
         find_and_show_track();
     });
 
@@ -198,9 +204,6 @@ function find_and_show_track() {
         track = track.reverse();
         auto_scale();
         set_current_point(track[0]);
-    } else {
-        track = null;
-        location.replace('#dialog');
     }
 }
 
@@ -209,6 +212,8 @@ function step_forward() {
     if (track == undefined)
         return;
     var i1 = track.indexOf(current_point);
+    if (i1 == -1) // man is out of track now
+        i1 = 0;
     var i2 = (i1 + 1) % track.length;
     set_current_point(track[i1]);
 
@@ -271,7 +276,11 @@ function draw()
         // man
         ctx.drawImage(man.imgs[man.i], man.x, man.y, MAN_WIDTH, MAN_HEIGHT);
         man.i = (man.i + 1) % 2;
+    } else {
+        // man
+        ctx.drawImage(man.imgs[0], man.x, man.y, MAN_WIDTH, MAN_HEIGHT);
     }
+
     ctx.restore();
 
     // floor
