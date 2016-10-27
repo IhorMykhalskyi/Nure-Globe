@@ -39,10 +39,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000002"
-     inkscape:cx="104.23966"
-     inkscape:cy="704.38658"
-     inkscape:current-layer="layer2"
+     inkscape:zoom="1.0000001"
+     inkscape:cx="523.14386"
+     inkscape:cy="602.86176"
+     inkscape:current-layer="layer4"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1366"
@@ -159,8 +159,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="marks"
-     style="display:inline;opacity:1"
-     sodipodi:insensitive="true">
+     style="display:inline;opacity:1">
     <rect
        style="fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:0.22993407;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4234"
@@ -849,7 +848,8 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="walls1"
-     style="display:inline;opacity:1">
+     style="display:inline;opacity:1"
+     sodipodi:insensitive="true">
     <path
        style="fill:none;fill-rule:evenodd;stroke:#404040;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 31.7358,127.10608 96.86281,0.0682 -0.26972,60.32543 20.85883,0"
