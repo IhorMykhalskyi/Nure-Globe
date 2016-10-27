@@ -39,9 +39,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000002"
-     inkscape:cx="621.49555"
-     inkscape:cy="471.14385"
+     inkscape:zoom="1.0000001"
+     inkscape:cx="655.37063"
+     inkscape:cy="489.76772"
      inkscape:current-layer="layer4"
      inkscape:document-units="px"
      showgrid="false"
@@ -932,7 +932,8 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="nums1"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.02299154px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 32.350132,127.01297 -15.909901,0"
