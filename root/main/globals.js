@@ -1,34 +1,19 @@
-// Point of the track.
-// x, y, z - coords
-// E - dictionary of belonging edges (key:distance pairs)
 
-function Point(key, x, y, z) {
-    this.key = key;
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.E = {}; 
-}
+// Singletons -------------------------------------
 
-// -----------------------------------------------------------
+var graph = new Graph(dots, lines);
+var man = new Man(); // one who runs. Has two images.
 
-var points;  // dictionary of Points
-var labels;  // sorted array of door labels
+var track = null;  // current track
+var current_point;
 
-var MAP_HEIGHT; // define from the first floor image
-var MAP_WIDTH;  // define from the first floor image
+// Graphical objects ---------------------------------
 
 var ctx, canvas;
 var imgs, imgs_count = 4;
 
-var current_point;
-
-var track;  // current track
+var MAP_HEIGHT; // define from the first floor image
+var MAP_WIDTH;  // define from the first floor image
 
 var shift_x = 0, shift_y = 0, scale = 1; // transformation params
-
-var man; // one who runs. Has two images.
-
-// -----------------------------------------------------------
-
 

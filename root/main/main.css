@@ -1,11 +1,12 @@
 ﻿body {
 }
+
 #sel_target {
     position:absolute;
-    left: 200px;
+    right: 0px;
     top: 0px;
+    visibility: hidden;
     z-index:2;
-    /*height:300px;*/ 
     overflow:hidden; 
     overflow-y:scroll;
 }
