@@ -16,12 +16,7 @@ $(function () {
         imgs[i].src = 'floors/' + i + '.svg';
     }
 
-    // load man pictures
-    man = { x: 0, y: 0, i: 0, imgs: {} };
-    for (var i = 0; i < 2; ++i) {
-        man.imgs[i] = new Image();
-        man.imgs[i].src = 'pic/man' + (i + 1) + '.png';
-    }
+    man = new Man();
 
     // init data
     imgs[imgs_count].onload = function () {
@@ -87,20 +82,17 @@ $(function () {
     });
 
     $(canvas).on('tap', function (event) {
-        //event.stopPropagation();
-        //event.preventDefault();
-        stop_shift_anime();
-
-        var dx = (event.clientX - shift_x - MAN_WIDTH / 2) / scale - man.x;
-        var dy = (event.clientY - shift_y - MAN_HEIGHT / 2) / scale - man.y;
-        if (dx * dx + dy * dy < 400)
-        {
-            step_forward();
+        if (shift_anime_timer) {
+            stop_shift_anime();
+            return;
         }
-        else
-        {
-            var x = (event.clientX - shift_x) / scale;
-            var y = (event.clientY - shift_y) / scale;
+
+        var x = (event.clientX - shift_x) / scale;
+        var y = (event.clientY - shift_y) / scale;
+
+        if (man.isNear(x, y)) {
+            step_forward();
+        } else {
             var nearestPoint = findNearestPoint(x, y, current_point.z);
             set_current_point(nearestPoint);
         }
@@ -108,9 +100,6 @@ $(function () {
     });
 
     $(canvas).on('taphold', function (event) {
-        //event.stopPropagation();
-        //event.preventDefault();
-
         stop_shift_anime();
     });
 
@@ -299,12 +288,9 @@ function draw()
         }
         ctx.stroke();
 
-        // man
-        ctx.drawImage(man.imgs[man.i], man.x, man.y, MAN_WIDTH, MAN_HEIGHT);
-        man.i = (man.i + 1) % 2;
+        man.draw(ctx);
     } else {
-        // man
-        ctx.drawImage(man.imgs[0], man.x, man.y, MAN_WIDTH, MAN_HEIGHT);
+        man.draw0(ctx);
     }
 
     ctx.restore();
