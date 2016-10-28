@@ -99,7 +99,8 @@ $(function () {
     {
         var fromKey = $("#from").val();
         var toKey = $("#to").val();
-        track = new Track(fromKey, toKey);
+        var way = graph.dijkstra(fromKey, toKey).reverse();
+        track = new Track(fromKey, toKey, way);
         scaleForTrack();
         set_current_point(track.startPoint);
     });

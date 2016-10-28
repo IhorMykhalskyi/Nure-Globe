@@ -1,9 +1,9 @@
-﻿function Track(fromKey, toKey)
+﻿function Track(fromKey, toKey, way)
 {
+
     var currIdx = 0;
 
-    this.way = graph.dijkstra(fromKey, toKey).reverse();
-    this.way = tune(this.way);
+    this.way = tune(way);
 
     this.startPoint = this.way[0];
 

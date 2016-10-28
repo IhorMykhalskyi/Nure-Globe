@@ -10,7 +10,9 @@ function Point(key, x, y, z) {
     this.E = {};
 }
 
-
+// Model 
+// dots, lines - load level data
+// 
 function Graph(dots, lines)
 {
     // dictionary of Points
@@ -76,7 +78,7 @@ function Graph(dots, lines)
 
     // Main part of Dijkstra's alg. ------------------------------------------------------------
 
-    this.dijkstra = function(key_start, key_finish) {
+    this.dijkstra = function(keyStart, keyFinish) {
         var points = this.points;
         // reset points
         for (var key in points) {
@@ -84,12 +86,12 @@ function Graph(dots, lines)
             points[key].const = false;
             points[key].from = null;
         }
-        points[key_start].mark = 0;
-        points[key_start].const = true;
+        points[keyStart].mark = 0;
+        points[keyStart].const = true;
 
-        var p = points[key_start];
-        while (p.key != key_finish) {
-            p = dijkstra_step(p, points);
+        var p = points[keyStart];
+        while (p.key != keyFinish) {
+            p = dijkstraStep(p, points);
             if (!p) {
                 console.log("граф не связен");
             }
@@ -97,7 +99,7 @@ function Graph(dots, lines)
             p.const = true;
         }
         // way
-        p = points[key_finish]
+        p = points[keyFinish]
         var way = [p];
         while (p.from) {
             p = p.from;
@@ -108,7 +110,7 @@ function Graph(dots, lines)
 
     // A step of Dijkstra's alg. -----------------
     //
-    function dijkstra_step(point, points)
+    function dijkstraStep(point, points)
     {
         for (var k in point.E) {
             var p = points[k];

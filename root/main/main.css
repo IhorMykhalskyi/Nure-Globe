@@ -1,10 +1,17 @@
 ﻿body {
 }
 
+#dialog {
+    top: 200px;
+
+    left: 15px;
+    width:170px;
+}
+
 #sel_target {
     position:absolute;
-    right: 0px;
-    top: 0px;
+    left: 176px;
+    width:60px;
     visibility: hidden;
     z-index:2;
     overflow:hidden; 
@@ -12,9 +19,11 @@
 }
 
 .li-key {
-    width:100px;
     height:20px;
     background-color:white;
+    color: darkred;
+    font:12px arial;
+    padding-left: 6px;
 
 }
 
@@ -41,10 +50,10 @@ canvas {
 }
 
 #scale_inc {
-    top: 0px;
+    bottom: 36px;
 }
 #scale_dec {
-    top: 38px;
+    bottom: 0px;
 }
 
 #bars, #info {
@@ -52,10 +61,10 @@ canvas {
 }
 
 #bars {
-    top: 0px;
+    bottom: 36px;
 }
 #info {
-    top: 38px;
+    bottom: 0px;
 }
 
 
