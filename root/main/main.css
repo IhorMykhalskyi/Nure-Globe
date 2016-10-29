@@ -2,16 +2,15 @@
 }
 
 #dialog {
-    top: 200px;
-
+    top: 0px;
     left: 15px;
     width:170px;
 }
 
-#sel_target {
+#ul-keys {
     position:absolute;
     left: 176px;
-    width:60px;
+    width: 64px;
     visibility: hidden;
     z-index:2;
     overflow:hidden; 
@@ -19,12 +18,11 @@
 }
 
 .li-key {
-    height:20px;
+    height:18px;
     background-color:white;
     color: darkred;
     font:12px arial;
     padding-left: 6px;
-
 }
 
 canvas {
@@ -34,7 +32,7 @@ canvas {
     z-index:0;
 }
 
-#scale_inc, #scale_dec, #bars, #info {
+#scale-inc, #scale-dec, #bars, #info {
     position:absolute; 
     z-index:1;
     height: 36px;
@@ -45,14 +43,14 @@ canvas {
 }
 
 
-#scale_inc, #scale_dec {
+#scale-inc, #scale-dec {
     right: 0px;
 }
 
-#scale_inc {
+#scale-inc {
     bottom: 36px;
 }
-#scale_dec {
+#scale-dec {
     bottom: 0px;
 }
 

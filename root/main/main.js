@@ -16,7 +16,7 @@ $(function () {
         imgs[i].src = 'floors/' + i + '.svg';
     }
 
-    // init data
+    // load floors
     imgs[imgs_count].onload = function () {
         MAP_HEIGHT = imgs[1].height;
         MAP_WIDTH = imgs[1].width;
@@ -30,23 +30,23 @@ $(function () {
 
     // scaling
 
-    $("#scale_inc").on("click", function () {
+    $("#scale-inc").on("click", function () {
         scale_anime(SCALE_PER_STEP);
     })
 
-    $("#scale_dec").on("click", function () {
+    $("#scale-dec").on("click", function () {
         scale_anime(1 / SCALE_PER_STEP);
     })
 
     $("#bars").on("click", function () {
+        // tune dialog position
+        $("#dialog-popup").css('top', $(window).height() - $("#dialog-popup").height());
         $("#from").val(current_point.key);
     })
 
     // scrolling
 
     $(canvas).on('swipeup', function (event) {
-        //event.stopPropagation();
-        //event.preventDefault();
         if ((-shift_y + canvas.height) / scale < MAP_HEIGHT) {
             shift_anime(0, -OFFSET_PER_STEP);
         }
@@ -118,9 +118,9 @@ $(function () {
 // --------- Dialog's event handlers
 
 function makeListOfLabels(event) {
-    $list = $('#sel_target');
-    $list.css('top', -$("#dialog").offset().top);
-    $list.css('height', $(window).height());
+    $list = $('#ul-keys');
+    $list.css('top', -$("#dialog").offset().top + 5);
+    $list.css('height', $(window).height() - 10);
 
     var el = event.target;
     // fill list of keys
