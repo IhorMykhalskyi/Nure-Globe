@@ -16,9 +16,10 @@
         <script src="Graph.js"></script>
         <script src="Man.js"></script>
         <script src="Track.js"></script>
+        <script src="Dialog.js"></script>
         <script src="globals.js"></script>
-        <script src="main.js"></script>
         <script src="anime.js"></script>
+        <script src="main.js"></script>
 
         <!--<link rel="stylesheet" href="bundles/main.min.css">
         <script src="bundles/bundle.min.js"></script>-->
@@ -32,26 +33,24 @@
             <div data-role="main" class="ui-nodisc-icon ui-alt-icon">
                 <canvas id="canvas1"></canvas>
 
-                <a href="#dialog" data-transition="fade" id="bars" class="ui-btn ui-icon-man_b ui-btn-icon-notext" data-rel="popup" data-position-to="#dialog" ></a>
+                <a href="#dialog" data-transition="slideup" id="request" class="ui-btn ui-icon-nureglobe ui-btn-icon-notext" 
+                   data-rel="popup" data-position-to="#dialog" ></a>
                 <a href="#about" data-transition="flip" id="info" class="ui-btn ui-icon-info ui-btn-icon-notext"></a>
 
                 <button id="scale-inc" class="ui-btn ui-icon-plus ui-btn-icon-notext"></button>
                 <button id="scale-dec" class="ui-btn ui-icon-minus ui-btn-icon-notext"></button>
 
                     <!-- ----------------- Dialog panel ----------------------- -->
-
                     <div id="dialog" data-role="popup" data-dismissible="false">
                         <div data-role="main" class="ui-content">
                             <input type="text" id="from" value="ВХОД" placeholder="From" >
                             <input type="text" id="to" value="" placeholder="To">
 
                             <a href="#map" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon ui-alt-icon"></a>
-                            <a href="#map" id="goButton" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-left ui-nodisc-icon ui-icon-nureglobe"> Go</a>
+                            <a href="#map" id="goButton" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-left ui-nodisc-icon ui-icon-man_b"> Go</a>
                             <div id="ul-keys" class="ui-corner-all"></div>
                         </div>
                     </div>
-
-
                     <!-- ---------------------------------------------------- -->
                 </div>
         </div>

@@ -3,26 +3,26 @@
 
 #dialog {
     top: 0px;
-    left: 15px;
+    left: 0px;
     width:170px;
 }
 
 #ul-keys {
     position:absolute;
-    left: 176px;
+    left: 166px;
     width: 64px;
     visibility: hidden;
     z-index:2;
     overflow:hidden; 
     overflow-y:scroll;
+    background-color:gainsboro;
 }
 
 .li-key {
     height:18px;
-    background-color:white;
     color: darkred;
     font:12px arial;
-    padding-left: 6px;
+    padding-left: 20px;
 }
 
 canvas {
@@ -32,7 +32,7 @@ canvas {
     z-index:0;
 }
 
-#scale-inc, #scale-dec, #bars, #info {
+#scale-inc, #scale-dec, #request, #info {
     position:absolute; 
     z-index:1;
     height: 36px;
@@ -54,11 +54,11 @@ canvas {
     bottom: 0px;
 }
 
-#bars, #info {
+#request, #info {
     left: 0px;
 }
 
-#bars {
+#request {
     bottom: 36px;
 }
 #info {

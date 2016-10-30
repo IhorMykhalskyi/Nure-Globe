@@ -17,13 +17,13 @@ $(function () {
     }
 
     // load floors
-    imgs[imgs_count].onload = function () {
+    imgs[1].onload = function () {
         MAP_HEIGHT = imgs[1].height;
         MAP_WIDTH = imgs[1].width;
 
         // show dialog at start
         set_current_point(graph.points["ВХОД"]);
-        $("#bars").click();
+        $("#request").click();
     };
    
     //---------------- settings event handlers --------------------------
@@ -38,9 +38,9 @@ $(function () {
         scale_anime(1 / SCALE_PER_STEP);
     })
 
-    $("#bars").on("click", function () {
-        // tune dialog position
-        $("#dialog-popup").css('top', $(window).height() - $("#dialog-popup").height());
+    $("#request").on("click", function () {
+        // set dialog position
+        //$("#dialog-popup").css('top', $(window).height() - $("#dialog-popup").height());
         $("#from").val(current_point.key);
     })
 
@@ -91,81 +91,10 @@ $(function () {
     $(canvas).on('taphold', function (event) {
         stop_shift_anime();
     });
-
-
-    // --------- Dialog's event handlers
-
-    $("#goButton").on("click", function () 
-    {
-        var fromKey = $("#from").val();
-        var toKey = $("#to").val();
-        var way = graph.dijkstra(fromKey, toKey).reverse();
-        track = new Track(fromKey, toKey, way);
-        scaleForTrack();
-        set_current_point(track.startPoint);
-    });
-
-
-    $("#from").on("tap", makeListOfLabels);
-    $("#to").on("tap", makeListOfLabels);
-
-
-    $("#from").on("input", autocomplete);
-    $("#to").on("input", autocomplete);
-
+    
+    // set dialog's event hadlers
+    new Dialog();
 });
-
-// --------- Dialog's event handlers
-
-function makeListOfLabels(event) {
-    $list = $('#ul-keys');
-    $list.css('top', -$("#dialog").offset().top + 5);
-    $list.css('height', $(window).height() - 10);
-
-    var el = event.target;
-    // fill list of keys
-    $list.html("");
-    for (var i in graph.labels)
-    {                
-        var $li = $("<div class='li-key'>" + graph.labels[i] + "</div>");
-        $li.on("click", function (ev) {
-            $(el).val($(this).text());
-            $list.html("");
-            el.focus();
-        });
-        $list.append($li);
-    }
-
-    $list.css('visibility', 'visible');
-}
-
-function autocomplete(event) {
-    $el = $(this);
-
-    var text = this.value.slice(0, this.selectionStart);
-    if (text === "") {
-        $el.val("");
-        return;
-    }
-    var label = graph.labels.find(function (k) { return k.startsWith(text) });
-    if (label) {
-        $el.val(label);
-        $el[0].selectionStart = $el[0].selectionEnd = text.length;
-    } else {
-        $el.val($el.val().slice(0, $el[0].selectionStart - 1));
-        $el.animate({ opacity: 0 }, 200, function () { $el.animate({ opacity: 1 }, 200); });
-    }
-
-}
-
-function scaleForTrack() {
-    var p = track.startPoint;
-    scale = 2;
-    shift_x = -p.x * scale + screen.width / 2;
-    shift_y = -p.y * scale + screen.height / 2;
-}
-
-// =============================================================================================
 
 
 function set_current_point(p) {
@@ -210,24 +139,5 @@ function draw()
 }
 
 
-function auto_shift()
-{
-    var MARGIN = 60;
-    // X
-    if (man.x < -shift_x / scale) {
-        shift_x = (-man.x + MARGIN) * scale;
-    }
-    if (man.x > (-shift_x + canvas.width) / scale) {
-        shift_x = canvas.width - (man.x + man.imgs[0].width + MARGIN) * scale;
-    }
-    // Y
-    if (man.y < -shift_y / scale) {
-        shift_y = (-man.y + MARGIN) * scale;
-    }
-    if (man.y > (-shift_y + canvas.height) / scale) {
-        shift_y = canvas.height - (man.y + man.imgs[0].height + MARGIN) * scale;
-    }
-
-}
 
 
