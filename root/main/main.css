@@ -2,27 +2,28 @@
 }
 
 #dialog {
-    top: 0px;
-    left: 0px;
     width:170px;
 }
 
 #ul-keys {
     position:absolute;
-    left: 166px;
-    width: 64px;
+    left: 160px;
+    width: 50px;
     visibility: hidden;
     z-index:2;
     overflow:hidden; 
     overflow-y:scroll;
-    background-color:gainsboro;
+    background-color: white;
+    color: darkred;
+    border: 1px solid gray;
+    font:12px arial;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+    padding: 4px;
 }
 
 .li-key {
     height:18px;
-    color: darkred;
-    font:12px arial;
-    padding-left: 20px;
+    padding-left: 8px;
 }
 
 canvas {

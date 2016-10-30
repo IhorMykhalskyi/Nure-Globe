@@ -14,9 +14,10 @@
 
 
     function makeListOfLabels(event) {
-        $list = $('#ul-keys');
-        $list.css('top', -$("#dialog").offset().top + 5);
-        $list.css('height', $(window).height() - 10);
+        var MARGIN_TOP = 4, MARGIN_BOTTOM = 18 ;
+        var $list = $('#ul-keys');
+        $list.css('top', -$("#dialog").offset().top + MARGIN_TOP);
+        $list.css('height', $(window).height() - MARGIN_BOTTOM);
 
         var el = event.target;
         // fill list of keys
