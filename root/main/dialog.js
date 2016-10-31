@@ -1,7 +1,5 @@
 ﻿function Dashboard()
 {
-    var MARGIN_TOP = 4, MARGIN_BOTTOM = 18;
-
     var $ul = $('#ul-keys');
     var $ul_popup = $('#ul-keys-popup');
     var $go = $("#go-button")
@@ -34,9 +32,7 @@
         }
     });
 
-
-    $ul_popup.css('top', MARGIN_TOP);
-    $ul.css('height', $(window).height() - MARGIN_BOTTOM);
+    $ul.css('height', $("#canvas-panel").height());
 
     // fill list of keys
     $ul.html("");

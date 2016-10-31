@@ -9,13 +9,13 @@
 
 #menu-panel {
     position:absolute;
-    background-color: green;
+    background-color:dimgrey;
     padding-left: 4px;
 }
 
 
 #from, #to {
-    width: 36px;
+    width: 40px;
     color: darkred;
 }
 
