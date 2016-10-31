@@ -15,5 +15,5 @@ var imgs, imgs_count = 4;
 var MAP_HEIGHT; // define from the first floor image
 var MAP_WIDTH;  // define from the first floor image
 
-var shift_x = 0, shift_y = 0, scale = 1; // transformation params
+var scale = 1; // transformation params
 

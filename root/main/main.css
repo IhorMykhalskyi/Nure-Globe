@@ -1,15 +1,32 @@
 ﻿body {
 }
 
-#dialog {
-    width:170px;
+#canvas-panel {
+    position:absolute;
+    overflow-x:scroll;
+    overflow-y:scroll;
 }
 
-#ul-keys {
+#menu-panel {
     position:absolute;
-    left: 160px;
+    background-color: green;
+    padding-left: 4px;
+}
+
+
+#from, #to {
+    width: 36px;
+    color: darkred;
+}
+
+#scale-dec, #scale-inc {
+    width: 0px;
+    height: 8px;
+}
+
+
+#ul-keys {
     width: 50px;
-    visibility: hidden;
     z-index:2;
     overflow:hidden; 
     overflow-y:scroll;
@@ -26,45 +43,6 @@
     padding-left: 8px;
 }
 
-canvas {
-    position:absolute;
-    left: 0px;
-    top: 0px;
-    z-index:0;
-}
-
-#scale-inc, #scale-dec, #request, #info {
-    position:absolute; 
-    z-index:1;
-    height: 36px;
-    width: 36px;
-    background:rgba(255,255,255,0.5); 
-    border: 2px solid gray;
-    margin: 0px;    
-}
-
-
-#scale-inc, #scale-dec {
-    right: 0px;
-}
-
-#scale-inc {
-    bottom: 36px;
-}
-#scale-dec {
-    bottom: 0px;
-}
-
-#request, #info {
-    left: 0px;
-}
-
-#request {
-    bottom: 36px;
-}
-#info {
-    bottom: 0px;
-}
 
 
 .ui-icon-nureglobe:after {

@@ -2,12 +2,10 @@
 
 $(function () {
 
-    // set canvas size accorging to screen size
-    $("#canvas1").attr("width", $(window).width())
-                 .attr("height", $(window).height());               
-
-    canvas = $("#canvas1")[0];
-    ctx = canvas.getContext("2d");
+    // location
+    var ww = $(window).width(), wh = $(window).height(), h = 46;
+    $("#canvas-panel").css('width', ww).css('height', wh - h);
+    $("#menu-panel").css('width', ww).css('height', h).css('top', wh - h);
 
     // load background images (index starts from 1)
     imgs = {};
@@ -21,79 +19,36 @@ $(function () {
         MAP_HEIGHT = imgs[1].height;
         MAP_WIDTH = imgs[1].width;
 
-        // show dialog at start
+        // set canvas size accorging to map size
+        $("#canvas1").attr("width", MAP_WIDTH).attr("height", MAP_HEIGHT);
+        canvas = $("#canvas1")[0];
+
+        // show map at start
         set_current_point(graph.points["ВХОД"]);
-        $("#request").click();
+        draw();
     };
-   
+
+
     //---------------- settings event handlers --------------------------
 
     // scaling
 
     $("#scale-inc").on("click", function () {
-        scale_anime(SCALE_PER_STEP);
+        scale *= 1.1;
+        canvas.width = MAP_WIDTH * scale;
+        canvas.height = MAP_HEIGHT * scale;      
+        draw();
     })
 
     $("#scale-dec").on("click", function () {
-        scale_anime(1 / SCALE_PER_STEP);
+        scale /= 1.1;
+        canvas.width = MAP_WIDTH * scale;
+        canvas.height = MAP_HEIGHT * scale;
+        draw();
     })
 
-    $("#request").on("click", function () {
-        // set dialog position
-        //$("#dialog-popup").css('top', $(window).height() - $("#dialog-popup").height());
-        $("#from").val(current_point.key);
-    })
-
-    // scrolling
-
-    $(canvas).on('swipeup', function (event) {
-        if ((-shift_y + canvas.height) / scale < MAP_HEIGHT) {
-            shift_anime(0, -OFFSET_PER_STEP);
-        }
-    });
-
-    $(canvas).on('swipedown', function (event) {
-        if (shift_y / scale < 0) {
-            shift_anime(0, OFFSET_PER_STEP);
-        }
-    });
-
-    $(canvas).on('swipeleft', function (event) {
-        if ((-shift_x + canvas.width) / scale < MAP_WIDTH) {
-            shift_anime(-OFFSET_PER_STEP, 0);
-        }
-    });
-
-    $(canvas).on('swiperight', function (event) {
-        if (shift_x / scale < 0) {
-            shift_anime(OFFSET_PER_STEP, 0);
-        }
-    });
-
-    $(canvas).on('tap', function (event) {
-        if (shift_anime_timer) {
-            stop_shift_anime();
-            return;
-        }
-
-        var x = (event.clientX - shift_x) / scale;
-        var y = (event.clientY - shift_y) / scale;
-
-        if (man.isNear(x, y)) {
-            track.stepForward();
-        } else {
-            var nearestPoint = graph.findNearestPoint(x, y, current_point.z);
-            set_current_point(nearestPoint);
-        }
-            
-    });
-
-    $(canvas).on('taphold', function (event) {
-        stop_shift_anime();
-    });
-    
-    // set dialog's event hadlers
-    new Dialog();
+    //
+    new Dashboard();
 });
 
 
@@ -107,6 +62,7 @@ function set_current_point(p) {
 
 function draw()
 {
+    ctx = canvas.getContext("2d");
     // background
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle="#cccccc";
@@ -114,7 +70,6 @@ function draw()
 
     // transform
     ctx.save();
-    ctx.translate(shift_x, shift_y);
     ctx.scale(scale, scale);
 
 
@@ -138,6 +93,10 @@ function draw()
 
 }
 
+function centering(p) {
+    $('#canvas-panel').scrollLeft(p.x * scale - screen.width / 2);
+    $('#canvas-panel').scrollTop(p.y * scale - screen.height / 2);
+}
 
 
 

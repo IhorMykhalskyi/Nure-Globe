@@ -31,28 +31,35 @@
 
         <div data-role="page" id="map" >
             <div data-role="main" class="ui-nodisc-icon ui-alt-icon">
-                <canvas id="canvas1"></canvas>
-
-                <a href="#dialog" data-transition="slideup" id="request" class="ui-btn ui-icon-nureglobe ui-btn-icon-notext" 
-                   data-rel="popup" data-position-to="#dialog" ></a>
-                <a href="#about" data-transition="flip" id="info" class="ui-btn ui-icon-info ui-btn-icon-notext"></a>
-
-                <button id="scale-inc" class="ui-btn ui-icon-plus ui-btn-icon-notext"></button>
-                <button id="scale-dec" class="ui-btn ui-icon-minus ui-btn-icon-notext"></button>
-
-                    <!-- ----------------- Dialog panel ----------------------- -->
-                    <div id="dialog" data-role="popup" data-dismissible="false">
-                        <a href="#map" class="ui-btn ui-corner-all ui-shadow ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
-                        <div data-role="main" class="ui-content">
-                            <input type="text" id="from" value="ВХОД" placeholder="From" >
-                            <input type="text" id="to" value="" placeholder="To">
-                            <a href="#map" id="goButton" class="ui-btn ui-mini ui-corner-all ui-btn-icon-left ui-nodisc-icon ui-icon-man_b"> Go</a>
-
-                            <div id="ul-keys" class="ui-corner-all ui-shadow " ></div>
-                        </div>
-                    </div>
-                    <!-- ---------------------------------------------------- -->
+                <div id="canvas-panel">
+                    <canvas id="canvas1"></canvas>
                 </div>
+
+                <div id="menu-panel">  
+                    <!-- From, To buttons -->   
+                    <span data-role="controlgroup" data-type="horizontal">
+                        <a href="#ul-keys" id="from" class="ui-btn ui-mini ui-corner-all" data-rel="popup" data-position-to="origin">From</a>
+                        <a href="#ul-keys" id="to" class="ui-btn ui-mini ui-corner-all" data-rel="popup" data-position-to="origin">To</a>
+                    </span>
+
+                    <!-- Go button -->  
+                    <button id="go-button" class="ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext ui-icon-nureglobe "></button>
+
+                    <div style="float:right">
+                        <!-- Scale buttons -->
+                        <span data-role="controlgroup" data-type="horizontal">
+                            <button id="scale-dec" class="ui-btn ui-mini ui-icon-minus ui-btn-icon-notext "></button>
+                            <button id="scale-inc" class="ui-btn ui-mini ui-icon-plus ui-btn-icon-notext "></button>
+                        </span>
+
+                        <!-- Help buttons -->
+                        <a href="#about" data-transition="flip" id="info" class="ui-btn ui-icon-info ui-btn-icon-notext ui-btn-inline "></a>
+                    </div> 
+                </div>
+
+                <div id="ul-keys" data-role="popup" data-position-to="window" class="ui-corner-all ui-shadow " ></div>
+
+            </div>
         </div>
 
         <!-- ----------------------page About--------------------- -->
