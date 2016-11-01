@@ -3,6 +3,7 @@
 
 var graph = new Graph(dots, lines);
 var man = new Man(); // one who runs. Has two images.
+var anime = new Anime();
 
 var track = null;  // current track 
 var current_point;

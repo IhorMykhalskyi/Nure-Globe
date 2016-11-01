@@ -17,9 +17,9 @@
         var p2 = this.way[currIdx];
 
         if (p1.z == p2.z) {
-            step_anime(p1, p2);
+            anime.step(p1, p2);
         } else {
-            ladder_anime(p1, p2);
+            anime.ladder(p1, p2);
         }
     };
 

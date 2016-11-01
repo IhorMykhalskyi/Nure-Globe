@@ -14,16 +14,16 @@ $(function () {
         imgs[i].src = 'floors/' + i + '.svg';
     }
 
-    // load floors
+    // when first floor is load all is ready
     imgs[1].onload = function () {
         MAP_HEIGHT = imgs[1].height;
         MAP_WIDTH = imgs[1].width;
 
-        // set canvas size accorging to map size
+        // set the canvas size like the map size
         $("#canvas1").attr("width", MAP_WIDTH).attr("height", MAP_HEIGHT);
         canvas = $("#canvas1")[0];
 
-        // show map at start
+        //
         set_current_point(graph.points["ВХОД"]);
         draw();
     };
@@ -76,17 +76,25 @@ function draw()
     var bg = current_point.z;
     ctx.drawImage(imgs[bg], 0, 0);
 
-    // track
+    // draw track
     if (track) {
         ctx.strokeStyle = "#FF0000";
         ctx.lineWidth = 2;
         track.draw(ctx);
         man.doStep()
     }
-    man.draw(ctx);
+    // draw man or ladder
+    if (man.ladder) {
+        ctx.drawImage(man.ladder, man.x, man.y, 60, 40);
+    }
+    else
+    {
+        man.draw(ctx);
+    }
+
     ctx.restore();
 
-    // floor
+    // draw number of the floor
     ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
     ctx.font = "72px arial";
     ctx.fillText(current_point.z + " этаж", 50, canvas.height - 50);
