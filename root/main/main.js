@@ -1,11 +1,17 @@
 ﻿// inintial settings -----------
 
+var MENU_PANEL_HEIGHT = 46;
+var VIEW_WIDTH = $(window).width();
+var VIEW_HEIGHT = $(window).height() - MENU_PANEL_HEIGHT;
+
+
 $(function () {
 
-    // location
-    var ww = $(window).width(), wh = $(window).height(), h = 46;
-    $("#canvas-panel").css('width', ww).css('height', wh - h);
-    $("#menu-panel").css('width', ww).css('height', h).css('top', wh - h);
+    // layout
+    $("#canvas-panel").css('width', VIEW_WIDTH).css('height', VIEW_HEIGHT);
+    $("#menu-panel").css('width', VIEW_WIDTH).css('height', MENU_PANEL_HEIGHT).css('top', VIEW_HEIGHT);
+
+
 
     // load background images (index starts from 1)
     imgs = {};
@@ -97,7 +103,9 @@ function draw()
     // draw number of the floor
     ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
     ctx.font = "72px arial";
-    ctx.fillText(current_point.z + " этаж", 50, canvas.height - 50);
+    ctx.fillText(current_point.z + " этаж", 50, VIEW_HEIGHT - 50);
+    ctx.fillText(current_point.z + " этаж", 50 + VIEW_WIDTH, VIEW_HEIGHT - 50);
+    ctx.fillText(current_point.z + " этаж", 50 + VIEW_WIDTH + VIEW_WIDTH, VIEW_HEIGHT - 50);
 
 }
 
