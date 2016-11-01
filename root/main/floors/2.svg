@@ -39,16 +39,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000002"
-     inkscape:cx="157.97461"
-     inkscape:cy="473.96225"
+     inkscape:zoom="1.0000001"
+     inkscape:cx="523.14386"
+     inkscape:cy="602.86176"
      inkscape:current-layer="layer4"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1005"
-     inkscape:window-x="1591"
-     inkscape:window-y="-9"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="false"
      units="in"
@@ -144,14 +144,6 @@
        x="807.13141"
        y="190.52086"
        ry="0" />
-    <rect
-       style="display:inline;opacity:1;fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect4234-51-48-4"
-       width="22.868523"
-       height="126.27945"
-       x="273.93661"
-       y="-766.22156"
-       transform="matrix(8.0459063e-5,1,-0.99999994,3.5700065e-4,0,0)" />
     <path
        style="display:inline;opacity:1;fill:none;fill-rule:evenodd;stroke:#8a00ef;stroke-width:2.86205482;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 808.4402,227.98473 c 0,0 0,-0.93401 0.12822,-34.53911 l 119.25839,0 0,34.07211 c 0,0 0,-68.14421 0,-34.07211"
@@ -572,7 +564,7 @@
          sodipodi:role="line"
          id="tspan4528-30-45"
          x="819.9505"
-         y="278.5983">X217</tspan></text>
+         y="278.5983">X216</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -583,7 +575,7 @@
          sodipodi:role="line"
          id="tspan4528-30-3"
          x="800.85858"
-         y="159.09724">X215</tspan></text>
+         y="159.09724">X212</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -594,7 +586,7 @@
          sodipodi:role="line"
          id="tspan4528-30-9"
          x="798.03015"
-         y="256.67798">X216</tspan></text>
+         y="256.67798">X213</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -605,7 +597,7 @@
          sodipodi:role="line"
          id="tspan4528-30-1"
          x="827.72864"
-         y="257.38507">X218</tspan></text>
+         y="257.38507">X215</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -616,7 +608,7 @@
          sodipodi:role="line"
          id="tspan4528-30-6"
          x="863.79108"
-         y="159.09724">X219</tspan></text>
+         y="159.09724">X217</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -627,7 +619,7 @@
          sodipodi:role="line"
          id="tspan4528-30-64"
          x="922.83447"
-         y="158.03659">X220</tspan></text>
+         y="158.03659">X218</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -662,7 +654,7 @@
          sodipodi:role="line"
          x="921.35345"
          y="256.71414"
-         id="tspan4834">X221</tspan></text>
+         id="tspan4834">X219</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -843,14 +835,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="948.64392"
+       x="952.14392"
        y="256.67798"
        id="text4428-89-7-1-0-1-1-6-3"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="948.64392"
+         x="952.14392"
          y="256.67798"
-         id="tspan4834-8">X222</tspan></text>
+         id="tspan4834-8">X220</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -1206,7 +1198,8 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="nums1"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:90px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
