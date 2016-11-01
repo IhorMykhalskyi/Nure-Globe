@@ -1,46 +1,48 @@
 ﻿body {
 }
 
-#dialog {
-   width: 80%;
-}
-
-canvas {
+#canvas-panel {
     position:absolute;
-    left: 0px;
-    top: 0px;
+    overflow-x:scroll;
+    overflow-y:scroll;
 }
 
-#scale_inc, #scale_dec, #bars, #info {
-    position:absolute; 
-    height: 36px;
-    width: 36px;
-    background:rgba(255,255,255,0); 
-    border: 2px solid gray;
-    margin: 0px;    
+#menu-panel {
+    position:absolute;
+    background-color:dimgrey;
+    padding-left: 4px;
 }
 
-#scale_inc, #scale_dec {
-    right: 0px;
+
+#from, #to {
+    width: 40px;
+    color: darkred;
 }
 
-#scale_inc {
-    top: 0px;
-}
-#scale_dec {
-    top: 38px;
+#scale-dec, #scale-inc {
+    width: 0px;
+    height: 8px;
 }
 
-#bars, #info {
-    left: 0px;
+
+#ul-keys {
+    width: 50px;
+    z-index:2;
+    overflow:hidden; 
+    overflow-y:scroll;
+    background-color: white;
+    color: darkred;
+    border: 1px solid gray;
+    font:12px arial;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+    padding: 4px;
 }
 
-#bars {
-    top: 0px;
+.li-key {
+    height:18px;
+    padding-left: 8px;
 }
-#info {
-    top: 38px;
-}
+
 
 
 .ui-icon-nureglobe:after {

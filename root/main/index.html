@@ -13,10 +13,13 @@
         <script src="lib/swipeupdown.js"></script>
         <script src="data/dots.js"></script>
         <script src="data/lines.js"></script>
-        <script src="dijkstra.js"></script>
+        <script src="Graph.js"></script>
+        <script src="Man.js"></script>
+        <script src="Track.js"></script>
+        <script src="Dialog.js"></script>
         <script src="globals.js"></script>
         <script src="anime.js"></script>
-        <script src="index.js"></script>
+        <script src="main.js"></script>
 
         <!--<link rel="stylesheet" href="bundles/main.min.css">
         <script src="bundles/bundle.min.js"></script>-->
@@ -28,28 +31,34 @@
 
         <div data-role="page" id="map" >
             <div data-role="main" class="ui-nodisc-icon ui-alt-icon">
-                <canvas id="canvas1"></canvas>
-
-                <a href="#dialog" data-transition="fade" id="bars" class="ui-btn ui-icon-man_b ui-btn-icon-notext" data-rel="popup" data-position-to="#dialog" ></a>
-                <a href="#about" data-transition="slide" id="info" class="ui-btn ui-icon-info ui-btn-icon-notext"></a>
-
-                <button id="scale_inc" class="ui-btn ui-icon-plus ui-btn-icon-notext"></button>
-                <button id="scale_dec" class="ui-btn ui-icon-minus ui-btn-icon-notext"></button>
-
-                <!-- ----------------- Dialog panel ----------------------- -->
-
-                <div id="dialog" data-role="popup" >
-                    <!--<div data-role="header">
-                        <h1><img src="pic/nureglobe.png" style="height: 32px" /></h1>
-                    </div>-->
-                    <div data-role="main" class="ui-content">
-                            <input type="text" name="from" id="from" value="ВХОД" placeholder="From">
-                            <input type="text" name="to" id="to" value="" placeholder="To">
-                            <a href="#map" id="goButton" class="ui-btn ui-corner-all ui-btn-icon-left ui-nodisc-icon ui-icon-nureglobe">Go</a>                      
-                    </div>
-                    <!--<div data-role="footer"></div>-->
+                <div id="canvas-panel">
+                    <canvas id="canvas1"></canvas>
                 </div>
-                <!-- ---------------------------------------------------- -->            
+
+                <div id="menu-panel">  
+                    <!-- From, To buttons -->   
+                    <span data-role="controlgroup" data-type="horizontal">
+                        <a href="#ul-keys" id="from" class="ui-btn ui-mini ui-corner-all" data-rel="popup" data-position-to="origin">From</a>
+                        <a href="#ul-keys" id="to" class="ui-btn ui-mini ui-corner-all" data-rel="popup" data-position-to="origin">To</a>
+                    </span>
+
+                    <!-- Go button -->  
+                    <button id="go-button" class="ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext ui-icon-nureglobe "></button>
+
+                    <div style="float:right">
+                        <!-- Scale buttons -->
+                        <span data-role="controlgroup" data-type="horizontal">
+                            <button id="scale-dec" class="ui-btn ui-mini ui-icon-minus ui-btn-icon-notext "></button>
+                            <button id="scale-inc" class="ui-btn ui-mini ui-icon-plus ui-btn-icon-notext "></button>
+                        </span>
+
+                        <!-- Help buttons -->
+                        <a href="#about" data-transition="flip" id="info" class="ui-btn ui-icon-info ui-btn-icon-notext ui-btn-inline "></a>
+                    </div> 
+                </div>
+
+                <div id="ul-keys" data-role="popup" class="ui-corner-all ui-shadow " ></div>
+
             </div>
         </div>
 
@@ -58,7 +67,12 @@
         <div data-role="page" id="about">
 
             <div data-role="header" >
-                <div style="text-align:center; padding: 6px ">NURE&nbsp; <img src="pic/nureglobe.png" style="height: 32px" /> &nbsp;GLOBE</div>
+                <a href="#map" data-transition="flip" 
+                     class="ui-btn ui-icon-back ui-btn-icon-notext"></a>
+
+                <div style="text-align:center; padding: 6px ">
+                   NURE&nbsp; <img src="pic/nureglobe.png" style="height: 32px" /> &nbsp;GLOBE
+                </div>
             </div>
 
             <div data-role="main" class="ui-content">
@@ -66,8 +80,6 @@
             </div>
 
             <div data-role="footer">
-                <a href="index.html" data-transition="slide" data-direction="reverse"
-                   class="ui-btn ui-icon-back ui-btn-icon-left">Back</a><br />
             </div>
 
         </div>
