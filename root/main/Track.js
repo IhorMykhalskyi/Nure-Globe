@@ -16,10 +16,10 @@
         currIdx = (currIdx + 1) % this.way.length;
         var p2 = this.way[currIdx];
 
-        if (p1.z == p2.z) {
-            anime.step(p1, p2);
-        } else {
+        if (p1.z != p2.z) {
             anime.ladder(p1, p2);
+        } else {
+            anime.step(p1, p2);
         }
     };
 

@@ -33,7 +33,7 @@
 
     }
 
-    this.ladder111 = function (p1, p2) {
+    this.ladder_go_back = function (p1, p2) {
         var ladderNo = p1.key[4], dx, dy;
         switch (ladderNo) {
             case "R": dx = 2; dy = 0; break;
@@ -65,42 +65,28 @@
 
     this.ladder = function (p1, p2)
     {
-        var STEP_COUNT = 4;
-        var t = 0;
+        var STEP_COUNT = me.imgs.length;
+        var upstear = p1.z < p2.z;
+        var idx = upstear ? [0, 1, 2, 3] : [3, 2, 1, 0];
+        var step = 0;
         var timer = setInterval(function () {
-            //
-            if (t < STEP_COUNT) {
-                man.ladder = me.imgs[t];
+            if (step < STEP_COUNT) {
+                man.ladder = me.imgs[idx[step]];
+                man.ladder_size = 20;
+                man.ladder_x = upstear ? man.x : man.x - man.ladder_size;
+                man.ladder_y = upstear ? man.y - man.ladder_size : man.y;                
             }
             draw();
-            t++;
-            if (t >= STEP_COUNT) {
-                man.ladder = null;
+            step++;
+            if (step >= STEP_COUNT) {
+                man.x = p2.x;
+                man.y = p2.y;
                 man.z = p2.z;
+                man.ladder = null;
                 clearInterval(timer);
+                draw();
             }
-        }, 100);
-    }
-
-
-    function autoShift(man) {
-        // globals: shift_x, shift_y, scale
-        var MARGIN = 60, MAN_W = man.imgs[0].width, MAN_H = man.imgs[0].height;
-        // X coord
-        if (man.x < -shift_x / scale) {
-            shift_x = (-man.x + MARGIN) * scale;
-        }
-        if (man.x > (-shift_x + canvas.width) / scale) {
-            shift_x = canvas.width - (man.x + MAN_W + MARGIN) * scale;
-        }
-        // Y coord
-        if (man.y < -shift_y / scale) {
-            shift_y = (-man.y + MARGIN) * scale;
-        }
-        if (man.y > (-shift_y + canvas.height) / scale) {
-            shift_y = canvas.height - (man.y + MAN_H + MARGIN) * scale;
-        }
-
+        }, 150);
     }
 
 }

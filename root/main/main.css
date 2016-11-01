@@ -24,6 +24,10 @@
     height: 8px;
 }
 
+#go-button {
+    width: 32px;
+    height: 32px;
+}
 
 #ul-keys {
     width: 50px;
@@ -46,9 +50,9 @@
 
 
 .ui-icon-nureglobe:after {
-    background-image: url("pic/nureglobe.png");
+    background-image: url("pic/nureglobe2.png");
     /* Make an icon fit */
-    background-size: 20px 20px;
+    background-size: 20px 24px;
 }
 
 .ui-icon-man_w:after {

@@ -91,7 +91,7 @@ function draw()
     }
     // draw man or ladder
     if (man.ladder) {
-        ctx.drawImage(man.ladder, man.x, man.y, 60, 40);
+        ctx.drawImage(man.ladder, man.ladder_x, man.ladder_y, man.ladder_size, man.ladder_size);
     }
     else
     {
