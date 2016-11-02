@@ -25,7 +25,7 @@
             t++;
             if (t >= STEP_COUNT) {
                 clearInterval(timer);
-                set_current_point(p2);
+                man.setToPoint(p2);
                 man.i = 0;
                 draw();
             }
@@ -57,7 +57,8 @@
             t++;
             if (t >= STEP_COUNT) {
                 clearInterval(timer);
-                set_current_point(p2);
+                man.setToPoint(p2);
+                draw();
             }
         }, 20);
 
@@ -79,9 +80,7 @@
             draw();
             step++;
             if (step >= STEP_COUNT) {
-                man.x = p2.x;
-                man.y = p2.y;
-                man.z = p2.z;
+                man.setToPoint(p2);
                 man.ladder = null;
                 clearInterval(timer);
                 draw();

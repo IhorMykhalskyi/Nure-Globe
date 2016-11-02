@@ -9,7 +9,7 @@ $(function () {
 
     // layout
     $("#canvas-panel").css('width', VIEW_WIDTH).css('height', VIEW_HEIGHT);
-    $("#menu-panel").css('width', VIEW_WIDTH).css('height', MENU_PANEL_HEIGHT).css('top', VIEW_HEIGHT);
+    $("#dashboard").css('width', VIEW_WIDTH).css('height', MENU_PANEL_HEIGHT).css('top', VIEW_HEIGHT);
 
 
 
@@ -30,39 +30,15 @@ $(function () {
         canvas = $("#canvas1")[0];
 
         //
-        set_current_point(graph.points["ВХОД"]);
+        man.setToPoint(graph.points["ВХОД"]);
         draw();
     };
 
-
-    //---------------- settings event handlers --------------------------
-
-    // scaling
-
-    $("#scale-inc").on("click", function () {
-        scale *= 1.1;
-        canvas.width = MAP_WIDTH * scale;
-        canvas.height = MAP_HEIGHT * scale;      
-        draw();
-    })
-
-    $("#scale-dec").on("click", function () {
-        scale /= 1.1;
-        canvas.width = MAP_WIDTH * scale;
-        canvas.height = MAP_HEIGHT * scale;
-        draw();
-    })
 
     //
     new Dashboard();
 });
 
-
-function set_current_point(p) {
-    current_point = p;
-    man.setToPoint(p);
-    draw();
-}
 
 // drawing -------------------------
 
@@ -79,7 +55,7 @@ function draw()
     ctx.scale(scale, scale);
 
 
-    var bg = current_point.z;
+    var bg = man.z;
     ctx.drawImage(imgs[bg], 0, 0);
 
     // draw track
@@ -103,9 +79,9 @@ function draw()
     // draw number of the floor
     ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
     ctx.font = "72px arial";
-    ctx.fillText(current_point.z + " этаж", 50, VIEW_HEIGHT - 50);
-    ctx.fillText(current_point.z + " этаж", 50 + VIEW_WIDTH, VIEW_HEIGHT - 50);
-    ctx.fillText(current_point.z + " этаж", 50 + VIEW_WIDTH + VIEW_WIDTH, VIEW_HEIGHT - 50);
+    ctx.fillText(man.z + " этаж", 50, VIEW_HEIGHT - 50);
+    ctx.fillText(man.z + " этаж", 50 + VIEW_WIDTH, VIEW_HEIGHT - 50);
+    ctx.fillText(man.z + " этаж", 50 + VIEW_WIDTH + VIEW_WIDTH, VIEW_HEIGHT - 50);
 
 }
 

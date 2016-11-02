@@ -7,16 +7,20 @@
     overflow-y:scroll;
 }
 
-#menu-panel {
+#dashboard {
     position:absolute;
     background-color:dimgrey;
     padding-left: 4px;
 }
 
+/*.ui-btn {
+    background-color: #ddd;
+}*/
 
 #from, #to {
     width: 40px;
     color: darkred;
+    border: 1px solid darkred;
 }
 
 #scale-dec, #scale-inc {
@@ -52,7 +56,7 @@
 .ui-icon-nureglobe:after {
     background-image: url("pic/nureglobe2.png");
     /* Make an icon fit */
-    background-size: 20px 24px;
+    background-size: 18px 24px;
 }
 
 .ui-icon-man_w:after {
