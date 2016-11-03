@@ -19,6 +19,7 @@
 
 #from, #to {
     width: 40px;
+    height: 16px;
     color: darkred;
     border: 1px solid darkred;
 }
