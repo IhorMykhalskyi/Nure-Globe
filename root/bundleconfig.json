@@ -1,0 +1,24 @@
+[
+  {
+    "outputFileName": "main/bundles/bundled.js",
+    "inputFiles": [
+      "main/data/dots.js",
+      "main/data/lines.js",
+
+      "main/Graph.js",
+      "main/Man.js",
+      "main/Track.js",
+      "main/Dashboard.js",
+      "main/Anime.js",
+      "main/globals.js",
+      "main/main.js"
+    ]
+  },
+  {
+    "outputFileName": "main/bundles/bundled.css",
+    "inputFiles": [
+      "main/main.css"
+    ]
+  }
+]
+

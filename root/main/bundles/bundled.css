@@ -1,4 +1,4 @@
-﻿body {
+body {
 }
 
 #canvas-panel {
@@ -55,19 +55,19 @@
 
 
 .ui-icon-nureglobe:after {
-    background-image: url("pic/nureglobe2.png");
+    background-image: url("../pic/nureglobe2.png");
     /* Make an icon fit */
     background-size: 18px 24px;
 }
 
 .ui-icon-man_w:after {
-    background-image: url("pic/man0.png");
+    background-image: url("../pic/man0.png");
     /* Make an icon fit */
     background-size: 8px 20px;
 }
 
 .ui-icon-man_b:after {
-    background-image: url("pic/man2.png");
+    background-image: url("../pic/man2.png");
     /* Make an icon fit */
     background-size: 8px 20px;
 }
