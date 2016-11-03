@@ -1,0 +1,73 @@
+body {
+}
+
+#canvas-panel {
+    position:absolute;
+    overflow-x:scroll;
+    overflow-y:scroll;
+}
+
+#dashboard {
+    position:absolute;
+    background-color:dimgrey;
+    padding-left: 4px;
+}
+
+/*.ui-btn {
+    background-color: #ddd;
+}*/
+
+#from, #to {
+    width: 40px;
+    height: 16px;
+    color: darkred;
+    border: 1px solid darkred;
+}
+
+#scale-dec, #scale-inc {
+    width: 0px;
+    height: 8px;
+}
+
+#go-button {
+    width: 32px;
+    height: 32px;
+}
+
+#ul-keys {
+    width: 50px;
+    z-index:2;
+    overflow:hidden; 
+    overflow-y:scroll;
+    background-color: white;
+    color: darkred;
+    border: 1px solid gray;
+    font:12px arial;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+    padding: 4px;
+}
+
+.li-key {
+    height:18px;
+    padding-left: 8px;
+}
+
+
+
+.ui-icon-nureglobe:after {
+    background-image: url("../pic/nureglobe2.png");
+    /* Make an icon fit */
+    background-size: 18px 24px;
+}
+
+.ui-icon-man_w:after {
+    background-image: url("../pic/man0.png");
+    /* Make an icon fit */
+    background-size: 8px 20px;
+}
+
+.ui-icon-man_b:after {
+    background-image: url("../pic/man2.png");
+    /* Make an icon fit */
+    background-size: 8px 20px;
+}
