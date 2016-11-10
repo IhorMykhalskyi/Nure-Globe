@@ -5,8 +5,8 @@
 // 4) вручную скопировать словарь из текстового поля в файл dots.js  ("var dots = словарь")
 // 5) создать список сегментов (аудитория, перекресток)
 
-var IMG_SRC = "floors/2.svg";
-var Z = 2;
+var IMG_SRC = "floors/1_new.svg";
+var Z = 1;
 
 
 var ctx, canvas;
@@ -201,7 +201,7 @@ function draw() {
     ctx.save();
     ctx.translate(shift_x, shift_y);
     ctx.scale(scale, scale);
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0, 1200, 900);
 
     // dots
     ctx.strokeStyle = "#FF0000"
