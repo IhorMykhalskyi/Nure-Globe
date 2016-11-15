@@ -91,10 +91,10 @@ function Graph(dots, lines)
 
         var p = points[keyStart];
         while (p.key != keyFinish) {
-            p = dijkstraStep(p, points);
-            if (!p) {
-                console.log("граф не связен");
+            if (!dijkstraStep(p, points)) {
+                console.log("граф не связен: " + p.key);
             }
+            p = dijkstraStep(p, points);
             // ставим постоянную отметку
             p.const = true;
         }

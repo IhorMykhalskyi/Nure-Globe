@@ -10,19 +10,20 @@
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
         <link rel="stylesheet" href="main.css">
+
         <script src="lib/swipeupdown.js"></script>
         <script src="data/dots.js"></script>
         <script src="data/lines.js"></script>
         <script src="Graph.js"></script>
         <script src="Man.js"></script>
         <script src="Track.js"></script>
-        <script src="Dialog.js"></script>
-        <script src="globals.js"></script>
+        <script src="Dashboard.js"></script>
         <script src="anime.js"></script>
+        <script src="globals.js"></script>
         <script src="main.js"></script>
 
-        <!--<link rel="stylesheet" href="bundles/main.min.css">
-        <script src="bundles/bundle.min.js"></script>-->
+        <!--<link rel="stylesheet" href="bundles/bundled.min.css">
+        <script src="bundles/bundled.min.js"></script>-->
 
     </head>
 
@@ -35,15 +36,15 @@
                     <canvas id="canvas1"></canvas>
                 </div>
 
-                <div id="menu-panel">  
+                <div id="dashboard">  
                     <!-- From, To buttons -->   
                     <span data-role="controlgroup" data-type="horizontal">
-                        <a href="#ul-keys" id="from" class="ui-btn ui-mini ui-corner-all" data-rel="popup" data-position-to="origin">From</a>
-                        <a href="#ul-keys" id="to" class="ui-btn ui-mini ui-corner-all" data-rel="popup" data-position-to="origin">To</a>
+                        <a href="#ul-keys" id="from" class="ui-btn ui-mini" data-rel="popup" >ВХОД</a>
+                        <a href="#ul-keys" id="to" class="ui-btn ui-mini" data-rel="popup" >285</a>
                     </span>
 
                     <!-- Go button -->  
-                    <button id="go-button" class="ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext ui-icon-nureglobe "></button>
+                    <button id="go-button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-icon-nureglobe "></button>
 
                     <div style="float:right">
                         <!-- Scale buttons -->
@@ -67,19 +68,17 @@
         <div data-role="page" id="about">
 
             <div data-role="header" >
-                <a href="#map" data-transition="flip" 
-                     class="ui-btn ui-icon-back ui-btn-icon-notext"></a>
-
                 <div style="text-align:center; padding: 6px ">
-                   NURE&nbsp; <img src="pic/nureglobe.png" style="height: 32px" /> &nbsp;GLOBE
+                   NURE&nbsp; <img src="pic/nureglobe2.png" style="height: 32px" /> &nbsp;GLOBE
                 </div>
             </div>
 
             <div data-role="main" class="ui-content">
-                There is an SVG and PNG image of each icon. By default the SVG icons, that look great on both SD and HD screens, are used. On platforms that don't support SVG the framework falls back to PNG icons. The icon name is self-describing. For example, the following will display a button with a home icon:
+                <img src="pic/help.png" style="width:100%;  " />
             </div>
 
-            <div data-role="footer">
+            <div data-role="footer" style="position:absolute; width:100%; bottom: 0px; text-align:right">
+                <a href="#map" data-transition="flip" class="ui-btn ui-icon-back ui-btn-icon-notext"></a>
             </div>
 
         </div>
