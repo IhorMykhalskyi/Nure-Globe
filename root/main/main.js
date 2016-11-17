@@ -79,8 +79,9 @@ function draw()
     // draw number of the floor
     ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
     ctx.font = "72px arial";
-    ctx.textAlign = "center";
-    ctx.fillText(man.z + " этаж", VIEW_WIDTH / 2, VIEW_HEIGHT - 50);
+    ctx.fillText(man.z + " этаж", 50, VIEW_HEIGHT - 50);
+    ctx.fillText(man.z + " этаж", 50 + VIEW_WIDTH, VIEW_HEIGHT - 50);
+    ctx.fillText(man.z + " этаж", 50 + VIEW_WIDTH + VIEW_WIDTH, VIEW_HEIGHT - 50);
 
 }
 
