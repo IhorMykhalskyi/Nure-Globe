@@ -10,7 +10,7 @@ var track = null;  // current track
 // Graphical objects ---------------------------------
 
 var ctx, canvas;
-var imgs, imgs_count = 4;
+var imgs, imgs_count = 5;
 
 var MAP_HEIGHT; // define from the first floor image
 var MAP_WIDTH;  // define from the first floor image
