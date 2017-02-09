@@ -32,6 +32,10 @@ $(function () {
         //
         man.setToPoint(graph.points["ВХОД"]);
         draw();
+
+        //Test------------------
+        drawAllPathsTest(canvas.getContext("2d"));
+        //----------------------
     };
     centering(man);
 
