@@ -30,11 +30,12 @@ $(function () {
         canvas = $("#canvas1")[0];
 
         //
-        man.setToPoint(graph.points["ВХОД"]);
+        man.setToPoint(graph.points["X322"]);
         draw();
 
         //Test------------------
-        drawAllPathsTest(canvas.getContext("2d"));
+        //drawAllPathsTest(canvas.getContext("2d"));
+        //DotsDuplicationTest();
         //----------------------
     };
     centering(man);

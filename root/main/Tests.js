@@ -1,21 +1,31 @@
 ﻿function drawAllPathsTest(ctx) {
-
     for (var from in graph.points)
     {
         for (var to in graph.points)
         {
-            var way = graph.dijkstra(from, to).reverse();
-            track = new Track(from, to, way);
-            track.draw(ctx);
+            try{
+                var way = graph.dijkstra(from, to).reverse();
+                track = new Track(from, to, way);
+                track.draw(ctx);
+            }
+            catch(er){
+                console.log(from + " " + to);
+            }
         }
     }
-    //graph.points.forEach(function (from, w, q) {
-    //    graph.points.forEach(function (to, e, r) {
-    //        var way = graph.dijkstra(from, to).reverse();
-    //        track = new Track(from, to, way);
-    //        track.draw(ctx)
-    //    });
-    //});
-   
-                
+}
+
+function DotsDuplicationTest(){
+    var p = [];
+    for (var key in graph.points) {
+        p.push(key);
+    }
+    p.sort();
+    var prev;
+    for (var key in p) {
+        if (key == prev) {
+            console.log("dup: " + key);
+        }
+        prev = key;
+    }
 }
