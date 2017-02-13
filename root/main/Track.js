@@ -58,7 +58,7 @@
         for (var i = 1; i < track.length - 1; i++) {
             var b = track[i], c = track[i + 1];
             var can_remove =
-                last.x == b.x && b.x == c.x && last.y == b.y && b.y == c.y ||
+               // last.x == b.x && b.x == c.x && last.y == b.y && b.y == c.y ||
                 last.x == b.x && b.x == c.x && last.z == b.z && b.z == c.z ||
                 last.z == b.z && b.z == c.z && last.y == b.y && b.y == c.y;
             if (!can_remove) {
