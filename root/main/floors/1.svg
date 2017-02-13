@@ -107,16 +107,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.90509672"
-     inkscape:cx="568.17951"
-     inkscape:cy="586.73389"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="5.1200002"
+     inkscape:cx="181.37887"
+     inkscape:cy="656.49416"
+     inkscape:current-layer="layer4"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1005"
-     inkscape:window-x="1591"
-     inkscape:window-y="-9"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="false"
      units="in"
@@ -198,7 +198,8 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="walls1"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <path
        style="display:inline;fill:#fefdf6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
        d="m 147.9388,184.44521 -20.98763,0.17679 0,-61.39301 -73.527812,0 0,-15.14178 94.565282,-0.23943 z"
@@ -427,8 +428,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="marks"
-     style="display:none;opacity:0.98999999"
-     sodipodi:insensitive="true">
+     style="display:inline;opacity:0.98999999">
     <rect
        style="display:inline;opacity:0.98999999;fill:#ff7b00;fill-opacity:0.12068966;stroke:none;stroke-width:0.22993407;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4234"
@@ -949,6 +949,17 @@
          x="549.8291"
          y="312.06763"
          id="tspan4558" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="43.890373"
+       y="129.51173"
+       id="text4428-00-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4430-1-0"
+         x="43.890373"
+         y="129.51173">L116U</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
