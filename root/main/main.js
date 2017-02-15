@@ -30,10 +30,15 @@ $(function () {
         canvas = $("#canvas1")[0];
 
         //
-        man.setToPoint(graph.points["ВХОД"]);
+        man.setToPoint(graph.points["X322"]);
         draw();
-    };
 
+        //Test------------------
+        //drawAllPathsTest(canvas.getContext("2d"));
+        //DotsDuplicationTest();
+        //----------------------
+    };
+    centering(man);
 
     //
     new Dashboard();
@@ -84,6 +89,7 @@ function draw()
     ctx.fillText(man.z + " этаж", 50 + VIEW_WIDTH + VIEW_WIDTH, VIEW_HEIGHT - 50);
 
 }
+
 
 function centering(p) {
     $('#canvas-panel').scrollLeft(p.x * scale - screen.width / 2);

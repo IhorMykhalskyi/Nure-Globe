@@ -24,34 +24,49 @@
     };
 
     this.draw = function (ctx) {
+        ctx.strokeStyle = "#FF0000";
+        ctx.lineWidth = 2;
         ctx.beginPath();
-        var p = this.way[0];
-        ctx.moveTo(p.x, p.y);
-        for (var i = 1; i < track.way.length; i++) {
-            p = this.way[i];
+        
+        var start = this.way[0];
+        ctx.moveTo(start.x, start.y);
+
+        for (var i = 1; i < this.way.length; i++) {
+            var p = this.way[i];
+            ctx.save();
+            if (p.z != this.way[currIdx].z) {
+                ctx.globalAlpha = 0.5;
+                ctx.setLineDash([4, 3]);
+            }
             ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.restore();
+            ctx.moveTo(p.x, p.y);
         }
-        ctx.stroke();
     }
 
     // Remove on streight line vertexes
     //
-    function tune(way)
+    function tune(track)
     {
-        if (way.length < 4)
-            return way;
+        if (track.length < 3)
+            return track;
 
-        var res = [way[0]];
-        for (var i = 1; i < way.length - 1; i++) {
-            var a = way[i - 1], b = way[i], c = way[i + 1];
+        var res = [track[0]];
+        var last = track[0];
+        for (var i = 1; i < track.length - 1; i++) {
+            var b = track[i], c = track[i + 1];
             var can_remove =
-                a.x == b.x && b.x == c.x && a.y == b.y && b.y == c.y ||
-                a.x == b.x && b.x == c.x && a.z == b.z && b.z == c.z ||
-                a.z == b.z && b.z == c.z && a.y == b.y && b.y == c.y;
-            if (!can_remove)
+               // last.x == b.x && b.x == c.x && last.y == b.y && b.y == c.y ||
+                last.x == b.x && b.x == c.x && last.z == b.z && b.z == c.z ||
+                last.z == b.z && b.z == c.z && last.y == b.y && b.y == c.y;
+            if (!can_remove) {
                 res.push(b);
+                last = b;
+            }
         }
-        res.push(way[way.length - 1]);
+        res.push(track[track.length - 1]);
         return res;
     }
 
