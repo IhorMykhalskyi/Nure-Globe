@@ -9,22 +9,22 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="3.5603511in"
-   height="0.71369231in"
+   width="12.283198in"
+   height="4.7222223in"
    id="svg4690"
    version="1.1"
    inkscape:version="0.91 r13725"
-   viewBox="0 0 251.76769 64.232307"
+   viewBox="0 0 868.59761 425.00001"
    sodipodi:docname="6.svg"
    style="shape-rendering:crispEdges;enable-background:new">
   <defs
      id="defs4692">
     <inkscape:perspective
        sodipodi:type="inkscape:persp3d"
-       inkscape:vp_x="0 : 382.5 : 1"
+       inkscape:vp_x="0 : 382.50001 : 1"
        inkscape:vp_y="0 : 1000 : 0"
-       inkscape:vp_z="989.99999 : 382.5 : 1"
-       inkscape:persp3d-origin="494.99999 : 255 : 1"
+       inkscape:vp_z="989.99996 : 382.50001 : 1"
+       inkscape:persp3d-origin="494.99998 : 255.00001 : 1"
        id="perspective3612" />
     <inkscape:path-effect
        effect="spiro"
@@ -42,9 +42,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000001"
-     inkscape:cx="176.70452"
-     inkscape:cy="-21.40709"
+     inkscape:zoom="0.50000003"
+     inkscape:cx="781.10849"
+     inkscape:cy="283.05915"
      inkscape:current-layer="layer2"
      inkscape:document-units="px"
      showgrid="false"
@@ -82,8 +82,7 @@
      id="layer2"
      inkscape:label="base"
      style="display:inline"
-     transform="translate(-824.32666,-226.68222)"
-     sodipodi:insensitive="true">
+     transform="translate(-122.76632,-1.3850898)">
     <rect
        style="fill:#cfe9d4;fill-opacity:1;stroke:#fefdf6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4199"
@@ -104,7 +103,7 @@
      inkscape:label="marks"
      style="display:inline;opacity:0.98999999"
      sodipodi:insensitive="true"
-     transform="translate(-824.32666,-226.68222)">
+     transform="translate(-122.76632,-1.3850898)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -219,7 +218,7 @@
      inkscape:label="nums1"
      style="display:inline"
      sodipodi:insensitive="true"
-     transform="translate(-824.32666,-226.68222)">
+     transform="translate(-122.76632,-1.3850898)">
     <text
        sodipodi:linespacing="125%"
        id="text3792-5-9"
@@ -314,7 +313,7 @@
      id="layer1"
      inkscape:label="walls1"
      style="display:inline"
-     transform="translate(-824.32666,-226.68222)"
+     transform="translate(-122.76632,-1.3850898)"
      sodipodi:insensitive="true">
     <path
        style="fill:#eabffb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
