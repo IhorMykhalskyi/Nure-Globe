@@ -2,6 +2,7 @@
 // x, y, z - coords
 // E - dictionary of belonging edges ({key:distance} pairs)
 
+
 function Point(key, x, y, z) {
     this.key = key;
     this.x = x;
