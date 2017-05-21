@@ -5,6 +5,7 @@
     position:absolute;
     overflow-x:scroll;
     overflow-y:scroll;
+    background-color:#cfe9d4;
 }
 
 #dashboard {

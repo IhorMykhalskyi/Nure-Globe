@@ -1,88 +1,82 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>Nure Globe</title>
-       
-        <meta name="viewport" content="initial-scale=1, width=device-width"/>
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<head>
+    <title>Nure Globe</title>
 
-        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
-        <link rel="stylesheet" href="main.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-        <script src="lib/swipeupdown.js"></script>
-        <script src="data/dots.js"></script>
-        <script src="data/lines.js"></script>
-        <script src="Graph.js"></script>
-        <script src="Man.js"></script>
-        <script src="Track.js"></script>
-        <script src="Dashboard.js"></script>
-        <script src="anime.js"></script>
-        <script src="globals.js"></script>
-        <script src="Tests.js"></script>
-        <script src="main.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <script src="bundles/bundled.min.js"></script>
+</head>
 
-        <!--<link rel="stylesheet" href="bundles/bundled.min.css">
-        <script src="bundles/bundled.min.js"></script>-->
+<body>
+    <!-- ----------------------page Map--------------------- -->
 
-    </head>
+    <div data-role="page" id="map">
+        <div data-role="main" class="ui-nodisc-icon ui-alt-icon">
+            <div id="canvas-panel">
+                <canvas id="canvas1"></canvas>
+            </div>
 
-    <body>    
-        <!-- ----------------------page Map--------------------- -->
+            <div id="dashboard">
+                <!-- From, To buttons -->
+                <span data-role="controlgroup" data-type="horizontal">
+                    <a href="#ul-keys" id="from" class="ui-btn ui-mini" data-rel="popup">ВХОД</a>
+                    <a href="#ul-keys" id="to" class="ui-btn ui-mini" data-rel="popup">285</a>
+                </span>
 
-        <div data-role="page" id="map" >
-            <div data-role="main" class="ui-nodisc-icon ui-alt-icon">
-                <div id="canvas-panel">
-                    <canvas id="canvas1"></canvas>
-                </div>
+                <!-- Go button -->
+                <button id="go-button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-icon-nureglobe "></button>
 
-                <div id="dashboard">  
-                    <!-- From, To buttons -->   
+                <div style="float:right">
+                    <!-- Scale buttons -->
                     <span data-role="controlgroup" data-type="horizontal">
-                        <a href="#ul-keys" id="from" class="ui-btn ui-mini" data-rel="popup" >ВХОД</a>
-                        <a href="#ul-keys" id="to" class="ui-btn ui-mini" data-rel="popup" >285</a>
+                        <button id="scale-dec" class="ui-btn ui-mini ui-icon-minus ui-btn-icon-notext "></button>
+                        <button id="scale-inc" class="ui-btn ui-mini ui-icon-plus ui-btn-icon-notext "></button>
                     </span>
 
-                    <!-- Go button -->  
-                    <button id="go-button" class="ui-btn ui-btn-inline ui-btn-icon-notext ui-icon-nureglobe "></button>
-
-                    <div style="float:right">
-                        <!-- Scale buttons -->
-                        <span data-role="controlgroup" data-type="horizontal">
-                            <button id="scale-dec" class="ui-btn ui-mini ui-icon-minus ui-btn-icon-notext "></button>
-                            <button id="scale-inc" class="ui-btn ui-mini ui-icon-plus ui-btn-icon-notext "></button>
-                        </span>
-
-                        <!-- Help buttons -->
-                        <a href="#about" data-transition="flip" id="info" class="ui-btn ui-icon-info ui-btn-icon-notext ui-btn-inline "></a>
-                    </div> 
-                </div>
-
-                <div id="ul-keys" data-role="popup" class="ui-corner-all ui-shadow " ></div>
-
-            </div>
-        </div>
-
-        <!-- ----------------------page About--------------------- -->
-
-        <div data-role="page" id="about">
-
-            <div data-role="header" >
-                <div style="text-align:center; padding: 6px ">
-                   NURE&nbsp; <img src="pic/nureglobe2.png" style="height: 32px" /> &nbsp;GLOBE
+                    <!-- Help buttons -->
+                    <a href="#about" data-transition="flip" id="info" class="ui-btn ui-icon-info ui-btn-icon-notext ui-btn-inline "></a>
                 </div>
             </div>
 
-            <div data-role="main" class="ui-content">
-                <img src="pic/help.png" style="width:100%;  " />
-            </div>
-
-            <div data-role="footer" style="position:absolute; width:100%; bottom: 0px; text-align:right">
-                <a href="#map" data-transition="flip" class="ui-btn ui-icon-back ui-btn-icon-notext"></a>
-            </div>
+            <div id="ul-keys" data-role="popup" class="ui-corner-all ui-shadow "></div>
 
         </div>
+    </div>
 
-    </body>
+    <!-- ----------------------page About--------------------- -->
+
+    <div data-role="page" id="about">
+
+        <div data-role="header">
+            <div style="text-align:center; padding: 6px ">
+                NURE&nbsp; <img src="pic/globe.gif" style="height: 32px" /> &nbsp;GLOBE
+            </div>
+        </div>
+
+        <div data-role="main" class="ui-content" align="center">
+            <img src="pic/help.png" style="width:60%">
+            <div>Глобус ХНУРЭ</div>
+            <p />
+            <div align="center">Разработчики<br> Александра Миронцева, Игорь Михальский</div>
+            <p />
+            <div align="center">Руководитель<br> Владимир Бондарев</div>
+            <p />
+            <div align="center">Версия Beta 0.9</div>
+            <div style="position:absolute; bottom: 50px; left:0px; right:0px; word-break: break-word; width:100%; text-align: center">
+                &copy; Игорь Михальский, Александра Миронцева, 2017
+            </div>
+        </div>
+
+        <div data-role="footer" style="position:absolute; width:100%; bottom: 0px; text-align:right">
+            <a href="#map" data-transition="flip" class="ui-btn ui-icon-back ui-btn-icon-notext"></a>
+        </div>
+
+    </div>
+</body>
 </html>
